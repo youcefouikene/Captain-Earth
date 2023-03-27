@@ -4,8 +4,9 @@ import 'Etoiles.dart';
 
 class ChooseBoxgame extends StatelessWidget {
  final double pourcentage1;
- final double pourcentage2;
- final double pourcentage3;
+ //width
+ final double pourcentage2;//heith
+ final double pourcentage3;//0
  final double pourcentageFont;
  final double pourcentageRaduis;
  final String TextFont;

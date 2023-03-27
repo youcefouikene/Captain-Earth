@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+//import 'package:flutter_svg/flutter_svg.dart';
 
 class PointBar extends StatelessWidget {
   late int score;
@@ -30,7 +30,7 @@ class PointBar extends StatelessWidget {
               score.toString(),
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontFamily: 'Atma',
+                fontFamily: "Atma",
                 fontSize: MediaQuery.of(context).size.width * 0.025,
                 color: Color.fromARGB(255, 0, 0, 0),
               ),
