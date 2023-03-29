@@ -33,8 +33,8 @@ class QuizScreen extends StatelessWidget {
               left: MediaQuery.of(context).size.width*0.0336,
               child: Column( mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                Iconbutton(icon: Icon(Icons.music_note)),
-                Iconbutton(icon: Icon(Icons.clear)),
+                Iconbutton(icon: Icon(Icons.music_note),pourcentage:(39/800) ,pourcentageMargin: (12/360),),
+                Iconbutton(icon: Icon(Icons.clear),pourcentage: (39/800), pourcentageMargin: (12/360)),
               ]),
             ),
             Center(

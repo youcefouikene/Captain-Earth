@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'quizOption.dart';
-import 'Etoiles.dart';
+import 'Etoiles2.dart';
 
 class ChooseBoxgame extends StatelessWidget {
  final double pourcentage1;

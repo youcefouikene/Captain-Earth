@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 
 class Iconbutton extends StatelessWidget {
   Icon icon;
-  Iconbutton({required this.icon});
+  final double pourcentage;
+  final double pourcentageMargin;
+  Iconbutton({required this.icon,required this.pourcentage,required this.pourcentageMargin});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height*0.033333333), 
+      margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height*pourcentageMargin), 
     child: Stack(
       alignment: Alignment.center,
       children: [
         Container(
           //margin: EdgeInsets.only(bottom: 12.0), 
-          width: MediaQuery.of(context).size.width * 0.04875,
-          height: MediaQuery.of(context).size.width * 0.04875,
+          width: MediaQuery.of(context).size.width * pourcentage,
+          height: MediaQuery.of(context).size.width * pourcentage,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: Color(0xFFE84560),
