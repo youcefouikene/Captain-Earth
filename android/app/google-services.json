@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "852829412127",
+    "project_id": "projet-2cp-1539a",
+    "storage_bucket": "projet-2cp-1539a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852829412127:android:dcc3625c058798fc036e2a",
+        "android_client_info": {
+          "package_name": "com.example.captain_earth_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852829412127-htpbc70cgocdd85n3ev4j8ufhh4gj4na.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHj0HpTZC3oqhpQjAYahNK6Pa3es2vXos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852829412127-htpbc70cgocdd85n3ev4j8ufhh4gj4na.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

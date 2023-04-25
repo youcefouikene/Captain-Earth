@@ -1,0 +1,57 @@
+name: captain_earth_app
+description: A new Flutter project.
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  liquid_progress_indicator: ^0.3.2
+  cupertino_icons: ^1.0.2
+  flutter_svg: ^0.22.0
+  firebase_core: ^2.10.0
+  firebase_auth: ^4.3.0
+  cloud_firestore: ^4.5.1
+  google_sign_in: ^5.3.0
+  provider: ^6.0.2
+  firebase_database: ^10.1.0
+  firebase_storage: ^11.0.16
+  image_picker: ^0.8.5
+  carousel_slider: ^4.1.1
+  sqflite:
+  shared_preferences: ^2.1.0
+  internet_connection_checker: ^1.0.0+1
+  audioplayers: ^4.0.1
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  svg_path_parser: ^1.1.1
+  animated_widgets: ^1.1.0
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/avatar/
+    - assets/images/
+    - assets/dechets/
+  fonts:
+    - family: Atma
+      fonts:
+        - asset: assets/fonts/Atma-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Atma-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Atma-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Atma-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Atma-Bold.ttf
+          weight: 700
