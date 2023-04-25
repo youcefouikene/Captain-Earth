@@ -1,6 +1,6 @@
 {
-    "name": "projet_2cp",
-    "short_name": "projet_2cp",
+    "name": "projet2cp",
+    "short_name": "projet2cp",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

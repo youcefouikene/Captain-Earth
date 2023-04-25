@@ -6,13 +6,12 @@ class JouerQuiz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(title: Text(" QUIZ "),),
-      body:Container(
-        child:Center(
-          child:const Text(" Readt to paly quiz !!!!!!"),
+      appBar: AppBar(title:const Text(" QUIZ "),),
+      body:const Center(
+          child:Text(" Readt to paly quiz !!!!!!"),
 
         ),
-      )
-    );;
+      
+    );
   }
 }

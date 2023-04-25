@@ -37,22 +37,20 @@ class Start extends StatelessWidget {
       
     ),
     Positioned(
-      left: MediaQuery.of(context).size.width*(144/800),
-      top: MediaQuery.of(context).size.height*(68/360),
-      child: Container(
-      width: MediaQuery.of(context).size.width*(305/800),
-      height:MediaQuery.of(context).size.height*(188/360),
+      left: MediaQuery.of(context).size.width*(68/800),
+      top: MediaQuery.of(context).size.height*(39/360),
+     
       child: Text(
         text,
         style: TextStyle(
           fontFamily: "Atma",
           fontWeight:FontWeight.w500,
-          fontSize: MediaQuery.of(context).size.width*0.02375,
+          fontSize: MediaQuery.of(context).size.width*(26/800),
           color: textColor,
         ),
       ),
 
-    ),
+    
     ),
     
       

@@ -5,13 +5,10 @@ class Map extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("MAP"),),
-      body:Container(
-        child:Center(
-          child:const Text("hello i am the map"),
-
-        ),
-      )
+      appBar: AppBar(title:const Text("MAP"),),
+      body:const Center(
+          child:Text("hello i am the map"),
+          )
     );
   }
 }

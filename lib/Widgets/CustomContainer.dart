@@ -32,6 +32,7 @@ class CustomContainer extends StatelessWidget {
 
                    ),
                    ),
+                  
                    Icon(
                   icon,
                   size:( MediaQuery.of(context).size.width) * 0.03,
@@ -39,6 +40,6 @@ class CustomContainer extends StatelessWidget {
                    ),
                  ],
                   ),
-                  );
+              );
   }
 }

@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:projet2cp/Screens/Classement.dart';
+import 'package:projet2cp/Screens/YesGagnant.dart';
+import 'Screens/EuropeInteractiveGame.dart';
 import 'package:projet2cp/Screens/ChoisirProfil.dart';
 import 'package:projet2cp/Screens/Profil.dart';
 import 'package:projet2cp/Screens/WelcomePage.dart';
 import 'Screens/Quiz_screen.dart';
 import 'Screens/ChooseGamePage.dart';
 import 'Screens/Map.dart';
-import 'Screens/Profil.dart';
-import 'Screens/ChoisirProfil.dart';
-
-//import 'package:flutter_svg/flutter_svg.dart';
+import 'Screens/AcquisitionPage.dart';
+import 'Screens/Defi.dart';
+import 'Screens/SupprimerCompte.dart';
+import 'Screens/JouerTrophetPage.dart';
+import 'Screens/Station6/JouerMiniJeu6.dart';
 import 'dart:ui' as ui;
 
 
@@ -31,16 +36,31 @@ class MyApp extends StatelessWidget {
     String usa= "assets/imagesSVG/USABackGround.png";
     String southAmerica=" assets/imagesSVG/SouthAmericaBG.png";
     String asia="assets/imagesSVG/AsiaBG.png";
-
+    
     return MaterialApp(
+       home: Scaffold(
+        body:JouerMiniJeu6(),
+        //ChoisirProfil(const []),
 
-      home: Scaffold(
-        body:ChoisirProfil(),
-        //Profil(),
-        //ChooseGamePage(pathBackGround:"assets/images/AfricaBG.png",EtoilesJeu:2,EtoilesQuiz:1 ),
-       //WelcomePage(),
-        // Center(child: QuizScreen(score: 1112, question: 'Quelles sont les raisons d’extinction des animaux ?', options: options, background: 'assets/images/Ocean.png')),
+       /* Profil(  
+          username: "Mellissa",
+          pathPhoto: "assets/images/avatar/AvatarStart.png",
+          score: 152,
+        ),*/
+        //YesGagnant(),
+        //Classement(),
+        //Jouer(),
+       // SupprimerCompte(),
+        //Defi(),
+        //AcquisitionPage(ptOcianie: 25, ptAsie: 12, ptAfrique:10, ptEurope:5, ptAmeriqueNord: 3, ptAmeriqueSud: 0,)
+        // WelcomePage(), //ok
+       // ChooseGamePage(pathBackGround:"assets/images/AfricaBG.png",EtoilesJeu:2,EtoilesQuiz:1 ), ok
+     
       ),
     );
   }
 }
+
+/*
+là ou il y a le boutton close normalement on irra à loading page puis quitter IMPORTANT 
+*/ 

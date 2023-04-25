@@ -5,11 +5,14 @@ import '../Widgets/CustomContainer.dart';
 import '../Widgets/PointBar.dart';
 import 'JouerQuiz.dart';
 import '../Widgets/ChooseBoxgame.dart';
+import '../Widgets/Iconbutton.dart';
 class ChooseGamePage extends StatefulWidget {
 
   final String pathBackGround;
-   int EtoilesQuiz;
-   int EtoilesJeu;
+   int? EtoilesQuiz;
+   int? EtoilesJeu;
+  final Widget pageJeu;
+
 
  
   @override
@@ -19,29 +22,31 @@ class ChooseGamePage extends StatefulWidget {
     required this.pathBackGround,
     required this.EtoilesJeu,
     required this.EtoilesQuiz,
+    required this.pageJeu,
     Key? key,
   }) : super(key: key);
 
   String getPathBackGround(){
-    return this.pathBackGround;
+    return pathBackGround;
   }
   int getEtoilesQuiz(){
-    return this.EtoilesQuiz;
+    return EtoilesQuiz!;
   }
   int getEtoilesjeu(){
-    return this.EtoilesJeu;
+    return  EtoilesJeu!;
   }
     void setEtoilesQuiz(int score){
-    this.EtoilesQuiz=score;
+    EtoilesQuiz=score;
   }
     void setEtoilesJeu(int score){
-    this.EtoilesJeu=score;
+     EtoilesJeu=score;
   }
   
 }
 
 class _ChooseGamePageState extends State<ChooseGamePage> {
-      IconData  _icone=Icons.music_note; //attribut de la classe 
+  Color? col=const Color.fromRGBO(232,69,96,1);
+      IconData  icone=Icons.music_note; //attribut de la classe 
 
   @override
   Widget build(BuildContext context) {
@@ -66,57 +71,7 @@ class _ChooseGamePageState extends State<ChooseGamePage> {
         child: Center(
           child:Stack(
             children: [
-              Positioned(
-                left: screenWidth*0.418,
-                top: screenHeight*0.06,
-                child:PointBar(score: 252),//exmple of score 
-                ),
-                Positioned(
-                left:MediaQuery.of(context).size.width*0.033,
-                top: MediaQuery.of(context).size.height*0.08 ,
-                child:Column(
-                children: [
-                GestureDetector(
-                  
-                      onTap: () {
-                        //quand on tape on change l'etat de notre page 
-                        //c'est pour ça il faut la mettre statefull 
-                        //alors, une fois le boutton tape on change l'etat en changeant l'icone
-                        setState((){
-                          if(_icone==Icons.music_note){
-                                _icone=Icons.music_off;
-                              }else{
-                                _icone=Icons.music_note;
-                              }
-                        }
-                        );
-                      },
-                      child: CustomContainer(
-                        colorTop: Color.fromRGBO(232,69,96,1), 
-                         widthContainer: MediaQuery.of(context).size.width * 0.04875,//56.0, 
-                         heightContainer: MediaQuery.of(context).size.width * 0.04875,//56.0,
-                         icon: _icone,
-                          ), 
-                    ),
-                    SizedBox(height: screenHeight*(12/360),),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) {
-                              return Map();//aller au map car on a cliquer sur le botton 
-                            },
-                          ),
-                        );
-                      },
-                      child: CustomContainer(
-                        colorTop: Color.fromRGBO(232,69,96,1), 
-                         widthContainer: MediaQuery.of(context).size.width * 0.04875,//56.0, 
-                         heightContainer: MediaQuery.of(context).size.width * 0.04875,//56.0,
-                         icon:Icons.map_outlined), 
-                    ),
-              ],
-              ),),
+              
 
               Positioned(
                 left: screenWidth*(91.95/800),
@@ -168,10 +123,89 @@ class _ChooseGamePageState extends State<ChooseGamePage> {
                              pourcentageRaduis: (40/800),
                               TextFont: 'Atma', 
                               TextColor: Colors.black, 
-                              Stars: 1), ), ),
+                              Stars: 1), 
+                              ),
+                               ),
                              ],
               ), 
-              ),],
+              ),
+              //NOUVEAU MODEL 
+    //----------------------------------------------
+    Positioned(
+          left:MediaQuery.of(context).size.width*(29/800),
+          top: MediaQuery.of(context).size.height*(30/360) ,
+          child: Column(
+          children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+             width: MediaQuery.of(context).size.width * 39/800,
+             height: MediaQuery.of(context).size.width * 39/800,
+             decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: const Color(0xFFE84560),
+              border: Border.all(
+                color:const Color(0xff752683),
+                width: 2,
+              ),
+             ),
+            ),
+           IconButton(
+                    onPressed: (){
+                       setState((){
+                          if(icone==Icons.music_note){
+                                icone=Icons.music_off;
+                              }else{
+                                icone=Icons.music_note;
+                              }
+                        }
+                        );
+                      },
+            icon: Icon(icone),
+           iconSize: MediaQuery.of(context).size.width * 29/800,
+           color: const Color.fromARGB(255, 255, 255, 255),
+          ) , 
+          ]
+          ),
+        SizedBox(height: MediaQuery.sizeOf(context).width*(12/360),),
+       Stack(
+            alignment: Alignment.center,
+
+            children: [
+              Container(
+             width: MediaQuery.of(context).size.width * 39/800,
+             height: MediaQuery.of(context).size.width * 39/800,
+             decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: const Color(0xFFE84560),
+              border: Border.all(
+                color:const Color(0xff752683),
+                width: 2,
+              ),
+            ),
+             ),
+                  IconButton(
+                    onPressed: (){ 
+                      Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (_) {
+                              return const Map();//aller au map car on a cliquer sur le botton 
+                            },
+                          ),
+                        );
+                    },
+              icon:const Icon(Icons.close),
+             iconSize: MediaQuery.of(context).size.width * 29/800,
+            color: const Color.fromARGB(255, 255, 255, 255),
+            ) , ]
+          ),
+        //autre container 
+      ],
+    ),
+    ),
+              
+              ],
           ),
         ),
       ),

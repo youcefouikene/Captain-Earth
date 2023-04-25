@@ -46,9 +46,8 @@ class CustomContainerText extends StatelessWidget {
                       texte,
                      style: TextStyle(
                       color: colorText,
-                     fontFamily:"Atma" ,
-                     fontSize: 24.0,
-                     fontWeight: FontWeight.w600,
+                      fontFamily:'Atma' ,
+                      fontSize: (24/800)*MediaQuery.of(context).size.width,
                       ),
                    ),),
                      ),

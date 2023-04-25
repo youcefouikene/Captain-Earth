@@ -1,4 +1,4 @@
-# projet_2cp
+# projet2cp
 
 A new Flutter project.
 

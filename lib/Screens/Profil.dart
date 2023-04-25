@@ -1,27 +1,84 @@
 import 'package:flutter/material.dart';
 import 'package:projet2cp/Widgets/BoxInfo.dart';
-import '../Widgets/CustomContainer.dart';
-import '../Widgets/BoxInfo.dart';
-import '../Widgets/CustomContainerText.dart';
+import 'package:projet2cp/Widgets/RectangleButton.dart';
 import 'Map.dart';
-
+import 'Classement.dart';
+import 'AcquisitionPage.dart';
+import 'Defi.dart';
 class Profil extends StatefulWidget {
-  const Profil({super.key});
+  String? username;
+  String? pathPhoto;
+  int? score=0;
+  int ptOcianie=0;
+  int ptAsie=0;
+  int ptAfrique=0;
+  int ptEurope=0;
+  int ptAmeriqueNord=0;
+  int ptAmeriqueSud=0;
+  //constructeur
+    Profil({
+    required this.username,
+    required this.pathPhoto,
+    this.score,
+    Key? key,}) : super(key: key);
+
+      String getUserName(){
+      return  username ?? '';
+    }
+    String getPathPhoto(){
+      return  pathPhoto ?? '';
+    }
+    int getScore(){
+      return score ??0;
+    }
+    void addPtOcianie(int pt){
+      ptOcianie=ptOcianie+pt;
+    }
+
+    void addPtAsie(int pt){
+      ptAsie=ptAsie+pt;
+    }
+        void addPtAfrique(int pt){
+      ptAfrique=ptAfrique+pt;
+    }
+        void addPtEurope(int pt){
+      ptEurope=ptEurope+pt;
+    }
+       void addPtAmeriqueN(int pt){
+      ptAmeriqueNord=ptAmeriqueNord+pt;
+    } 
+     void addPtAmeriqueS(int pt){
+      ptAmeriqueSud=ptAmeriqueSud+pt;
+    } 
 
   @override
   State<Profil> createState() => _ProfilState();
 }
 
 class _ProfilState extends State<Profil> {
-   IconData  _icone=Icons.music_note; //attribut de la classe 
+   IconData  icone=Icons.music_note;
+   Color? col= const Color.fromRGBO(232,69,96,1) ; //attribut de la classe 
+  
+   void incrementScore(int add) {
+    setState(() {
+      widget.score = widget.score! + add;
+    });
+  }
+
+  //decrement score
+  void decrementScore(int sub) {
+    setState(() {
+      widget.score = widget.score! - sub;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     double wid=MediaQuery.of(context).size.width;
-        double het=MediaQuery.of(context).size.height;
+    double het=MediaQuery.of(context).size.height;
 
     return Scaffold(
-             backgroundColor:Color.fromRGBO(158, 231, 251, 1),
+      backgroundColor:const Color.fromRGBO(158, 231, 251, 1),
       body: Stack(children: [
         Positioned(
           left: wid*(47/800),
@@ -30,67 +87,94 @@ class _ProfilState extends State<Profil> {
             width:wid*(706/800),
             height: het*((301*2+60)/800),
             decoration: BoxDecoration(
-             color: Color(0xffffffff),
+             color:const Color(0xffffffff),
               borderRadius: BorderRadius.circular(wid*(42/800)),
               border: Border.all(
-             color: Color(0xff135617),
+             color:const  Color(0xff135617),
               width: 3,
           ),
             ),
         )),
         Positioned(
-                left:MediaQuery.of(context).size.width*(76/800),
-                top: MediaQuery.of(context).size.height*(56/360) ,
-                child:Column(
-                children: [
-                GestureDetector(
-                  
-                      onTap: () {
-                        //quand on tape on change l'etat de notre page 
-                        //c'est pour ça il faut la mettre statefull 
-                        //alors, une fois le boutton tape on change l'etat en changeant l'icone
-                        setState((){
-                          if(_icone==Icons.music_note){
-                                _icone=Icons.music_off;
+          left:MediaQuery.of(context).size.width*(76/800),
+          top: MediaQuery.of(context).size.height*(56/360) ,
+          child: Column(
+          children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+             width: MediaQuery.of(context).size.width * 39/800,
+             height: MediaQuery.of(context).size.width * 39/800,
+             decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: const Color(0xFFE84560),
+              border: Border.all(
+                color:const Color(0xff752683),
+                width: 2,
+              ),
+             ),
+            ),
+           IconButton(
+                    onPressed: (){
+                       setState((){
+                          if(icone==Icons.music_note){
+                                icone=Icons.music_off;
                               }else{
-                                _icone=Icons.music_note;
+                                icone=Icons.music_note;
                               }
                         }
                         );
                       },
-                      child: CustomContainer(
-                        colorTop: Color.fromRGBO(232,69,96,1), 
-                         widthContainer: MediaQuery.of(context).size.width * 0.04875,//56.0, 
-                         heightContainer: MediaQuery.of(context).size.width * 0.04875,//56.0,
-                         icon: _icone,
-                          ), 
-                    ),
-                    SizedBox(height: wid*(12/360),),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(
+            icon: Icon(icone),
+           iconSize: MediaQuery.of(context).size.width * 29/800,
+           color: const Color.fromARGB(255, 255, 255, 255),
+          ) , 
+          ]
+          ),
+        SizedBox(height: wid*(12/360),),
+       Stack(
+            alignment: Alignment.center,
+
+            children: [
+              Container(
+             width: MediaQuery.of(context).size.width * 39/800,
+             height: MediaQuery.of(context).size.width * 39/800,
+             decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: const Color(0xFFE84560),
+              border: Border.all(
+                color:const Color(0xff752683),
+                width: 2,
+              ),
+            ),
+             ),
+                  IconButton(
+                    onPressed: (){ 
+                      Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (_) {
-                              return Map();//aller au map car on a cliquer sur le botton 
+                              return const Map();//aller au map car on a cliquer sur le botton 
                             },
                           ),
                         );
-                      },
-                      child: CustomContainer(
-                        colorTop: Color.fromRGBO(232,69,96,1), 
-                         widthContainer: MediaQuery.of(context).size.width * 0.04875,//56.0, 
-                         heightContainer: MediaQuery.of(context).size.width * 0.04875,//56.0,
-                         icon:Icons.map_outlined), 
-                    ),
-              ],
-              ),),
+                    },
+              icon:const Icon(Icons.map_outlined),
+             iconSize: MediaQuery.of(context).size.width * 29/800,
+            color: const Color.fromARGB(255, 255, 255, 255),
+            ) , ]
+          ),
+        //autre container 
+      ],
+    ),
+    ),
               Positioned(
                 left: wid*(343/800),
                 top:het*(45/360),
                 child:Text(
                   "Profil",
-                  style:TextStyle(
-                    color: Color(0xff135617),
+                   style:TextStyle(
+                    color: const Color(0xff135617),
                     fontFamily: 'Atma',
                     fontSize: wid*(29/800),
                     fontWeight: FontWeight.w700,
@@ -101,24 +185,39 @@ class _ProfilState extends State<Profil> {
                  Positioned(
                   left: wid*(682/800),
                   top: het*(55/360),
-                  child: GestureDetector(
-                      onTap: () {
+                   child: Stack(
+                             alignment: Alignment.center,
+                 
+                             children: [
+                               Container(
+                              width: MediaQuery.of(context).size.width * 39/800,
+                              height: MediaQuery.of(context).size.width * 39/800,
+                              decoration: BoxDecoration(
+                               shape: BoxShape.circle,
+                               color: const Color(0xFFE84560),
+                               border: Border.all(
+                                 color:const Color(0xff752683),
+                                 width: 2,
+                               ),
+                             ),
+                              ),
+                    IconButton(
+                      onPressed: (){ 
                         Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) {
-                              return Map();//aller au map car on a cliquer sur le botton 
-                            },
-                          ),
-                        );
+                            MaterialPageRoute(
+                              builder: (_) {
+                                return const Map();//aller au map temporairemetn apres on devra mettre une fonction permetant de quitter l'application 
+                              },
+                            ),
+                          );
                       },
-                      child: CustomContainer(
-                        colorTop: Color.fromRGBO(232,69,96,1), 
-                         widthContainer: MediaQuery.of(context).size.width * 0.04875,//56.0, 
-                         heightContainer: MediaQuery.of(context).size.width * 0.04875,//56.0,
-                         icon:Icons.close), 
-                    ), 
-                    ),
-                   
+                               icon:const Icon(Icons.close),
+                              iconSize: MediaQuery.of(context).size.width * 29/800,
+                             color: const Color.fromARGB(255, 255, 255, 255),
+                             ) , ]
+                           ),
+                 ),
+                
                     Positioned(
                      left: wid*(136/800),
                       top:het*(72/360),
@@ -131,22 +230,27 @@ class _ProfilState extends State<Profil> {
                             height: wid*(89/800),
                             decoration: BoxDecoration(
                              shape: BoxShape.circle,
-                              color: Color.fromARGB(255, 219, 205, 207),
                               border: Border.all(
-                               color: Color(0xff135617),
+                                width: (2/800)*wid,
+                               color:const Color(0xff135617),
                                ),
                                ),
-                          ),),
+                             child: CircleAvatar(
+                               backgroundImage: AssetImage(widget.getPathPhoto()),
+                               ),
+                               ),),
+
                           SizedBox(height: het*(20/360),),
+
                           Positioned(
                             child: BoxInfo(
-                            bordercolor:Color.fromARGB(255, 219, 205, 207),
-                             contentcolor: Color.fromARGB(255, 219, 205, 207), 
+                            bordercolor:const Color.fromARGB(255, 219, 205, 207),
+                             contentcolor:const Color.fromARGB(255, 219, 205, 207), 
                              element: Row(
                               children: [
                                 Icon(
                                   Icons.account_box,
-                                  color: Color(0xff135617),
+                                  color:const Color(0xff135617),
                                   size: wid*(16/800),
                                   ),
                                   SizedBox(width: wid*(13/800),),
@@ -156,12 +260,12 @@ class _ProfilState extends State<Profil> {
                                       fontFamily: 'Atma',
                                       fontSize: wid*(18/800),
                                       fontWeight:FontWeight.w700,
-                                      color:  Color(0xff135617),
+                                      color: const Color(0xff135617),
                                     ),
                                   ),
                                   SizedBox(width: wid*(34/800),),
                                   Text(
-                                    " Fatima",
+                                    widget.getUserName(),
                                     style: TextStyle(
                                       fontFamily: 'Atma',
                                       fontSize: wid*(18/800),
@@ -176,11 +280,11 @@ class _ProfilState extends State<Profil> {
                              SizedBox(height: het*(15/360),),
                              Positioned(
                             child: BoxInfo(
-                            bordercolor:Color.fromARGB(255, 219, 205, 207),
-                             contentcolor: Color.fromARGB(255, 219, 205, 207), 
+                            bordercolor:const Color.fromARGB(255, 219, 205, 207),
+                             contentcolor: const Color.fromARGB(255, 219, 205, 207), 
                              element: Row(
                               children: [
-                                 Image( image: AssetImage('assets/images/laf.png'), ),
+                                 const Image( image: AssetImage('assets/images/laf.png'), ),
                                   SizedBox(width: wid*(13/800),),
                                   Text(
                                     "Score: ",
@@ -188,13 +292,13 @@ class _ProfilState extends State<Profil> {
                                       fontFamily: 'Atma',
                                       fontSize: wid*(18/800),
                                       fontWeight:FontWeight.w700,
-                                      color:  Color(0xff135617),
+                                      color: const  Color(0xff135617),
                                     ),
                                   ),
                                    SizedBox(width: wid*(34/800),),
 
                                   Text(
-                                    " 150",//apres une variable 
+                                   (widget.getScore()).toString(),//apres une variable 
                                     style: TextStyle(
                                       fontFamily: 'Atma',
                                       fontSize: wid*(18/800),
@@ -210,6 +314,7 @@ class _ProfilState extends State<Profil> {
                         ],
 
                     )),
+
                      Positioned(
                      left: wid*(504/800),
                       top:het*(116/360),
@@ -217,12 +322,24 @@ class _ProfilState extends State<Profil> {
                         children: [
                         Positioned(
                             child: BoxInfo(
-                            bordercolor: Color(0xff135617),
+                            bordercolor:const  Color(0xff135617),
                             contentcolor:Colors.white, 
-
                              element:Center(
                                
-                               child:  Text(
+                               child: GestureDetector(
+                                onTap: () {
+                                   Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) {
+                                        return AcquisitionPage(
+                                          ptOcianie: widget.ptOcianie,
+                                           ptAsie: widget.ptAsie, 
+                                           ptAfrique: widget.ptAfrique,
+                                            ptEurope:widget. ptEurope, 
+                                            ptAmeriqueNord: widget.ptAmeriqueNord,
+                                             ptAmeriqueSud: widget.ptAmeriqueSud);},),);
+                                },
+                                child:  Text(
                                     " Acquesition",
                                     style: TextStyle(
                                       fontFamily: 'Atma',
@@ -231,18 +348,27 @@ class _ProfilState extends State<Profil> {
                                       color: Colors.black,
                                     ),
                                   ),
-
-                              
-                             )
+                               ),
+                                ),
                              ),),
+
                              SizedBox(height: het*(26/360),),
                              Positioned(
                             child:BoxInfo(
-                            bordercolor: Color(0xff135617),
+                            bordercolor:const Color(0xff135617),
                              contentcolor:Colors.white, 
                              element: Center(
                                
-                                 child:Text(
+                                 child:GestureDetector(
+                                  onTap: () {
+                                   Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) {
+                                        return Defi();
+                                             },
+                                             ),
+                                             ); },
+                                  child: Text(
                                     " Défi",
                                     style: TextStyle(
                                       fontFamily: 'Atma',
@@ -251,6 +377,7 @@ class _ProfilState extends State<Profil> {
                                       color: Colors.black,
                                     ),
                                   ),
+                                 )
 
                               
                              )
@@ -263,7 +390,16 @@ class _ProfilState extends State<Profil> {
                             contentcolor:Colors.white, 
 
                              element: Center(
-                               child:  Text(
+                               child: GestureDetector(
+                                onTap: () {
+                                   Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) {
+                                        return Classement();
+                                             },
+                                             ),
+                                             ); },
+                                child:  Text(
                                     " Classement",
                                     style: TextStyle(
                                       fontFamily: 'Atma',
@@ -272,6 +408,7 @@ class _ProfilState extends State<Profil> {
                                       color: Colors.black,
                                     ),
                                   ),
+                               )
 
                               
                              )
@@ -284,20 +421,15 @@ class _ProfilState extends State<Profil> {
         Positioned(
           left: wid*(312/800),
           top: het*(304/360),
-          child:GestureDetector(
-                  
-                      onTap: () {
-                       
-                      },
-                      child: CustomContainerText(
-                        colorTop: Color.fromRGBO(232,69,96,1), 
-                         widthContainer: wid*(175/800), 
-                         heightContainer: het*(39/360),
-                         colorText: Colors.white,
-                         texte: "DECONNEXION",
-                          ), 
-                    ),
-          ),
+          child:RectangleButton(
+            text: "DECONNEXION", 
+            pourcentage1:(175/800),
+             pourcentage2: (39/360), 
+             pourcentage3: (17/360), 
+             pourcentageFont: (21/800),
+              pourcentageRaduis: (10/800),
+       
+          ),),
 
 
       ],)

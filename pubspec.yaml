@@ -35,8 +35,9 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flip_card: ^0.7.0
   flutter_svg: ^2.0.4
-
+  audioplayers: ^3.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -63,12 +64,26 @@ flutter:
   assets:
     - assets\images\AfricaBG.png
     - assets\images\avatar\captain_earth_7.png
+    - assets\images\CaptainCraying.png
+    - assets\images\Captainstanding.png
+    - assets\images\Captainjumping.png
+    - assets/images/Captain_hi.png
     - assets\images\avatarWelcome.svg
     - assets\images\avatar\AvatarStart.png
     - assets\images\Group 62.svg
     - assets\images\laf.png
-  #   - images/a_dot_ham.jpeg
-
+    - assets\images\icons\map.png
+    - assets\images\icons\coupe.png
+    - assets/Dechets/
+    - assets/bonnus/
+    - assets/images/icons/cadnat.png
+    - assets\images\trophetGris.png
+    - assets\images\trophet.png
+    - assets\images\ajouter.png
+    - assets\forest.png
+    - assets/animalspics/
+    - assets/imagesMemoryGame/
+    - assets/images/openmoji_timer.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
@@ -93,5 +108,6 @@ flutter:
           weight: 600
         - asset: assets/fonts/Atma-Bold.ttf
           weight: 700
+     
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
