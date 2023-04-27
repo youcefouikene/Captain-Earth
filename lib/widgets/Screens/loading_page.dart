@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import './welcome_page.dart';
 
 class LoadingPage extends StatelessWidget {
-  double screenWidth;
-  double screenHeight;
+  static const routeName = '/';
 
-  LoadingPage({required this.screenWidth, required this.screenHeight, Key? key})
+  const LoadingPage({Key? key})
       : super(key: key);
 
   @override
@@ -18,10 +18,10 @@ class LoadingPage extends StatelessWidget {
         children: [
           Image.asset(
             'assets/avatar/logo.png',
-            width: 0.281275 * screenWidth,
-            height: 0.4943 * screenHeight,
+            width: 0.281275 * MediaQuery.of(context).size.width,
+            height: 0.4943 * MediaQuery.of(context).size.height,
           ),
-          SizedBox(height: (5 * screenHeight)/1000 ),
+          SizedBox(height: (5 * MediaQuery.of(context).size.height)/1000 ),
           const Text(
             'Captain Earth', 
             style: TextStyle(
@@ -31,7 +31,7 @@ class LoadingPage extends StatelessWidget {
               fontWeight: FontWeight.bold
             ),
           ),
-          SizedBox(height: (14 * screenHeight)/1000 ),
+          SizedBox(height: (14 * MediaQuery.of(context).size.height)/1000 ),
           const LinearProgressIndicatorDemo(),
         ],
       ),
@@ -72,6 +72,10 @@ class _LinearProgressIndicatorDemoState extends State<LinearProgressIndicatorDem
         } else {
           _timer?.cancel();
           _timer = null;
+          // navigate to the Welcome Screen when progress indicator is complete
+          Navigator.of(context).pushReplacementNamed(
+            WelcomePage.routeName,
+          );
         }
       });
     });

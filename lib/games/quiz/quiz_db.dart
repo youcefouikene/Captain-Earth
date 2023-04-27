@@ -24,6 +24,7 @@ class QuizData {
   //!        ***/
   //! **********/
 
+
   static Future<Database> getProgress() async {
     var dbDir = await getDatabasesPath();
     var dbPath = join(dbDir, "questions.db");
@@ -37,10 +38,10 @@ class QuizData {
     return await openDatabase(dbPath);
   }
 
-  static Future<List<Question>> getQuestions(int theme) async {
+  static Future<List<Question>> getQuestions(int continentNumber) async {
     _questions = await getProgress();
     List<Map<String, dynamic>> questions =
-        await _questions.rawQuery('SELECT * FROM quiz WHERE theme = $theme');
+        await _questions.rawQuery('SELECT * FROM quiz WHERE theme = $continentNumber');
     return List.generate(questions.length, (index) {
       return Question(
         question: questions[index]['question'],
@@ -55,4 +56,5 @@ class QuizData {
       );
     });
   }
+
 }

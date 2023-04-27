@@ -40,8 +40,10 @@ flutter:
   uses-material-design: true
   assets:
     - assets/avatar/
-    - assets/images/
+    - assets/data/
     - assets/dechets/
+    - assets/images/
+
   fonts:
     - family: Atma
       fonts:

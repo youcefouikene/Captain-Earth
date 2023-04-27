@@ -29,7 +29,7 @@ class IndicationThrowGarbage extends StatelessWidget {
     }
 
     return Text(
-      (choix == "") ? '': (plusOrMinus == 'plus') ? '+1':'-1',
+      (choix == "") ? '': (plusOrMinus == 'plus') ? '+1':'',
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontFamily: 'Atma',

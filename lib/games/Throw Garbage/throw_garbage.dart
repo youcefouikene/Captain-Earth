@@ -102,7 +102,7 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
 
                     const SizedBox(width: 28,),
 
-                    (echec <= 3) ? const Image(image: AssetImage('assets/avatar/Captain jumping 1.png')) : (echec <= 12) ? const Image(image: AssetImage('assets/avatar/Captain good.png')) : const Image(image: AssetImage('assets/avatar/Captain crying.png'))
+                    (echec <= 3) ? const Image(image: AssetImage('assets/avatar/Captain jumping.png')) : (echec <= 12) ? const Image(image: AssetImage('assets/avatar/Captain good.png')) : const Image(image: AssetImage('assets/avatar/Captain crying.png'))
                   ],
                 ),
               ),

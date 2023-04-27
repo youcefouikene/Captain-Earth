@@ -1,12 +1,13 @@
 // ********** Exporting Screens ************
-export './widgets/Screens/MapScreen.dart';
-export './widgets/Screens/Map.dart';
-export './widgets/Screens/LoadingPage.dart';
-export 'signup/SignUp1.dart';
-export 'signup/SignUp2.dart';
-export 'signup/SignIn.dart';
-export './widgets/Screens/DemandePage.dart';
-export './widgets/Screens/EndGame.dart';
+export 'widgets/Screens/map_screen.dart';
+export 'widgets/Screens/map.dart';
+export './widgets/Screens/loading_page.dart';
+export 'signup/sign_up_1.dart';
+export 'signup/sign_up_2.dart';
+export 'signup/sign_in.dart';
+export 'widgets/Screens/demande_page.dart';
+export 'widgets/Screens/end-game.dart';
+export './widgets/Screens/welcome_page.dart';
 
 // ********** Exporting Shapes ************
 export './widgets/shapes/icon_button.dart';
