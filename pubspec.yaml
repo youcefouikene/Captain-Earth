@@ -25,7 +25,7 @@ dependencies:
   sqflite:
   shared_preferences: ^2.1.0
   internet_connection_checker: ^1.0.0+1
-  audioplayers: ^4.0.1
+  audioplayers: ^1.0.1
 
 
 dev_dependencies:
@@ -43,6 +43,8 @@ flutter:
     - assets/data/
     - assets/dechets/
     - assets/images/
+    - assets/sounds/questions/quiz/
+    - assets/sounds/questions/
 
   fonts:
     - family: Atma
