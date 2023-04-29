@@ -1,6 +1,7 @@
 import 'package:captain_earth_app/games/games.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import './signup/sign_up_2.dart';
 
 
 import './backend/progress_controllers.dart';
@@ -41,8 +42,8 @@ class _CaptainEarthState extends State<CaptainEarth> {
 
   @override
   Widget build(BuildContext context) {
-    //double screenWidth = MediaQuery.of(context).size.width;
-    //double screenHeight = MediaQuery.of(context).size.height;
-    return const BigQuiz(continentNumber: 2);
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    return SignUp2(screenWidth: screenWidth, screenHeight: screenHeight,);
   }
 }

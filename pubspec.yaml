@@ -43,6 +43,7 @@ flutter:
     - assets/data/
     - assets/dechets/
     - assets/images/
+    - assets/player_avatars/
     - assets/sounds/questions/quiz/
     - assets/sounds/questions/
 

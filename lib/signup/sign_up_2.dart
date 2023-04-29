@@ -59,19 +59,19 @@ class SignUp2 extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         GestureDetector(
-                          child: AvatarContainer(shapeWidth: 77.97, shapeHeight: 77.97, imagePath: ''),
+                          child: AvatarContainer(shapeWidth: 77.97, shapeHeight: 77.97, avatarNumber: 1,),
                           onTap: (){},
                         ),
                         GestureDetector(
-                          child: AvatarContainer(shapeWidth: 77.97, shapeHeight: 77.97, imagePath: ''),
+                          child: AvatarContainer(shapeWidth: 77.97, shapeHeight: 77.97, avatarNumber: 2,),
                           onTap: (){},
                         ),
                         GestureDetector(
-                          child: AvatarContainer(shapeWidth: 77.97, shapeHeight: 77.97, imagePath: ''),
+                          child: AvatarContainer(shapeWidth: 77.97, shapeHeight: 77.97, avatarNumber: 3,),
                           onTap: (){},
                         ),
                         GestureDetector(
-                          child: AvatarContainer(shapeWidth: 77.97, shapeHeight: 77.97, imagePath: ''),
+                          child: AvatarContainer(shapeWidth: 77.97, shapeHeight: 77.97, avatarNumber: 4,),
                           onTap: (){},
                         ),
                       ],
@@ -81,19 +81,19 @@ class SignUp2 extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         GestureDetector(
-                          child: AvatarContainer(shapeWidth: 77.97, shapeHeight: 77.97, imagePath: ''),
+                          child: AvatarContainer(shapeWidth: 77.97, shapeHeight: 77.97, avatarNumber: 5,),
                           onTap: (){},
                         ),
                         GestureDetector(
-                          child: AvatarContainer(shapeWidth: 77.97, shapeHeight: 77.97, imagePath: ''),
+                          child: AvatarContainer(shapeWidth: 77.97, shapeHeight: 77.97, avatarNumber: 6,),
                           onTap: (){},
                         ),
                         GestureDetector(
-                          child: AvatarContainer(shapeWidth: 77.97, shapeHeight: 77.97, imagePath: ''),
+                          child: AvatarContainer(shapeWidth: 77.97, shapeHeight: 77.97, avatarNumber: 7,),
                           onTap: (){},
                         ),
                         GestureDetector(
-                          child: AvatarContainer(shapeWidth: 77.97, shapeHeight: 77.97, imagePath: ''),
+                          child: AvatarContainer(shapeWidth: 77.97, shapeHeight: 77.97, avatarNumber: 8,),
                           onTap: (){},
                         ),
                       ],

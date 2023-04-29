@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 
 class AvatarContainer extends StatelessWidget {
   double shapeWidth;
   double shapeHeight;
-  String imagePath;
+  int avatarNumber;
 
-  AvatarContainer({required this.shapeWidth, required this.shapeHeight, required this.imagePath, Key? key}) : super(key: key);
+  AvatarContainer({required this.shapeWidth, required this.shapeHeight, required this.avatarNumber, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,20 +24,14 @@ class AvatarContainer extends StatelessWidget {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(shapeWidth/2), // set half of the width/height to make it circular
-            child: const Center(
-              child: Text('Avatar'),
+            child: Center(
+              child: Image.asset(
+                'assets/player_avatars/avatar$avatarNumber.png',
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
       );
   }
 }
-
-
-
-/*
-Image.asset(
-              imagePath,
-              fit: BoxFit.cover,
-            ),
- */
