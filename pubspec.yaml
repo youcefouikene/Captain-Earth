@@ -36,6 +36,14 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.4
+  flutter_sparkle: ^0.0.2
+  particles_flutter: ^0.1.4
+  flutter_tree: ^2.0.3
+  flip_card: ^0.7.0
+  svg_path_parser: ^1.1.1
+  animated_widgets: ^1.1.0
+  sqflite: ^2.2.7
+  path: ^1.8.3
 
 dev_dependencies:
   flutter_test:
@@ -61,15 +69,113 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/avatar/captain_earth_1.png
-    - assets/images/Background_SouthAmerica_1.png
+    - assets/images/avatar/captain_earth.png
+    - assets/images/ameriqueSud/Background_SouthAmerica_1.png
     - assets/images/leaf.png
-    - assets/images/avatar/Captain_good_1.png
-    - assets/images/Background_Ocean_1.png
-    - assets/images/avatar/Captain_craying_1.png
-    - assets/images/avatar/Captain_jumping_2.png
+    - assets/images/avatar/Captain_good.png
+    - assets/images/oceanie/Background_Ocean_1.png
+    - assets/images/avatar/Captain_craying.png
+    - assets/images/avatar/Captain_jumping.png
     - assets/images/Map_marker.png
-  #   - images/a_dot_ham.jpeg
+    - assets/images/oceanie/background_oceania_minijeu.png
+    - assets/images/oceanie/boutle.png
+    - assets/images/oceanie/materialTrash1.png
+    - assets/images/oceanie/materialTrash2.png
+    - assets/images/oceanie/banana.png
+    - assets/images/oceanie/plasticSac.png
+    - assets/images/oceanie/sacPoubelle.png
+    - assets/images/oceanie/cancer.png
+    - assets/images/oceanie/poisson_violet.png
+    - assets/images/oceanie/hippocamps.png
+    - assets/images/oceanie/poisson_jaune.png
+    - assets/images/oceanie/poisson_rose.png
+    - assets/images/oceanie/tortue.png
+    - assets/images/afrique/rhinocéros.png
+    - assets/images/afrique/Paresseux.png
+    - assets/images/afrique/cheval.png
+    - assets/images/afrique/cage.png
+    - assets/images/afrique/zebre.png
+    - assets/images/afrique/Background_Africa_1.png
+    - assets/images/oceanie/timer.png
+    - assets/images/afrique/cow.png
+    - assets/images/afrique/polar_bear.png
+    - assets/images/afrique/dog.png
+    - assets/images/afrique/gazelle.png
+    - assets/images/afrique/vache.png
+    - assets/images/afrique/tiger.png
+    - assets/images/afrique/grenouille.png
+    - assets/images/afrique/panda.png
+    - assets/images/afrique/oiseau.png
+    - assets/images/afrique/putois.png
+    - assets/images/afrique/crocodille.png
+    - assets/images/afrique/chameau.png
+    - assets/images/afrique/koala.png
+    - assets/images/afrique/inconnu.png
+    - assets/images/afrique/puma.png
+    - assets/images/afrique/elephant.png
+    - assets/images/afrique/lion.png
+    - assets/images/map-image.png
+    - assets/images/avatar/captain_earth_standing.png
+    - assets/images/ameriqueNord/Background_NorthAmerica.png
+    - assets/images/asie/Background_Asia.png
+    - assets/images/avatar/captain_earth_hi.png
+    - assets/images/ameriqueSud/backgroundsouthamericaminijeu.png
+    - assets/images/ameriqueSud/fire1.png
+    - assets/images/ameriqueSud/fire2.png
+    - assets/images/ameriqueSud/fire3.png
+    - assets/images/ameriqueSud/fire4.png
+    - assets/images/ameriqueSud/fire5.png
+    - assets/images/ameriqueSud/fire6.png
+    - assets/images/ameriqueSud/fire7.png
+    - assets/images/ameriqueSud/fire8.png
+    - assets/images/ameriqueSud/fire9.png
+    - assets/images/dechets/bouteille_plastique_1.png
+    - assets/images/dechets/poubelle-plastique.png
+    - assets/images/dechets/poubelle-verre.png
+    - assets/images/dechets/poubelle-papier.png
+    - assets/images/dechets/poubelle-organique.png
+    - assets/images/dechets/bouteille_plastique_2.png
+    - assets/images/dechets/feuillePapier1.png
+    - assets/images/dechets/feuillePapier2.png
+    - assets/images/dechets/carton.png
+    - assets/images/dechets/journal.png
+    - assets/images/dechets/melon.png
+    - assets/images/dechets/trashGlass1.png
+    - assets/images/dechets/trashGlass2.png
+    - assets/images/dechets/verre.png
+    - assets/images/dechets/plasticTrash2.png
+    - assets/images/dechets/saltBottle.png
+    - assets/images/dechets/sachet.png
+    - assets/images/europeBackground.png
+    - assets/images/dechets/apple.png
+    - assets/images/dechets/steak.png
+    - assets/images/dechets/indicationTypeDechets.png
+    - assets/images/ameriqueNord/barage.jpg
+    - assets/images/ameriqueNord/Esolaire.jpg
+    - assets/images/ameriqueNord/energieThermique.jpg
+    - assets/images/ameriqueNord/heolinne.jpg
+    - assets/images/ameriqueNord/heollinne2.jpg
+    - assets/images/ameriqueNord/logo.png
+    - assets/images/ameriqueNord/logo2.png
+    - assets/images/ameriqueNord/marine.jpg
+    - assets/images/ameriqueNord/paneauxSolaires.jpg
+    - assets/images/ameriqueNord/quest.png
+    - assets/images/asie/volcan.png
+    - assets/images/asie/nuclaire.png
+    - assets/images/asie/arbreFeu.png
+    - assets/images/asie/personne.png
+    - assets/images/asie/terrePolluee.png
+    - assets/images/asie/terrePolluee2.png
+    - assets/images/asie/usine.png
+    - assets/images/asie/usine2.png
+    - assets/images/asie/voitureFumee.png
+    - assets/images/ajouter.png
+    - assets/images/badges/eco.png
+    - assets/images/badges/planet.png
+    - assets/images/badges/planet2.png
+    - assets/images/badges/koala.png
+    - assets/images/badges/water.png
+    - assets/images/badges/robinet.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -5,7 +5,7 @@ class PointBar extends StatelessWidget {
   late int score;
 
   PointBar({required this.score});
-  
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -49,7 +49,7 @@ class PointBar extends StatelessWidget {
             ),
           ),
           child: Image(
-            image: AssetImage('assets/images/laf.png'),
+            image: AssetImage('assets/images/leaf.png'),
             //width: 10,
           ),
         ),
