@@ -44,6 +44,6 @@ class _CaptainEarthState extends State<CaptainEarth> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    return SignUp2(screenWidth: screenWidth, screenHeight: screenHeight,);
+    return BigQuiz(continentNumber: 2,);
   }
 }

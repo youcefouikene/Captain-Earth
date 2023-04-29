@@ -339,6 +339,7 @@ class QuestionBox extends StatelessWidget {
             qqsBank[question].question,
             style: TextStyle(
               fontFamily: 'Atma',
+              fontWeight: FontWeight.bold,
               fontSize: MediaQuery.of(context).size.width*0.02375,
               color: Colors.black,
             ),
@@ -430,7 +431,7 @@ class _QuizOptionState extends State<QuizOption> {
                   });
                 });
               }
-              Future.delayed(const Duration(milliseconds: 1000)).then((value) {
+              Future.delayed(const Duration(milliseconds: 2000)).then((value) {
                 setState(() {
                   clickRight = true;
                   clr = Colors.white;
@@ -459,6 +460,7 @@ class _QuizOptionState extends State<QuizOption> {
             style: TextStyle(
               color: Colors.black,
               fontFamily: 'Atma',
+              fontWeight: FontWeight.w600,
               fontSize: MediaQuery.of(context).size.width*widget.pourcentageFont,
             ),
           ),
