@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_2cp/try.dart';
+import '../../try.dart';
 import '../../Widgets/AvatarContainer.dart';
 
 class ChoseAvatar extends StatelessWidget {
@@ -39,150 +39,107 @@ class ChoseAvatar extends StatelessWidget {
                       color: Colors.white,
                     ),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text(
-                          'Choisir un avatar pour',
-                          style: TextStyle(
-                              fontFamily: 'Atma',
-                              fontSize: (230 / 800) * 100,
-                              fontWeight: FontWeight.w700,
-                              color: Color.fromRGBO(19, 78, 73, 1)),
-                        ),
-                        const Text(
-                          'votre enfant',
-                          style: TextStyle(
-                              fontFamily: 'Atma',
-                              fontSize: (230 / 800) * 100,
-                              fontWeight: FontWeight.w700,
-                              color: Color.fromRGBO(19, 78, 73, 1)),
-                        ),
-                        SizedBox(
-                          height: (10 / 360) * screenHeight,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            GestureDetector(
-                              child: AvatarContainer(
-                                shapeWidth: 77.97,
-                                shapeHeight: 77.97,
-                                avatarNumber: 1,
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => tryi(),
-                                    ));
-                              },
+                        Column(
+                          children: const [
+                            Text(
+                              'Choisir un avatar pour',
+                              style: TextStyle(
+                                  fontFamily: 'Atma',
+                                  fontSize: (230 / 800) * 100,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color.fromRGBO(19, 78, 73, 1)),
                             ),
-                            GestureDetector(
-                              child: AvatarContainer(
-                                shapeWidth: 77.97,
-                                shapeHeight: 77.97,
-                                avatarNumber: 2,
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => tryi(),
-                                    ));
-                              },
-                            ),
-                            GestureDetector(
-                              child: AvatarContainer(
-                                shapeWidth: 77.97,
-                                shapeHeight: 77.97,
-                                avatarNumber: 3,
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => tryi(),
-                                    ));
-                              },
-                            ),
-                            GestureDetector(
-                              child: AvatarContainer(
-                                shapeWidth: 77.97,
-                                shapeHeight: 77.97,
-                                avatarNumber: 4,
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => tryi(),
-                                    ));
-                              },
+                            Text(
+                              'votre enfant',
+                              style: TextStyle(
+                                  fontFamily: 'Atma',
+                                  fontSize: (230 / 800) * 100,
+                                  fontWeight: FontWeight.w700,
+                                  color: Color.fromRGBO(19, 78, 73, 1)),
                             ),
                           ],
                         ),
-                        SizedBox(
-                          height: (18 / 360) * screenHeight,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        Column(
                           children: [
-                            GestureDetector(
-                              child: AvatarContainer(
-                                shapeWidth: 77.97,
-                                shapeHeight: 77.97,
-                                avatarNumber: 5,
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => tryi(),
-                                    ));
-                              },
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                AvatarContainer(
+                                    avatarNumber: 1,
+                                    onTapCallback: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => tryi()));
+                                    }),
+                                AvatarContainer(
+                                    avatarNumber: 2,
+                                    onTapCallback: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => tryi()));
+                                    }),
+                                AvatarContainer(
+                                    avatarNumber: 3,
+                                    onTapCallback: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => tryi()));
+                                    }),
+                                AvatarContainer(
+                                    avatarNumber: 4,
+                                    onTapCallback: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => tryi()));
+                                    }),
+                              ],
                             ),
-                            GestureDetector(
-                              child: AvatarContainer(
-                                shapeWidth: 77.97,
-                                shapeHeight: 77.97,
-                                avatarNumber: 6,
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => tryi(),
-                                    ));
-                              },
+                            SizedBox(
+                              height: (18 / 360) * screenHeight,
                             ),
-                            GestureDetector(
-                              child: AvatarContainer(
-                                shapeWidth: 77.97,
-                                shapeHeight: 77.97,
-                                avatarNumber: 7,
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => tryi(),
-                                    ));
-                              },
-                            ),
-                            GestureDetector(
-                              child: AvatarContainer(
-                                shapeWidth: 77.97,
-                                shapeHeight: 77.97,
-                                avatarNumber: 8,
-                              ),
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => tryi(),
-                                    ));
-                              },
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                AvatarContainer(
+                                    avatarNumber: 5,
+                                    onTapCallback: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => tryi()));
+                                    }),
+                                AvatarContainer(
+                                    avatarNumber: 6,
+                                    onTapCallback: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => tryi()));
+                                    }),
+                                AvatarContainer(
+                                    avatarNumber: 7,
+                                    onTapCallback: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => tryi()));
+                                    }),
+                                AvatarContainer(
+                                    avatarNumber: 8,
+                                    onTapCallback: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => tryi()));
+                                    }),
+                              ],
                             ),
                           ],
                         ),

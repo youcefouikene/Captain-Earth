@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projet_2cp/Screens/ChooseGamePage.dart';
-import 'package:projet_2cp/Widgets/ChooseBoxgame2.dart';
+import '../Screens/ChooseGamePage.dart';
+import '../Widgets/ChooseBoxgame2.dart';
 import '../Widgets/WelcomeTextBox.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -17,7 +17,7 @@ class _WelcomePageState extends State<WelcomePage> {
       'assets/images/oceanie/Background_Ocean_1.png',
       'Allons-y !',
       'à travers cette mission, nous en apprendrons plus sur la pollution de l\'eau et ses effets nocifs sur la planete',
-      '26'
+      '10'
     ],
     [
       'Bienvenue en Asie',
@@ -26,7 +26,7 @@ class _WelcomePageState extends State<WelcomePage> {
       'assets/images/asie/Background_Asia.png',
       'Allons-y !',
       'à travers cette mission, nous en apprendrons plus sur la pollution de l\'aire et ses effets nocifs sur la planete',
-      '26'
+      '20'
     ],
     [
       'Bienvenue en Afrique',
@@ -35,7 +35,7 @@ class _WelcomePageState extends State<WelcomePage> {
       'assets/images/afrique/Background_Africa_1.png',
       'Allons-y !',
       ' à travers cette mission, nous en apprendrons plus sur les animaux en danger et comment les préservés !',
-      '26'
+      '20'
     ],
     [
       'Benvenue en Europe',
@@ -44,16 +44,16 @@ class _WelcomePageState extends State<WelcomePage> {
       'assets/images/europeBackground.png',
       'Allons-y !',
       'à travers cette mission, nous en apprendrons plus sur le recyclage des déchets et comment peut-on l\'appliquer au quotidien  !',
-      '15'
+      '10'
     ],
     [
       'Bienvenue en Amerique du nord',
-      'Ici les sources d\'énergie renouvelables représentaient environ 12,4 % de la consommation totale d\'énergie primaire. Avez-vous une idée de ce que sera notre mission ? ',
+      'Ici les sources d\'énergie renouvelables représentaient environ 12,4 % de la consommation d\'énergie. Avez-vous une idée de ce que sera notre mission ? ',
       '2',
       'assets/images/ameriqueNord/Background_NorthAmerica.png',
       'Allons-y !',
       'à travers cette mission, nous en apprendrons plus sur les énergies  renouvelables et leurs impact positive sur la planète',
-      '25'
+      '10'
     ],
     [
       'Bienvenue en Amerique du sud',
@@ -62,7 +62,7 @@ class _WelcomePageState extends State<WelcomePage> {
       'assets/images/ameriqueSud/Background_SouthAmerica_1.png',
       'Allons-y !',
       'à travers cette mission, nous en apprendrons plus sur la déforestation et comment peut-on préserver la flore !',
-      '17'
+      '10'
     ],
   ];
   int index = 0;
@@ -123,7 +123,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         ),
                         child: Center(
                             child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          // mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             SizedBox(
                               height: MediaQuery.of(context).size.height *
@@ -229,7 +229,7 @@ class _WelcomePageState extends State<WelcomePage> {
                       ),
                       Positioned(
                         bottom:
-                            -MediaQuery.of(context).size.height * (20 / 360),
+                            -MediaQuery.of(context).size.height * (16 / 360),
                         child: Container(
                           width:
                               MediaQuery.of(context).size.width * (130 / 800),

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_sparkle/flutter_sparkle.dart';
-import 'package:particles_flutter/particles_flutter.dart';
 
 class Garbage extends StatefulWidget {
   final String garbageImage;

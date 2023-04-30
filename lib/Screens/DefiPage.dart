@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:projet_2cp/Screens/Defis/DefiArrosageScreen/screenArrosage.dart';
-import 'package:projet_2cp/Screens/Defis/DefiClean/ScereenClean.dart';
-import 'package:projet_2cp/Screens/Defis/DefiVelo/ScreenVelo.dart';
-import 'package:projet_2cp/Screens/Defis/DefieProtectionEscargot/ScreenShoe.dart';
-import 'package:projet_2cp/Screens/Defis/defiEau/screenEau.dart';
-import 'package:projet_2cp/Screens/Defis/defiEnergie/screenSwitch.dart';
+import '../Screens/Defis/DefiArrosageScreen/screenArrosage.dart';
+import '../Screens/Defis/DefiClean/ScereenClean.dart';
+import '../Screens/Defis/DefiVelo/ScreenVelo.dart';
+import '../Screens/Defis/DefieProtectionEscargot/ScreenShoe.dart';
+import '../Screens/Defis/defiEau/screenEau.dart';
+import '../Screens/Defis/defiEnergie/screenSwitch.dart';
 import '../Widgets/DefiContainer.dart';
 import '../Widgets/CustomContainer.dart';
 

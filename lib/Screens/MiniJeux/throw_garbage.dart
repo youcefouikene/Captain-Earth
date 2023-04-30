@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projet_2cp/Screens/EndGamePage.dart';
-import 'package:projet_2cp/Screens/helpPageEu.dart';
+import '../../Screens/EndGamePage.dart';
+import '../../Screens/helpPageEu.dart';
 import '../../Widgets/CustomContainer.dart';
 import '../../Widgets/Europe/dechetModel.dart';
 // import '../../widgets.dart';

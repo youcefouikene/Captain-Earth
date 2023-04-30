@@ -1,25 +1,23 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../../../Screens/EndGamePage.dart';
+import '../../EndGamePage.dart';
 
-class Time extends StatefulWidget {
-  Time(
+class TimeFlip extends StatefulWidget {
+  TimeFlip(
       {required this.ignore,
-      required this.callback,
       required this.background,
       required this.station,
       required this.refreshPath});
-  final Function(int) callback;
   String station;
   String background;
   bool ignore;
   String refreshPath;
   @override
-  _Time createState() => _Time();
+  _TimeFlip createState() => _TimeFlip();
 }
 
-class _Time extends State<Time> {
-  int _secondsElapsed = 30;
+class _TimeFlip extends State<TimeFlip> {
+  int _secondsElapsed = 90;
   Color _backgroundColor = Colors.white;
 
   void _startTimer() {
@@ -27,9 +25,9 @@ class _Time extends State<Time> {
       setState(() {
         _secondsElapsed--;
       });
+      print(widget.ignore);
       if ((_secondsElapsed == 0) || (widget.ignore == true)) {
         print(_secondsElapsed);
-        widget.callback(_secondsElapsed);
         timer.cancel();
         Navigator.pushReplacement(
             context,
@@ -37,7 +35,7 @@ class _Time extends State<Time> {
               builder: (context) => EndGamePage(
                 background: widget.background,
                 score: _secondsElapsed,
-                stars: (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 10 + 1,
+                stars: (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 30 + 1,
                 station: widget.station,
                 refreshPath: widget.refreshPath,
               ),
@@ -49,10 +47,6 @@ class _Time extends State<Time> {
   void initState() {
     super.initState();
     _startTimer();
-  }
-
-  int getSecond() {
-    return _secondsElapsed;
   }
 
   @override
@@ -77,7 +71,7 @@ class _Time extends State<Time> {
               padding: EdgeInsets.only(
                   left: MediaQuery.of(context).size.width * 0.05),
               child: Text(
-                '00:$_secondsElapsed',
+                '$_secondsElapsed',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Atma',

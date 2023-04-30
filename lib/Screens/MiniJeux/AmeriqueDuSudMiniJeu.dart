@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projet_2cp/Screens/help.dart';
-import 'package:projet_2cp/Widgets/Iconbutton.dart';
+import '../../Screens/help.dart';
+import '../../Widgets/Iconbutton.dart';
 import '../../Widgets/Oceanie/Timer.dart';
 import '../../Widgets/AmeriqueSud/fire.dart';
 

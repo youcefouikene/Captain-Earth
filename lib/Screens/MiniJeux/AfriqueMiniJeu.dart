@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:projet_2cp/Widgets/Afrique/AnimalSauve.dart';
-import 'package:projet_2cp/Widgets/Afrique/AfriqueSquareAnimal.dart';
+import '../../Widgets/Afrique/AnimalSauve.dart';
+import '../../Widgets/Afrique/AfriqueSquareAnimal.dart';
 import '../../Widgets/Afrique/AfriqueAnimalOption.dart';
 import '../../Widgets/Iconbutton.dart';
 import '../../Widgets/Afrique/ListeAfrica.dart';

@@ -7,8 +7,8 @@ class DefiConatainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double w = MediaQuery.sizeOf(context).width;
-    double h = MediaQuery.sizeOf(context).height;
+    double w = MediaQuery.of(context).size.width;
+    double h = MediaQuery.of(context).size.height;
     return Container(
       width: w * 120 / 800,
       height: h * 74 / 360,

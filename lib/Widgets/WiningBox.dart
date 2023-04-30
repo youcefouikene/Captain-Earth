@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_2cp/Widgets/ScoreBAR.dart';
+import '../Widgets/ScoreBAR.dart';
 import 'StationBar.dart';
 import 'quizOption.dart';
 import 'RectangleButton.dart';

@@ -377,8 +377,8 @@ class _ClassementState extends State<Classement> {
 
   @override
   Widget build(BuildContext context) {
-    double wid = MediaQuery.sizeOf(context).width;
-    double het = MediaQuery.sizeOf(context).height;
+    double wid = MediaQuery.of(context).size.width;
+    double het = MediaQuery.of(context).size.height;
     return Scaffold(
         backgroundColor: const Color.fromRGBO(158, 231, 251, 1),
         body: Stack(

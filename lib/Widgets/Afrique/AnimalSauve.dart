@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_2cp/Widgets/RectangleButton.dart';
+import '../../Widgets/RectangleButton.dart';
 
 import '../../Screens/EndGamePage.dart';
 

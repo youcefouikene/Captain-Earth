@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_2cp/Screens/Profil/Profil.dart';
+import '../Screens/Profil/Profil.dart';
 
 class tryi extends StatelessWidget {
   const tryi({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_2cp/Widgets/ChooseBoxGame1.dart';
+import '../Widgets/ChooseBoxGame1.dart';
 import 'quizOption.dart';
 import 'Etoiles2.dart';
 

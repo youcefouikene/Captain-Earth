@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../Widgets/QuestionBox.dart';
 import '../Widgets/PointBar.dart';
 import '../Widgets/quizOption.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../Widgets/Iconbutton.dart';
 import 'dart:ui' as ui;
 

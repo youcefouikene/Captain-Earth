@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:projet_2cp/Screens/quiz/quiz_db.dart';
+import '../../Screens/quiz/quiz_db.dart';
 
 import '../../Widgets/Iconbutton.dart';
 import '../../Widgets/PointBar.dart';
@@ -335,12 +335,13 @@ class _QuizState extends State<Quiz> {
                       PointBar(score: score),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           QuestionBox(
                             question: currentQqs,
                             continentNumber: widget.continentNumber,
-                            pourcentage1: 0.26625,
-                            pourcentage2: 0.591666,
+                            pourcentage1: (213 / 800),
+                            pourcentage2: (217 / 360),
                             pourcentage3: 0.10125,
                           ),
                           Column(
@@ -356,7 +357,7 @@ class _QuizState extends State<Quiz> {
                                   endGame: endGame,
                                   pourcentage1: 0.395,
                                   pourcentage2: 0.111111,
-                                  pourcentage3: 0.04722,
+                                  pourcentage3: (15 / 360),
                                   pourcentageFont: 0.02,
                                   pourcentageRaduis: 0.01875,
                                 ),
@@ -370,7 +371,7 @@ class _QuizState extends State<Quiz> {
                                   endGame: endGame,
                                   pourcentage1: 0.395,
                                   pourcentage2: 0.111111,
-                                  pourcentage3: 0.04722,
+                                  pourcentage3: (15 / 360),
                                   pourcentageFont: 0.02,
                                   pourcentageRaduis: 0.01875,
                                 ),
@@ -384,7 +385,7 @@ class _QuizState extends State<Quiz> {
                                   endGame: endGame,
                                   pourcentage1: 0.395,
                                   pourcentage2: 0.111111,
-                                  pourcentage3: 0.04722,
+                                  pourcentage3: (15 / 360),
                                   pourcentageFont: 0.02,
                                   pourcentageRaduis: 0.01875,
                                 ),
@@ -398,7 +399,7 @@ class _QuizState extends State<Quiz> {
                                   endGame: endGame,
                                   pourcentage1: 0.395,
                                   pourcentage2: 0.111111,
-                                  pourcentage3: 0.04722,
+                                  pourcentage3: 0,
                                   pourcentageFont: 0.02,
                                   pourcentageRaduis: 0.01875,
                                 ),

@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.0-245.0.dev <4.0.0'
+  sdk: '>=2.19.2 <3.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -35,16 +35,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  flutter_svg: ^2.0.4
-  flutter_sparkle: ^0.0.2
-  particles_flutter: ^0.1.4
-  flutter_tree: ^2.0.3
   flip_card: ^0.7.0
-  svg_path_parser: ^1.1.1
-  animated_widgets: ^1.1.0
-  sqflite: ^2.2.7
-  path: ^1.8.3
   audioplayers: ^4.0.1
+  sqflite: ^2.2.8
+
 
 dev_dependencies:
   flutter_test:
@@ -231,3 +225,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+

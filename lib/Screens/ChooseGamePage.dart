@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:projet_2cp/Screens/MiniJeux/OceanieMiniJeu.dart';
+import '../Screens/MiniJeux/OceanieMiniJeu.dart';
 import '../Widgets/CustomContainer.dart';
 import '../Widgets/PointBar.dart';
 import '../Widgets/ChooseBoxgame2.dart';
