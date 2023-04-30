@@ -5,7 +5,7 @@ class PointBar extends StatelessWidget {
   late int score;
 
   PointBar({required this.score});
-  
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -31,6 +31,7 @@ class PointBar extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Atma',
+                fontWeight: FontWeight.w500,
                 fontSize: MediaQuery.of(context).size.width * 0.025,
                 color: Color.fromARGB(255, 0, 0, 0),
               ),
@@ -49,7 +50,7 @@ class PointBar extends StatelessWidget {
             ),
           ),
           child: Image(
-            image: AssetImage('assets/images/laf.png'),
+            image: AssetImage('assets/images/leaf.png'),
             //width: 10,
           ),
         ),

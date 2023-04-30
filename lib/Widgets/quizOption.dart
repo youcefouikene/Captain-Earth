@@ -6,21 +6,31 @@ class quizOption extends StatelessWidget {
   final double pourcentage2;
   final double pourcentage3;
   final double pourcentageFont;
-  final  double  pourcentageRaduis;
+  final double pourcentageRaduis;
   final String TextFont;
   final Color TextColor;
-  quizOption({required this.text, required this.pourcentage1,required this.pourcentage2,required this.pourcentage3,required this.pourcentageFont,required this.pourcentageRaduis,required this.TextFont,required this.TextColor});
+  quizOption(
+      {required this.text,
+      required this.pourcentage1,
+      required this.pourcentage2,
+      required this.pourcentage3,
+      required this.pourcentageFont,
+      required this.pourcentageRaduis,
+      required this.TextFont,
+      required this.TextColor});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * pourcentage3),
+      margin: EdgeInsets.only(
+          bottom: MediaQuery.of(context).size.height * pourcentage3),
       width: MediaQuery.of(context).size.width * pourcentage1,
-      height: MediaQuery.of(context).size.height* pourcentage2,
+      height: MediaQuery.of(context).size.height * pourcentage2,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width*pourcentageRaduis),
+        borderRadius: BorderRadius.circular(
+            MediaQuery.of(context).size.width * pourcentageRaduis),
         border: Border.all(
-          color:  Color(0xff135617),
+          color: Color(0xff135617),
           width: 3,
         ),
       ),
@@ -31,17 +41,17 @@ class quizOption extends StatelessWidget {
             text,
             style: TextStyle(
               fontFamily: TextFont,
-              fontSize: MediaQuery.of(context).size.width*pourcentageFont,
-          
+              fontSize: MediaQuery.of(context).size.width * pourcentageFont,
             ),
           ),
         ),
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(MediaQuery.of(context).size.width*pourcentageRaduis),
+            borderRadius: BorderRadius.circular(
+                MediaQuery.of(context).size.width * pourcentageRaduis),
           ),
           primary: Color.fromARGB(255, 255, 255, 255),
-          onPrimary:  TextColor,
+          onPrimary: TextColor,
         ),
       ),
     );
