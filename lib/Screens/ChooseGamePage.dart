@@ -81,9 +81,9 @@ class _ChooseGamePageState extends State<ChooseGamePage> {
                       alignment: Alignment.center,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width * (39 / 800),
+                          width: MediaQuery.of(context).size.width * (40 / 800),
                           height:
-                              MediaQuery.of(context).size.width * (39 / 800),
+                              MediaQuery.of(context).size.width * (40 / 800),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: Color(0xFFE84560),
@@ -105,13 +105,13 @@ class _ChooseGamePageState extends State<ChooseGamePage> {
                           },
                           icon: Icon(_icone),
                           iconSize:
-                              MediaQuery.of(context).size.width * (20 / 800),
+                              MediaQuery.of(context).size.width * (25 / 800),
                           color: Color.fromARGB(255, 255, 255, 255),
                         ),
                       ],
                     )),
                     SizedBox(
-                      height: screenHeight * (12 / 360),
+                      height: screenHeight * (5 / 360),
                     ),
                     Container(
                         child: Stack(
@@ -119,9 +119,9 @@ class _ChooseGamePageState extends State<ChooseGamePage> {
                       children: [
                         Container(
                           //margin: EdgeInsets.only(bottom: 12.0),
-                          width: MediaQuery.of(context).size.width * (39 / 800),
+                          width: MediaQuery.of(context).size.width * (40 / 800),
                           height:
-                              MediaQuery.of(context).size.width * (39 / 800),
+                              MediaQuery.of(context).size.width * (40 / 800),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: Color(0xFFE84560),
@@ -137,7 +137,7 @@ class _ChooseGamePageState extends State<ChooseGamePage> {
                           },
                           icon: Icon(Icons.map_outlined),
                           iconSize:
-                              MediaQuery.of(context).size.width * (20 / 800),
+                              MediaQuery.of(context).size.width * (24 / 800),
                           color: Color.fromARGB(255, 255, 255, 255),
                         ),
                       ],

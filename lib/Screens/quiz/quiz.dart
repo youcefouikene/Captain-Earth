@@ -255,8 +255,8 @@ class _QuizState extends State<Quiz> {
           child: Stack(
             children: [
               Positioned(
-                top: MediaQuery.of(context).size.height * 0.08333333,
-                left: MediaQuery.of(context).size.width * 0.0336,
+                top: MediaQuery.of(context).size.height * (30 / 360),
+                left: MediaQuery.of(context).size.width * (29 / 800),
                 child: Column(
                   children: [
                     Container(
@@ -288,13 +288,13 @@ class _QuizState extends State<Quiz> {
                           },
                           icon: Icon(_icone),
                           iconSize:
-                              MediaQuery.of(context).size.width * (20 / 800),
+                              MediaQuery.of(context).size.width * (25 / 800),
                           color: Color.fromARGB(255, 255, 255, 255),
                         ),
                       ],
                     )),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * (12 / 360),
+                      height: MediaQuery.of(context).size.height * (5 / 360),
                     ),
                     Container(
                         child: Stack(
@@ -302,9 +302,9 @@ class _QuizState extends State<Quiz> {
                       children: [
                         Container(
                           //margin: EdgeInsets.only(bottom: 12.0),
-                          width: MediaQuery.of(context).size.width * (39 / 800),
+                          width: MediaQuery.of(context).size.width * (40 / 800),
                           height:
-                              MediaQuery.of(context).size.width * (39 / 800),
+                              MediaQuery.of(context).size.width * (40 / 800),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: Color(0xFFE84560),
@@ -320,7 +320,7 @@ class _QuizState extends State<Quiz> {
                           },
                           icon: Icon(Icons.close_rounded),
                           iconSize:
-                              MediaQuery.of(context).size.width * (25 / 800),
+                              MediaQuery.of(context).size.width * (30 / 800),
                           color: Color.fromARGB(255, 255, 255, 255),
                         ),
                       ],
@@ -328,11 +328,18 @@ class _QuizState extends State<Quiz> {
                   ],
                 ),
               ),
+              Positioned(
+                  left: MediaQuery.of(context).size.width * 0.418,
+                  top: MediaQuery.of(context).size.height * 0.06,
+                  child: PointBar(score: score)),
               Center(
                 child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      PointBar(score: score),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * (99 / 360),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -586,7 +593,7 @@ class _QuizOptionState extends State<QuizOption> {
             style: TextStyle(
               color: Colors.black,
               fontFamily: 'Atma',
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
               fontSize:
                   MediaQuery.of(context).size.width * widget.pourcentageFont,
             ),

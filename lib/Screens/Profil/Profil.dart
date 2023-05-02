@@ -106,8 +106,8 @@ class _ProfilState extends State<Profil> {
                   ),
                 )),
             Positioned(
-              left: MediaQuery.of(context).size.width * (76 / 800),
-              top: MediaQuery.of(context).size.height * (56 / 360),
+              top: MediaQuery.of(context).size.height * (50 / 360),
+              left: MediaQuery.of(context).size.width * (70 / 800),
               child: Column(
                 children: [
                   Container(
@@ -115,8 +115,8 @@ class _ProfilState extends State<Profil> {
                     alignment: Alignment.center,
                     children: [
                       Container(
-                        width: MediaQuery.of(context).size.width * (39 / 800),
-                        height: MediaQuery.of(context).size.width * (39 / 800),
+                        width: MediaQuery.of(context).size.width * (40 / 800),
+                        height: MediaQuery.of(context).size.width * (40 / 800),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: Color(0xFFE84560),
@@ -138,13 +138,13 @@ class _ProfilState extends State<Profil> {
                         },
                         icon: Icon(_icone),
                         iconSize:
-                            MediaQuery.of(context).size.width * (20 / 800),
+                            MediaQuery.of(context).size.width * (25 / 800),
                         color: Color.fromARGB(255, 255, 255, 255),
                       ),
                     ],
                   )),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * (12 / 360),
+                    height: MediaQuery.of(context).size.height * (5 / 360),
                   ),
                   Container(
                       child: Stack(
@@ -152,8 +152,8 @@ class _ProfilState extends State<Profil> {
                     children: [
                       Container(
                         //margin: EdgeInsets.only(bottom: 12.0),
-                        width: MediaQuery.of(context).size.width * (39 / 800),
-                        height: MediaQuery.of(context).size.width * (39 / 800),
+                        width: MediaQuery.of(context).size.width * (40 / 800),
+                        height: MediaQuery.of(context).size.width * (40 / 800),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: Color(0xFFE84560),
@@ -169,7 +169,7 @@ class _ProfilState extends State<Profil> {
                         },
                         icon: Icon(Icons.map_outlined),
                         iconSize:
-                            MediaQuery.of(context).size.width * (20 / 800),
+                            MediaQuery.of(context).size.width * (24 / 800),
                         color: Color.fromARGB(255, 255, 255, 255),
                       ),
                     ],
@@ -197,12 +197,12 @@ class _ProfilState extends State<Profil> {
               // )
             ),
             Positioned(
-              right: wid * (79 / 800),
-              top: het * (56 / 360),
+              right: wid * (70 / 800),
+              top: het * (50 / 360),
               child: Stack(alignment: Alignment.center, children: [
                 Container(
-                  width: MediaQuery.of(context).size.width * 39 / 800,
-                  height: MediaQuery.of(context).size.width * 39 / 800,
+                  width: MediaQuery.of(context).size.width * 40 / 800,
+                  height: MediaQuery.of(context).size.width * 40 / 800,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: const Color(0xFFE84560),
@@ -215,7 +215,7 @@ class _ProfilState extends State<Profil> {
                 IconButton(
                   onPressed: () {},
                   icon: const Icon(Icons.close_rounded),
-                  iconSize: MediaQuery.of(context).size.width * 29 / 800,
+                  iconSize: MediaQuery.of(context).size.width * 30 / 800,
                   color: const Color.fromARGB(255, 255, 255, 255),
                 ),
               ]),
@@ -338,7 +338,7 @@ class _ProfilState extends State<Profil> {
                 )),
             Positioned(
                 left: wid * (504 / 800),
-                top: het * (116 / 360),
+                top: het * (113 / 360),
                 child: Column(
                   children: [
                     Positioned(

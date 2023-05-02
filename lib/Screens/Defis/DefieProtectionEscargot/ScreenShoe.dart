@@ -74,13 +74,13 @@ class _screenShoeState extends State<screenShoe> {
                         },
                         icon: Icon(_icone),
                         iconSize:
-                            MediaQuery.of(context).size.width * (20 / 800),
+                            MediaQuery.of(context).size.width * (25 / 800),
                         color: Color.fromARGB(255, 255, 255, 255),
                       ),
                     ],
                   )),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * (12 / 360),
+                    height: MediaQuery.of(context).size.height * (5 / 360),
                   ),
                   Container(
                       child: Stack(
@@ -88,8 +88,8 @@ class _screenShoeState extends State<screenShoe> {
                     children: [
                       Container(
                         //margin: EdgeInsets.only(bottom: 12.0),
-                        width: MediaQuery.of(context).size.width * (39 / 800),
-                        height: MediaQuery.of(context).size.width * (39 / 800),
+                        width: MediaQuery.of(context).size.width * (40 / 800),
+                        height: MediaQuery.of(context).size.width * (40 / 800),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: Color(0xFFE84560),
@@ -105,7 +105,7 @@ class _screenShoeState extends State<screenShoe> {
                         },
                         icon: Icon(Icons.close_rounded),
                         iconSize:
-                            MediaQuery.of(context).size.width * (25 / 800),
+                            MediaQuery.of(context).size.width * (30 / 800),
                         color: Color.fromARGB(255, 255, 255, 255),
                       ),
                     ],

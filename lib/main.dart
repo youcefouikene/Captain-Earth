@@ -42,6 +42,7 @@ import 'Screens/MiniJeux/AfriqueMiniJeu.dart';
 import 'Screens/MiniJeux/throw_garbage.dart';
 import 'Screens/MiniJeux/AmeriqueDuSudMiniJeu.dart';
 import 'Widgets/Oceanie/Timer.dart';
+import 'dart:io';
 
 //----------------------
 
@@ -49,6 +50,9 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.landscapeRight, DeviceOrientation.landscapeLeft]);
+  if (Platform.isAndroid) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+  }
   runApp(MyApp());
 }
 
@@ -56,6 +60,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         // body: BigQuiz(
         //   continentNumber: 1,

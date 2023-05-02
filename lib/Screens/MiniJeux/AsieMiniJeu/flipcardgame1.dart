@@ -132,9 +132,11 @@ class _FlipCardGane1State extends State<FlipCardGane1> {
                 child: Column(
                   children: <Widget>[
                     Positioned(
-                      top: het * 0.06,
                       child: Padding(
-                          padding: EdgeInsets.only(bottom: wid * (10 / 800)),
+                          padding: EdgeInsets.only(
+                            bottom: wid * (10 / 800),
+                            top: het * 0.06,
+                          ),
                           child: _time > 0
                               ? PointBarTime(score: _time)
                               : TimeFlipAsie(
@@ -250,78 +252,90 @@ class _FlipCardGane1State extends State<FlipCardGane1> {
               //NOUVEAU MODEL
               //----------------------------------------------
               Positioned(
+                top: MediaQuery.of(context).size.height * (30 / 360),
                 left: MediaQuery.of(context).size.width * (29 / 800),
-                top: MediaQuery.of(context).size.height * 0.06,
                 child: Column(
                   children: [
-                    Stack(alignment: Alignment.center, children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width * 39 / 800,
-                        height: MediaQuery.of(context).size.width * 39 / 800,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: const Color(0xFFE84560),
-                          border: Border.all(
-                            color: const Color(0xff752683),
-                            width: 2,
+                    Container(
+                        child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width * (39 / 800),
+                          height:
+                              MediaQuery.of(context).size.width * (39 / 800),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Color(0xFFE84560),
+                            border: Border.all(
+                              color: Color(0xff752683),
+                              width: 2,
+                            ),
                           ),
                         ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                            if (icone == Icons.music_note) {
-                              icone = Icons.music_off;
-                            } else {
-                              icone = Icons.music_note;
-                            }
-                          });
-                        },
-                        icon: Icon(icone),
-                        iconSize: MediaQuery.of(context).size.width * 25 / 800,
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ]),
+                        IconButton(
+                          onPressed: () {
+                            setState(() {
+                              if (icone == Icons.music_note) {
+                                icone = Icons.music_off;
+                              } else {
+                                icone = Icons.music_note;
+                              }
+                            });
+                          },
+                          icon: Icon(icone),
+                          iconSize:
+                              MediaQuery.of(context).size.width * (25 / 800),
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      ],
+                    )),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * (12 / 360),
+                      height: MediaQuery.of(context).size.height * (5 / 360),
                     ),
-                    Stack(alignment: Alignment.center, children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width * 39 / 800,
-                        height: MediaQuery.of(context).size.width * 39 / 800,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: const Color(0xFFE84560),
-                          border: Border.all(
-                            color: const Color(0xff752683),
-                            width: 2,
+                    Container(
+                        child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          //margin: EdgeInsets.only(bottom: 12.0),
+                          width: MediaQuery.of(context).size.width * (40 / 800),
+                          height:
+                              MediaQuery.of(context).size.width * (40 / 800),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Color(0xFFE84560),
+                            border: Border.all(
+                              color: Color(0xff752683),
+                              width: 2,
+                            ),
                           ),
                         ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(Icons.close_rounded),
-                        iconSize: MediaQuery.of(context).size.width * 27 / 800,
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ]),
-                    //autre container
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(Icons.close_rounded),
+                          iconSize:
+                              MediaQuery.of(context).size.width * (30 / 800),
+                          color: Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      ],
+                    )),
                   ],
                 ),
               ),
               Positioned(
                 right: MediaQuery.of(context).size.width * (32 / 800),
-                top: MediaQuery.of(context).size.height * 0.06,
+                top: MediaQuery.of(context).size.height * (30 / 360),
                 child: Container(
                     child: Stack(
                   alignment: Alignment.center,
                   children: [
                     Container(
                       //margin: EdgeInsets.only(bottom: 12.0),
-                      width: MediaQuery.of(context).size.width * (39 / 800),
-                      height: MediaQuery.of(context).size.width * (39 / 800),
+                      width: MediaQuery.of(context).size.width * (40 / 800),
+                      height: MediaQuery.of(context).size.width * (40 / 800),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Color(0xFFE84560),
@@ -337,13 +351,13 @@ class _FlipCardGane1State extends State<FlipCardGane1> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => helpPage(
-                                      numStation: 1,
+                                      numStation: 0,
                                       background:
-                                          'assets/images/asie/Background_Asia.png',
+                                          'assets/images/oceanie/Background_Ocean_1.png',
                                     )));
                       },
                       icon: Icon(Icons.question_mark),
-                      iconSize: MediaQuery.of(context).size.width * 0.03,
+                      iconSize: MediaQuery.of(context).size.width * 0.035,
                       color: Color.fromARGB(255, 255, 255, 255),
                     ),
                   ],

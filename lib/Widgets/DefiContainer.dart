@@ -10,8 +10,8 @@ class DefiConatainer extends StatelessWidget {
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
     return Container(
-      width: w * 120 / 800,
-      height: h * 74 / 360,
+      width: w * 170 / 800,
+      height: h * 84 / 360,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
             MediaQuery.of(context).size.width * (21 / 800)),
