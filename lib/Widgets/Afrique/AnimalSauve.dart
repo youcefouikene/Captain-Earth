@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:projet_2cp/constants.dart';
 import '../../Widgets/RectangleButton.dart';
-
+import 'package:projet_2cp/progress/progress.dart';
+import 'package:projet_2cp/backend/progress_controllers.dart';
 import '../../Screens/EndGamePage.dart';
 
 class AnimalSauve extends StatelessWidget {
@@ -8,7 +10,9 @@ class AnimalSauve extends StatelessWidget {
   String animal;
   int score;
   int _width = 200;
-  AnimalSauve({required this.animal, required this.next, required this.score});
+  GameProgress gameProgress;
+  StationProgress stationProgress;
+  AnimalSauve(this.stationProgress, this.gameProgress, {required this.animal, required this.next, required this.score});
   int Score() {
     if (score > 18) {
       score = 18;
@@ -49,50 +53,52 @@ class AnimalSauve extends StatelessWidget {
               width: MediaQuery.of(context).size.width * (630 / 800),
               height: MediaQuery.of(context).size.height * (305 / 360),
               decoration: BoxDecoration(
-                color: Color(0xffffffff),
+                color: const Color(0xffffffff),
                 borderRadius: BorderRadius.circular(
                     MediaQuery.of(context).size.width * (79 / 800)),
                 border: Border.all(
-                  color: Color(0xff135617),
+                  color: const Color(0xff135617),
                   width: 3,
                 ),
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   //SizedBox(width: MediaQuery.of(context).size.width * (66/800),),
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    // mainAxisAlignment: MainAxisAlignment,
                     children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * (15 / 360),
-                      ),
+                      // SizedBox(
+                      //   height: MediaQuery.of(context).size.height * (15 / 360),
+                      // ),
                       Text(
                         'Merci !',
                         style: TextStyle(
                           fontFamily: 'Atma',
+                          height: 30 / 48,
                           fontWeight: FontWeight.w700,
                           fontSize:
                               MediaQuery.of(context).size.width * (48 / 800),
-                          color: Color(0xff135617),
+                          color: const Color(0xff135617),
                         ),
                       ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * (340 / 800),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * (341 / 800),
                         child: Text(
                           'tu m\'as sauvé des mauvais chasseurs , maintenant je peux vivre libre dans la nature',
                           style: TextStyle(
                             fontFamily: 'Atma',
+                            height: 43 / 27,
                             fontWeight: FontWeight.w500,
                             fontSize:
                                 MediaQuery.of(context).size.width * (27 / 800),
-                            color: Color(0xff000000),
+                            color: const Color(0xff000000),
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * (23 / 360),
-                      ),
+                      // SizedBox(
+                      //   height: MediaQuery.of(context).size.height * (23 / 360),
+                      // ),
                       Container(
                         width: MediaQuery.of(context).size.width * (130 / 800),
                         height: MediaQuery.of(context).size.height * (39 / 360),
@@ -100,7 +106,7 @@ class AnimalSauve extends StatelessWidget {
                           borderRadius: BorderRadius.circular(
                               MediaQuery.of(context).size.width * (10 / 800)),
                           border: Border.all(
-                            color: Color(0xff7B2B85),
+                            color: const Color(0xff7B2B85),
                             width: 3,
                           ),
                         ),
@@ -109,16 +115,18 @@ class AnimalSauve extends StatelessWidget {
                             if (animal.compareTo(
                                     'assets/images/afrique/lion.png') ==
                                 0) {
+                              dataUpdator(context, stationProgress, gameProgress, Score(), Stars(score - 6));
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => EndGamePage(
+                                      stars: Stars(score - 6),
+                                      score: userProgress.leaves,
                                       background:
                                           'assets/images/afrique/Background_Africa_1.png',
-                                      score: Score(),
-                                      stars: Stars(score - 6),
                                       station: 'Station 03',
                                       refreshPath: '/AfriqueMiniJeu',
+                                      stationIndex: 2,
                                     ),
                                   ));
                             } else {
@@ -126,7 +134,7 @@ class AnimalSauve extends StatelessWidget {
                             }
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xffE84560),
+                            backgroundColor: const Color(0xffE84560),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(
                                   MediaQuery.of(context).size.width *

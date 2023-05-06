@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import '../Screens/ChooseGamePage.dart';
 import '../Widgets/ScoreBAR.dart';
+import '../progress/progress.dart';
 import 'StationBar.dart';
 import 'quizOption.dart';
 import 'RectangleButton.dart';
@@ -13,11 +15,37 @@ class WiningBox extends StatelessWidget {
   String refreshPath;
 
   WiningBox({
+    super.key,
     required this.Score,
     required this.Stars,
     required this.station,
     required this.refreshPath,
   });
+
+  List<List<String>> choiceFromStation = [
+    [
+      'assets/images/oceanie/Background_Ocean_1.png',
+      '/OceanieMiniJeu',
+      '/QuizOceanie'
+    ],
+    ['assets/images/asie/Background_Asia.png', '/AsieMiniJeu', '/QuizAsie'],
+    [
+      'assets/images/afrique/Background_Africa_1.png',
+      '/AfriqueMiniJeu',
+      '/QuizAfrique',
+    ],
+    ['assets/images/europeBackground.png', '/EuropeMiniJeu', '/QuizEurope'],
+    [
+      'assets/images/ameriqueNord/Background_NorthAmerica.png',
+      '/AmeriqueNordMiniJeu',
+      '/QuizAmeriqueNord'
+    ],
+    [
+      'assets/images/ameriqueSud/Background_SouthAmerica_1.png',
+      '/AmeriqueSudMiniJeu',
+      '/QuizAmeriqueSud',
+    ]
+  ];
 
   CustomPainter choix() {
     if (Stars == 0) {
@@ -54,11 +82,11 @@ class WiningBox extends StatelessWidget {
             width: MediaQuery.of(context).size.width * (286 / 800),
             height: MediaQuery.of(context).size.height * (247 / 360),
             decoration: BoxDecoration(
-              color: Color(0xffffffff),
+              color: const Color(0xffffffff),
               borderRadius: BorderRadius.circular(
                   MediaQuery.of(context).size.width * (43 / 800)),
               border: Border.all(
-                color: Color(0xff135617),
+                color: const Color(0xff135617),
                 width: 3,
               ),
             ),
@@ -70,7 +98,7 @@ class WiningBox extends StatelessWidget {
                   fontSize: MediaQuery.of(context).size.width * (33 / 800),
                   fontFamily: 'Atma',
                   fontWeight: FontWeight.bold,
-                  color: Color(0xff135617),
+                  color: const Color(0xff135617),
                 ),
               ),
               Padding(
@@ -117,8 +145,7 @@ class WiningBox extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                    child: Stack(
+                Stack(
                   alignment: Alignment.center,
                   children: [
                     Container(
@@ -127,24 +154,23 @@ class WiningBox extends StatelessWidget {
                       height: MediaQuery.of(context).size.width * (43 / 800),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(0xFFE84560),
+                        color: const Color(0xFFE84560),
                         border: Border.all(
-                          color: Color(0xff752683),
+                          color: const Color(0xff752683),
                           width: 2,
                         ),
                       ),
                     ),
                     IconButton(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(
-                            context, refreshPath);
+                        Navigator.pushReplacementNamed(context, refreshPath);
                       },
-                      icon: Icon(Icons.refresh),
+                      icon: const Icon(Icons.refresh),
                       iconSize: MediaQuery.of(context).size.width * 0.03,
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      color: const Color.fromARGB(255, 255, 255, 255),
                     ),
                   ],
-                )),
+                ),
                 SizedBox(width: MediaQuery.of(context).size.width * (25 / 800)),
                 Container(
                   width: MediaQuery.of(context).size.width * (130 / 800),
@@ -153,16 +179,31 @@ class WiningBox extends StatelessWidget {
                     borderRadius: BorderRadius.circular(
                         MediaQuery.of(context).size.width * (10 / 800)),
                     border: Border.all(
-                      color: Color(0xff7B2B85),
+                      color: const Color(0xff7B2B85),
                       width: 3,
                     ),
                   ),
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context);
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ChooseGamePage(
+                                pathBackGround: choiceFromStation[
+                                    int.parse(station[9]) - 1][0],
+                                stationIndex: int.parse(station[9])-1,
+                                pathJeu: choiceFromStation[
+                                    int.parse(station[9]) - 1][1],
+                                pathQuiz: choiceFromStation[
+                                    int.parse(station[9]) - 1][2],
+                              )
+                        ),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xffE84560),
+                      backgroundColor: const Color(0xffE84560),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                             MediaQuery.of(context).size.width * (10 / 800) - 3),

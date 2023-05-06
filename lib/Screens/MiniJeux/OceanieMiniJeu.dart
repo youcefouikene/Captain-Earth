@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import '../../Screens/help.dart';
-import '../../Widgets/Iconbutton.dart';
 import '../../Widgets/Oceanie/Timer.dart';
 import '../../Widgets/Oceanie/GarbagItem.dart';
+import 'package:projet_2cp/backend/progress_controllers.dart';
+import 'package:projet_2cp/progress/progress.dart';
 
 class Oceanie_miniJeu extends StatefulWidget {
+  const Oceanie_miniJeu({super.key});
+
   @override
   State<Oceanie_miniJeu> createState() => _Oceanie_miniJeuState();
 }
 
 class _Oceanie_miniJeuState extends State<Oceanie_miniJeu> {
+  final StationProgress stationProgress = userProgress.stations[0];
+  final GameProgress gameProgress = userProgress.stations[0].games[1];
+
   IconData _icone = Icons.music_note;
-  List<bool> _ignore = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ];
+  final List<bool> _ignore = [false, false, false, false, false, false,];
   List<String> listeGarbages = [
     'assets/images/oceanie/boutle.png',
     'assets/images/oceanie/materialTrash1.png',
@@ -83,9 +82,7 @@ class _Oceanie_miniJeuState extends State<Oceanie_miniJeu> {
       body: Stack(
         children: [
           Container(
-            //height: MediaQuery.of(context).size.height,
-            //width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               //color: Colors.blue,
               image: DecorationImage(
                 image: AssetImage(
@@ -147,8 +144,7 @@ class _Oceanie_miniJeuState extends State<Oceanie_miniJeu> {
             left: MediaQuery.of(context).size.width * (29 / 800),
             child: Column(
               children: [
-                Container(
-                    child: Stack(
+                Stack(
                   alignment: Alignment.center,
                   children: [
                     Container(
@@ -156,9 +152,9 @@ class _Oceanie_miniJeuState extends State<Oceanie_miniJeu> {
                       height: MediaQuery.of(context).size.width * (39 / 800),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(0xFFE84560),
+                        color: const Color(0xFFE84560),
                         border: Border.all(
-                          color: Color(0xff752683),
+                          color: const Color(0xff752683),
                           width: 2,
                         ),
                       ),
@@ -175,26 +171,24 @@ class _Oceanie_miniJeuState extends State<Oceanie_miniJeu> {
                       },
                       icon: Icon(_icone),
                       iconSize: MediaQuery.of(context).size.width * (25 / 800),
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      color: const Color.fromARGB(255, 255, 255, 255),
                     ),
                   ],
-                )),
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * (5 / 360),
                 ),
-                Container(
-                    child: Stack(
+                Stack(
                   alignment: Alignment.center,
                   children: [
                     Container(
-                      //margin: EdgeInsets.only(bottom: 12.0),
                       width: MediaQuery.of(context).size.width * (40 / 800),
                       height: MediaQuery.of(context).size.width * (40 / 800),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(0xFFE84560),
+                        color: const Color(0xFFE84560),
                         border: Border.all(
-                          color: Color(0xff752683),
+                          color: const Color(0xff752683),
                           width: 2,
                         ),
                       ),
@@ -203,20 +197,19 @@ class _Oceanie_miniJeuState extends State<Oceanie_miniJeu> {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: Icon(Icons.close_rounded),
+                      icon: const Icon(Icons.close_rounded),
                       iconSize: MediaQuery.of(context).size.width * (30 / 800),
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      color: const Color.fromARGB(255, 255, 255, 255),
                     ),
                   ],
-                )),
+                ),
               ],
             ),
           ),
           Positioned(
             right: MediaQuery.of(context).size.width * (32 / 800),
             top: MediaQuery.of(context).size.height * (30 / 360),
-            child: Container(
-                child: Stack(
+            child: Stack(
               alignment: Alignment.center,
               children: [
                 Container(
@@ -225,9 +218,9 @@ class _Oceanie_miniJeuState extends State<Oceanie_miniJeu> {
                   height: MediaQuery.of(context).size.width * (40 / 800),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Color(0xFFE84560),
+                    color: const Color(0xFFE84560),
                     border: Border.all(
-                      color: Color(0xff752683),
+                      color: const Color(0xff752683),
                       width: 2,
                     ),
                   ),
@@ -243,17 +236,18 @@ class _Oceanie_miniJeuState extends State<Oceanie_miniJeu> {
                                       'assets/images/oceanie/Background_Ocean_1.png',
                                 )));
                   },
-                  icon: Icon(Icons.question_mark),
+                  icon: const Icon(Icons.question_mark),
                   iconSize: MediaQuery.of(context).size.width * 0.035,
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  color: const Color.fromARGB(255, 255, 255, 255),
                 ),
               ],
-            )),
+            ),
           ),
           Positioned(
             left: MediaQuery.of(context).size.width * (340 / 800),
             top: MediaQuery.of(context).size.height * (20 / 360),
             child: Time(
+              stationIndex : 0,
               ignore: _ignore[0] &&
                   _ignore[1] &&
                   _ignore[2] &&

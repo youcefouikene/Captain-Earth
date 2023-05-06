@@ -1,29 +1,36 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:projet_2cp/progress/progress.dart';
 import '../../../Screens/EndGamePage.dart';
+import 'package:projet_2cp/backend/progress_controllers.dart';
+import 'package:projet_2cp/constants.dart';
 
 class Time extends StatefulWidget {
-  Time(
-      {required this.ignore,
-      required this.callback,
-      required this.background,
-      required this.station,
-      required this.refreshPath});
   final Function(int) callback;
+  int stationIndex;
   String station;
   String background;
   bool ignore;
   String refreshPath;
+  Time(
+  {
+    required this.stationIndex,
+    required this.ignore,
+    required this.callback,
+    required this.background,
+    required this.station,
+    required this.refreshPath
+  });
   @override
   _Time createState() => _Time();
 }
 
 class _Time extends State<Time> {
   int _secondsElapsed = 30;
-  Color _backgroundColor = Colors.white;
+  final Color _backgroundColor = Colors.white;
 
   void _startTimer() {
-    Timer.periodic(Duration(seconds: 1), (Timer timer) {
+    Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       setState(() {
         _secondsElapsed--;
       });
@@ -31,13 +38,15 @@ class _Time extends State<Time> {
         print(_secondsElapsed);
         widget.callback(_secondsElapsed);
         timer.cancel();
+        dataUpdator(context, userProgress.stations[widget.stationIndex], userProgress.stations[widget.stationIndex].games[1], _secondsElapsed, (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 10 + 1);
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => EndGamePage(
-                background: widget.background,
-                score: _secondsElapsed,
+                score: userProgress.leaves,
                 stars: (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 10 + 1,
+                stationIndex: widget.stationIndex,
+                background: widget.background,
                 station: widget.station,
                 refreshPath: widget.refreshPath,
               ),
@@ -46,6 +55,7 @@ class _Time extends State<Time> {
     });
   }
 
+  @override
   void initState() {
     super.initState();
     _startTimer();
@@ -68,7 +78,7 @@ class _Time extends State<Time> {
               color: Colors.white,
               borderRadius: BorderRadius.circular(36.5),
               border: Border.all(
-                color: Color(0xffE84560),
+                color: const Color(0xffE84560),
                 width: 3,
               ),
             ),
@@ -83,7 +93,7 @@ class _Time extends State<Time> {
                   fontFamily: 'Atma',
                   fontSize: MediaQuery.of(context).size.width * 0.025,
                   fontWeight: FontWeight.w500,
-                  color: Color.fromARGB(255, 0, 0, 0),
+                  color: const Color.fromARGB(255, 0, 0, 0),
                 ),
               ),
             ),
@@ -95,7 +105,7 @@ class _Time extends State<Time> {
               color: Colors.white,
               shape: BoxShape.circle,
               border: Border.all(
-                color: Color(0xffE84560),
+                color: const Color(0xffE84560),
                 width: 3,
               ),
             ),

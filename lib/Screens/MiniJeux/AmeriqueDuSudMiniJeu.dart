@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:projet_2cp/progress/progress.dart';
 import '../../Screens/help.dart';
-import '../../Widgets/Iconbutton.dart';
 import '../../Widgets/Oceanie/Timer.dart';
 import '../../Widgets/AmeriqueSud/fire.dart';
+import 'package:projet_2cp/backend/progress_controllers.dart';
 
 class Samerique_miniJeu extends StatefulWidget {
+  const Samerique_miniJeu({super.key});
+
   @override
   State<Samerique_miniJeu> createState() => _Samerique_miniJeuState();
 }
 
 class _Samerique_miniJeuState extends State<Samerique_miniJeu> {
+  final StationProgress stationProgress = userProgress.stations[5];
+  final GameProgress gameProgress = userProgress.stations[5].games[1];
+
   IconData _icone = Icons.music_note;
-  List<bool> _ignore = [
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ];
+  final List<bool> _ignore = [false, false, false, false, false, false, false, false, false,];
   List<String> feu = [
     'assets/images/ameriqueSud/fire1.png',
     'assets/images/ameriqueSud/fire2.png',
@@ -99,9 +95,7 @@ class _Samerique_miniJeuState extends State<Samerique_miniJeu> {
       body: Stack(
         children: [
           Container(
-            //height: MediaQuery.of(context).size.height,
-            //width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               //color: Colors.blue,
               image: DecorationImage(
                 image: AssetImage(
@@ -160,8 +154,7 @@ class _Samerique_miniJeuState extends State<Samerique_miniJeu> {
             left: MediaQuery.of(context).size.width * (29 / 800),
             child: Column(
               children: [
-                Container(
-                    child: Stack(
+                Stack(
                   alignment: Alignment.center,
                   children: [
                     Container(
@@ -169,9 +162,9 @@ class _Samerique_miniJeuState extends State<Samerique_miniJeu> {
                       height: MediaQuery.of(context).size.width * (40 / 800),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(0xFFE84560),
+                        color: const Color(0xFFE84560),
                         border: Border.all(
-                          color: Color(0xff752683),
+                          color: const Color(0xff752683),
                           width: 2,
                         ),
                       ),
@@ -188,15 +181,14 @@ class _Samerique_miniJeuState extends State<Samerique_miniJeu> {
                       },
                       icon: Icon(_icone),
                       iconSize: MediaQuery.of(context).size.width * (25 / 800),
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      color: const Color.fromARGB(255, 255, 255, 255),
                     ),
                   ],
-                )),
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * (5 / 360),
                 ),
-                Container(
-                    child: Stack(
+                Stack(
                   alignment: Alignment.center,
                   children: [
                     Container(
@@ -205,9 +197,9 @@ class _Samerique_miniJeuState extends State<Samerique_miniJeu> {
                       height: MediaQuery.of(context).size.width * (40 / 800),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(0xFFE84560),
+                        color: const Color(0xFFE84560),
                         border: Border.all(
-                          color: Color(0xff752683),
+                          color: const Color(0xff752683),
                           width: 2,
                         ),
                       ),
@@ -216,20 +208,19 @@ class _Samerique_miniJeuState extends State<Samerique_miniJeu> {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: Icon(Icons.close_rounded),
+                      icon: const Icon(Icons.close_rounded),
                       iconSize: MediaQuery.of(context).size.width * (30 / 800),
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      color: const Color.fromARGB(255, 255, 255, 255),
                     ),
                   ],
-                )),
+                ),
               ],
             ),
           ),
           Positioned(
             right: MediaQuery.of(context).size.width * (32 / 800),
             top: MediaQuery.of(context).size.height * (30 / 360),
-            child: Container(
-                child: Stack(
+            child: Stack(
               alignment: Alignment.center,
               children: [
                 Container(
@@ -238,9 +229,9 @@ class _Samerique_miniJeuState extends State<Samerique_miniJeu> {
                   height: MediaQuery.of(context).size.width * (40 / 800),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Color(0xFFE84560),
+                    color: const Color(0xFFE84560),
                     border: Border.all(
-                      color: Color(0xff752683),
+                      color: const Color(0xff752683),
                       width: 2,
                     ),
                   ),
@@ -256,17 +247,18 @@ class _Samerique_miniJeuState extends State<Samerique_miniJeu> {
                                       'assets/images/oceanie/Background_Ocean_1.png',
                                 )));
                   },
-                  icon: Icon(Icons.question_mark),
+                  icon: const Icon(Icons.question_mark),
                   iconSize: MediaQuery.of(context).size.width * 0.035,
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  color: const Color.fromARGB(255, 255, 255, 255),
                 ),
               ],
-            )),
+            ),
           ),
           Positioned(
             left: MediaQuery.of(context).size.width * (340 / 800),
             top: MediaQuery.of(context).size.height * (20 / 360),
             child: Time(
+              stationIndex: 5,
               ignore: _ignore[0] &&
                   _ignore[1] &&
                   _ignore[2] &&

@@ -1,34 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:projet_2cp/progress/progress.dart';
+import 'package:projet_2cp/backend/progress_controllers.dart';
 import '../Widgets/WiningBox.dart';
 
 class EndGamePage extends StatelessWidget {
   final String background;
-  //final String avatar;
-  // final String text;
-  // final double pourcentage1;
-  //final double pourcentage2;
-  //final double pourcentage3;
-  // final double pourcentageFont;
-  //
-  //final double pourcentageAvatar;
-  final int stars;
-  final int score;
-  //final String textButton;
   final String station;
+  final int stationIndex;
+  final int score;
+  final int stars;
   String refreshPath;
 
   EndGamePage({
-    required this.background,
-    required this.stars,
+    super.key,
     required this.score,
+    required this.stars,
+    required this.background,
     required this.station,
+    required this.stationIndex,
     required this.refreshPath,
-    //required this.pourcentage1,
-    //required this.pourcentage2,
-    //required this.pourcentage3,
-    //required this.pourcentageAvatar,
-    //required this.pourcentageFont,
-    //required this.textButton
   });
 
   String choixAvatar() {
@@ -86,7 +76,6 @@ class EndGamePage extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              //color: Color(0xff88EA88),
               image: DecorationImage(
                 image: AssetImage(background),
                 fit: BoxFit.cover,
@@ -102,7 +91,7 @@ class EndGamePage extends StatelessWidget {
                 SizedBox(
                     width: MediaQuery.of(context).size.width * (left() / 800)),
                 WiningBox(
-                  Score: score,
+                  Score: userProgress.leaves,
                   Stars: stars,
                   station: station,
                   refreshPath: refreshPath,
@@ -111,8 +100,7 @@ class EndGamePage extends StatelessWidget {
                 SizedBox(
                     width: MediaQuery.of(context).size.width *
                         (separateur() / 800)),
-
-                Container(
+                SizedBox(
                   //color: Colors.black,
                   // margin: EdgeInsets.only(top:122),
                   width: MediaQuery.of(context).size.width *
@@ -122,27 +110,6 @@ class EndGamePage extends StatelessWidget {
                     fit: BoxFit.fitWidth,
                   ),
                 ),
-
-                // Container(
-                //   //color: Colors.black,
-                //     width: MediaQuery.of(context).size.width * (pourcentageAvatar() / 800),
-                //     child: Image.asset(
-                //       choixAvatar(),
-                //       fit: BoxFit.fitWidth,
-                //     ),
-                // ),
-
-                // Container(
-                //   color: Colors.green,
-                //   width: MediaQuery.of(context).size.width * (pourcentageAvatar() / 800),
-                //   child: Align(
-                //     alignment: Alignment.bottomCenter,
-                //     child: Padding(
-                //       padding: EdgeInsets.only(bottom: 20),
-                //       child: Image.asset(choixAvatar(),fit: BoxFit.fitHeight,),
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ),

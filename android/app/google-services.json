@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "852829412127",
+    "project_id": "projet-2cp-1539a",
+    "storage_bucket": "projet-2cp-1539a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852829412127:android:c697a5cdfbc48a2a036e2a",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852829412127-sse5tsepue3cvdseocsnvaie1qag4g5g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHj0HpTZC3oqhpQjAYahNK6Pa3es2vXos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852829412127-htpbc70cgocdd85n3ev4j8ufhh4gj4na.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "852829412127-05n6nj6j3ad6tpm4t2ppul7lj6nbjgrm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.captainEarthApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:852829412127:android:cdf5fcd398a397ac036e2a",
+        "android_client_info": {
+          "package_name": "com.example.projet_2cp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "852829412127-sse5tsepue3cvdseocsnvaie1qag4g5g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHj0HpTZC3oqhpQjAYahNK6Pa3es2vXos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "852829412127-htpbc70cgocdd85n3ev4j8ufhh4gj4na.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "852829412127-05n6nj6j3ad6tpm4t2ppul7lj6nbjgrm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.captainEarthApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

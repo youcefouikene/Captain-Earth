@@ -5,18 +5,12 @@ import '../Classement.dart';
 import '../AcquisitionPage.dart';
 //import '../Widgets/DefiContainer.dart';
 import '../DefiPage.dart';
+import 'package:projet_2cp/progress/progress.dart';
 
 class Profil extends StatefulWidget {
   String? username;
   String? pathPhoto;
   int? score = 0;
-  int ptOcianie = 0;
-  int ptAsie = 0;
-  int ptAfrique = 0;
-  int ptEurope = 0;
-  int ptAmeriqueNord = 0;
-  int ptAmeriqueSud = 0;
-  //constructeur
   Profil({
     required this.username,
     required this.pathPhoto,
@@ -34,30 +28,6 @@ class Profil extends StatefulWidget {
 
   int getScore() {
     return score ?? 0;
-  }
-
-  void addPtOcianie(int pt) {
-    ptOcianie = ptOcianie + pt;
-  }
-
-  void addPtAsie(int pt) {
-    ptAsie = ptAsie + pt;
-  }
-
-  void addPtAfrique(int pt) {
-    ptAfrique = ptAfrique + pt;
-  }
-
-  void addPtEurope(int pt) {
-    ptEurope = ptEurope + pt;
-  }
-
-  void addPtAmeriqueN(int pt) {
-    ptAmeriqueNord = ptAmeriqueNord + pt;
-  }
-
-  void addPtAmeriqueS(int pt) {
-    ptAmeriqueSud = ptAmeriqueSud + pt;
   }
 
   @override
@@ -110,76 +80,71 @@ class _ProfilState extends State<Profil> {
               left: MediaQuery.of(context).size.width * (70 / 800),
               child: Column(
                 children: [
-                  Container(
-                      child: Stack(
+                  Stack(
                     alignment: Alignment.center,
                     children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width * (40 / 800),
-                        height: MediaQuery.of(context).size.width * (40 / 800),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color(0xFFE84560),
-                          border: Border.all(
-                            color: Color(0xff752683),
-                            width: 2,
+                        Container(
+                          width: MediaQuery.of(context).size.width * (40 / 800),
+                          height: MediaQuery.of(context).size.width * (40 / 800),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: const Color(0xFFE84560),
+                            border: Border.all(
+                              color: const Color(0xff752683),
+                              width: 2,
+                            ),
                           ),
                         ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          setState(() {
-                            if (_icone == Icons.music_note) {
-                              _icone = Icons.music_off;
-                            } else {
-                              _icone = Icons.music_note;
-                            }
-                          });
-                        },
-                        icon: Icon(_icone),
-                        iconSize:
-                            MediaQuery.of(context).size.width * (25 / 800),
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ],
-                  )),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * (5 / 360),
-                  ),
-                  Container(
-                      child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        //margin: EdgeInsets.only(bottom: 12.0),
-                        width: MediaQuery.of(context).size.width * (40 / 800),
-                        height: MediaQuery.of(context).size.width * (40 / 800),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color(0xFFE84560),
-                          border: Border.all(
-                            color: Color(0xff752683),
-                            width: 2,
+                        IconButton(
+                          onPressed: () {
+                            setState(() {
+                              if (_icone == Icons.music_note) {
+                                _icone = Icons.music_off;
+                              } else {
+                                _icone = Icons.music_note;
+                              }
+                            });
+                          },
+                          icon: Icon(_icone),
+                          iconSize:
+                              MediaQuery.of(context).size.width * (25 / 800),
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * (5 / 360),
+                    ),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          //margin: EdgeInsets.only(bottom: 12.0),
+                          width: MediaQuery.of(context).size.width * (40 / 800),
+                          height: MediaQuery.of(context).size.width * (40 / 800),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: const Color(0xFFE84560),
+                            border: Border.all(
+                              color: const Color(0xff752683),
+                              width: 2,
+                            ),
                           ),
                         ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(Icons.map_outlined),
-                        iconSize:
-                            MediaQuery.of(context).size.width * (24 / 800),
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ],
-                  )),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(Icons.map_outlined),
+                          iconSize:
+                              MediaQuery.of(context).size.width * (24 / 800),
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      ],
+                    ),
                 ],
               ),
             ),
-            // Positioned(
-            // left: wid * (343 / 800),
-            // top: het * (45 / 360),
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
@@ -274,9 +239,6 @@ class _ProfilState extends State<Profil> {
                                       color: const Color(0xff135617),
                                     ),
                                   ),
-                                  // SizedBox(
-                                  //   width: wid * (34 / 800),
-                                  // ),
                                   Text(
                                     widget.getUserName(),
                                     style: TextStyle(
@@ -322,8 +284,7 @@ class _ProfilState extends State<Profil> {
                                 width: wid * (34 / 800),
                               ),
                               Text(
-                                (widget.getScore())
-                                    .toString(), //apres une variable
+                                userProgress.leaves.toString(), //apres une variable
                                 style: TextStyle(
                                   fontFamily: 'Atma',
                                   fontSize: wid * (18 / 800),
@@ -352,12 +313,13 @@ class _ProfilState extends State<Profil> {
                                 MaterialPageRoute(
                                   builder: (_) {
                                     return AcquisitionPage(
-                                        ptOcianie: widget.ptOcianie,
-                                        ptAsie: widget.ptAsie,
-                                        ptAfrique: widget.ptAfrique,
-                                        ptEurope: widget.ptEurope,
-                                        ptAmeriqueNord: widget.ptAmeriqueNord,
-                                        ptAmeriqueSud: widget.ptAmeriqueSud);
+                                        // ptOcianie: widget.ptOcianie,
+                                        // ptAsie: widget.ptAsie,
+                                        // ptAfrique: widget.ptAfrique,
+                                        // ptEurope: widget.ptEurope,
+                                        // ptAmeriqueNord: widget.ptAmeriqueNord,
+                                        // ptAmeriqueSud: widget.ptAmeriqueSud
+                                    );
                                   },
                                 ),
                               );
@@ -393,15 +355,15 @@ class _ProfilState extends State<Profil> {
                                 ),
                               );
                             },
-                            child: Text(
-                              " Défi",
-                              style: TextStyle(
-                                fontFamily: 'Atma',
-                                fontSize: wid * (24 / 800),
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
+                              child: Text(
+                                " Défi",
+                                style: TextStyle(
+                                  fontFamily: 'Atma',
+                                  fontSize: wid * (24 / 800),
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black,
+                                ),
                               ),
-                            ),
                           ))),
                     ),
                     SizedBox(
@@ -409,29 +371,31 @@ class _ProfilState extends State<Profil> {
                     ),
                     Positioned(
                       child: BoxInfo(
-                          bordercolor: Color(0xff134E49),
+                          bordercolor: const Color(0xff134E49),
                           contentcolor: Colors.white,
                           element: Center(
                               child: GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) {
-                                    return Classement();
-                                  },
-                                ),
-                              );
-                            },
-                            child: Text(
-                              " Classement",
-                              style: TextStyle(
-                                fontFamily: 'Atma',
-                                fontSize: wid * (24 / 800),
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ))),
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) {
+                                        return const Classement();
+                                      },
+                                    ),
+                                  );
+                                },
+                                  child: Text(
+                                    " Classement",
+                                    style: TextStyle(
+                                      fontFamily: 'Atma',
+                                      fontSize: wid * (24 / 800),
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                              )
+                          )
+                      ),
                     ),
                   ],
                 )),
@@ -447,14 +411,14 @@ class _ProfilState extends State<Profil> {
                   borderRadius: BorderRadius.circular(
                       MediaQuery.of(context).size.width * (10 / 800)),
                   border: Border.all(
-                    color: Color(0xff7B2B85),
+                    color: const Color(0xff7B2B85),
                     width: 3,
                   ),
                 ),
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xffE84560),
+                    backgroundColor: const Color(0xffE84560),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(
                           MediaQuery.of(context).size.width * (10 / 800) - 3),

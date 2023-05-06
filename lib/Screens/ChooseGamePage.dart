@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:projet_2cp/backend/progress_controllers.dart';
+import 'package:projet_2cp/progress/progress.dart';
 import '../Screens/MiniJeux/OceanieMiniJeu.dart';
 import '../Widgets/CustomContainer.dart';
 import '../Widgets/PointBar.dart';
 import '../Widgets/ChooseBoxgame2.dart';
+import 'package:projet_2cp/try.dart';
 
 class ChooseGamePage extends StatefulWidget {
   final String pathBackGround;
+  final int stationIndex;
   int EtoilesQuiz = 0;
-  int EtoilesJeu = 2;
+  int EtoilesJeu = 0;
   String pathQuiz;
   String pathJeu;
 
@@ -16,36 +20,35 @@ class ChooseGamePage extends StatefulWidget {
 
   ChooseGamePage({
     required this.pathBackGround,
-    // required this.EtoilesJeu,
-    // required this.EtoilesQuiz,
+    required this.stationIndex,
     required this.pathJeu,
     required this.pathQuiz,
     Key? key,
   }) : super(key: key);
 
   String getPathBackGround() {
-    return this.pathBackGround;
+    return pathBackGround;
   }
 
   int getEtoilesQuiz() {
-    return this.EtoilesQuiz;
+    return EtoilesQuiz;
   }
 
   int getEtoilesjeu() {
-    return this.EtoilesJeu;
+    return EtoilesJeu;
   }
 
   void setEtoilesQuiz(int score) {
-    this.EtoilesQuiz = score;
+    EtoilesQuiz = score;
   }
 
   void setEtoilesJeu(int score) {
-    this.EtoilesJeu = score;
+    EtoilesJeu = score;
   }
 }
 
 class _ChooseGamePageState extends State<ChooseGamePage> {
-  IconData _icone = Icons.music_note; //attribut de la classe
+  IconData _icone = Icons.music_note;
 
   @override
   Widget build(BuildContext context) {
@@ -69,15 +72,14 @@ class _ChooseGamePageState extends State<ChooseGamePage> {
               Positioned(
                 left: screenWidth * 0.418,
                 top: screenHeight * 0.06,
-                child: PointBar(score: 252), //exmple of score
+                child: PointBar(score: userProgress.leaves),
               ),
               Positioned(
                 left: MediaQuery.of(context).size.width * 0.033,
                 top: MediaQuery.of(context).size.height * 0.08,
                 child: Column(
                   children: [
-                    Container(
-                        child: Stack(
+                    Stack(
                       alignment: Alignment.center,
                       children: [
                         Container(
@@ -86,9 +88,9 @@ class _ChooseGamePageState extends State<ChooseGamePage> {
                               MediaQuery.of(context).size.width * (40 / 800),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Color(0xFFE84560),
+                            color: const Color(0xFFE84560),
                             border: Border.all(
-                              color: Color(0xff752683),
+                              color: const Color(0xff752683),
                               width: 2,
                             ),
                           ),
@@ -106,42 +108,47 @@ class _ChooseGamePageState extends State<ChooseGamePage> {
                           icon: Icon(_icone),
                           iconSize:
                               MediaQuery.of(context).size.width * (25 / 800),
-                          color: Color.fromARGB(255, 255, 255, 255),
+                          color: const Color.fromARGB(255, 255, 255, 255),
                         ),
                       ],
-                    )),
+                    ),
                     SizedBox(
                       height: screenHeight * (5 / 360),
                     ),
-                    Container(
-                        child: Stack(
+                    Stack(
                       alignment: Alignment.center,
                       children: [
                         Container(
-                          //margin: EdgeInsets.only(bottom: 12.0),
                           width: MediaQuery.of(context).size.width * (40 / 800),
                           height:
                               MediaQuery.of(context).size.width * (40 / 800),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Color(0xFFE84560),
+                            color: const Color(0xFFE84560),
                             border: Border.all(
-                              color: Color(0xff752683),
+                              color: const Color(0xff752683),
                               width: 2,
                             ),
                           ),
                         ),
+                        
                         IconButton(
                           onPressed: () {
                             Navigator.pop(context);
+                            Navigator.pop(context);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => tryi(),
+                                ));
                           },
-                          icon: Icon(Icons.map_outlined),
+                          icon: const Icon(Icons.map_outlined),
                           iconSize:
                               MediaQuery.of(context).size.width * (24 / 800),
-                          color: Color.fromARGB(255, 255, 255, 255),
+                          color: const Color.fromARGB(255, 255, 255, 255),
                         ),
                       ],
-                    )),
+                    ),
                   ],
                 ),
               ),
@@ -157,9 +164,10 @@ class _ChooseGamePageState extends State<ChooseGamePage> {
                       pourcentage3: 0,
                       pourcentageFont: (49 / 800),
                       pourcentageRaduis: (40 / 800),
-                      TextFont: 'Atma',
+                      textFont: 'Atma',
                       TextColor: Colors.black,
-                      Stars: widget.EtoilesQuiz,
+                      Stars: userProgress
+                          .stations[widget.stationIndex].games[0].stars,
                       path: widget.pathQuiz,
                     ),
                     SizedBox(
@@ -172,9 +180,10 @@ class _ChooseGamePageState extends State<ChooseGamePage> {
                       pourcentage3: 0,
                       pourcentageFont: (45 / 800),
                       pourcentageRaduis: (40 / 800),
-                      TextFont: 'Atma',
+                      textFont: 'Atma',
                       TextColor: Colors.black,
-                      Stars: widget.EtoilesJeu,
+                      Stars: userProgress
+                          .stations[widget.stationIndex].games[1].stars,
                       path: widget.pathJeu,
                     ),
                   ],

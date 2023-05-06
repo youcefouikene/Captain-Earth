@@ -9,23 +9,24 @@ class ChooseBoxgame extends StatelessWidget {
   final double pourcentage3;
   final double pourcentageFont;
   final double pourcentageRaduis;
-  final String TextFont;
+  final String textFont;
   final String text;
   final Color TextColor;
-  final int Stars;
+  int Stars;
   final String path;
 
-  ChooseBoxgame(
-      {required this.text,
+  ChooseBoxgame({
+      required this.text,
       required this.pourcentage1,
       required this.pourcentage2,
       required this.pourcentage3,
       required this.pourcentageFont,
       required this.pourcentageRaduis,
-      required this.TextFont,
+      required this.textFont,
       required this.TextColor,
       required this.Stars,
-      required this.path});
+      required this.path
+    });
   //pourcentage3 est consacre pour le margin bottom
 
   CustomPainter choix() {
@@ -53,7 +54,7 @@ class ChooseBoxgame extends StatelessWidget {
           pourcentage3: pourcentage3,
           pourcentageFont: pourcentageFont,
           pourcentageRaduis: pourcentageRaduis,
-          TextFont: TextFont,
+          TextFont: textFont,
           TextColor: TextColor,
           path: path,
         ),
@@ -62,9 +63,10 @@ class ChooseBoxgame extends StatelessWidget {
           height: MediaQuery.of(context).size.height * pourcentage2,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(
-                MediaQuery.of(context).size.width * pourcentageRaduis),
+              MediaQuery.of(context).size.width * pourcentageRaduis
+            ),
             border: Border.all(
-              color: Color(0xff135617),
+              color: const Color(0xff135617),
               width: 4,
             ),
           ),
@@ -72,24 +74,22 @@ class ChooseBoxgame extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).pushNamed(path);
             },
+            style: ElevatedButton.styleFrom(
+              foregroundColor: TextColor, backgroundColor: const Color.fromARGB(255, 255, 255, 255), shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                MediaQuery.of(context).size.width * pourcentageRaduis),
+              ),
+            ),
             child: Center(
               child: Text(
                 text,
                 style: TextStyle(
-                  fontFamily: TextFont,
+                  fontFamily: textFont,
                   fontWeight: FontWeight.w700,
-                  color:Color(0xff135617) ,
+                  color:const Color(0xff135617) ,
                   fontSize: MediaQuery.of(context).size.width * pourcentageFont,
                 ),
               ),
-            ),
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                    MediaQuery.of(context).size.width * pourcentageRaduis),
-              ),
-              primary: Color.fromARGB(255, 255, 255, 255),
-              onPrimary: TextColor,
             ),
           ),
         ),
@@ -99,7 +99,8 @@ class ChooseBoxgame extends StatelessWidget {
             size: Size(
                 (MediaQuery.of(context).size.width * 0.2111875),
                 (MediaQuery.of(context).size.height * 0.192472222)
-                    .toDouble()), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+                    .toDouble()
+              ), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
             painter: choix(),
           ),
         ),

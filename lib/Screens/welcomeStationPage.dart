@@ -113,11 +113,11 @@ class _WelcomePageState extends State<WelcomePage> {
                         height:
                             MediaQuery.of(context).size.height * (298 / 360),
                         decoration: BoxDecoration(
-                          color: Color(0xffffffff),
+                          color: const Color(0xffffffff),
                           borderRadius: BorderRadius.circular(
                               MediaQuery.of(context).size.width * (97 / 800)),
                           border: Border.all(
-                            color: Color(0xff135617),
+                            color: const Color(0xff135617),
                             width: 3,
                           ),
                         ),
@@ -239,7 +239,7 @@ class _WelcomePageState extends State<WelcomePage> {
                             borderRadius: BorderRadius.circular(
                                 MediaQuery.of(context).size.width * (10 / 800)),
                             border: Border.all(
-                              color: Color(0xff7B2B85),
+                              color: const Color(0xff7B2B85),
                               width: 3,
                             ),
                           ),
@@ -253,21 +253,21 @@ class _WelcomePageState extends State<WelcomePage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => ChooseGamePage(
-                                              pathBackGround:
-                                                  listeGlobale[numStation][3],
+                                              pathBackGround: listeGlobale[numStation][3],
+                                              stationIndex: numStation,
                                               pathJeu: pathJeu,
-                                              pathQuiz: pathQuiz)));
+                                              pathQuiz: pathQuiz))
+                                  );
                                 }
                               });
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xffE84560),
+                              backgroundColor: const Color(0xffE84560),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(
                                     MediaQuery.of(context).size.width *
                                             (10 / 800) -
                                         3),
-                                //side: BorderSide(color: Color(0xff7B2B85)),
                               ),
                             ),
                             child: Text(

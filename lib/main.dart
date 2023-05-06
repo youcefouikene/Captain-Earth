@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'dart:io';
+import 'dart:ui' as ui;
+//                    ----------------------
+//                    ----------------------
 import '../Screens/AcquisitionPage.dart';
 import '../Screens/Classement.dart';
 import '../Screens/DefiPage.dart';
@@ -31,9 +35,7 @@ import 'Screens/quiz/quiz.dart';
 import 'Widgets/StationBar.dart';
 import 'Screens/WelcomeStationPage.dart';
 import 'Widgets/ChooseBoxgame2.dart';
-import 'Screens/QuizScreen.dart';
 import 'Widgets/WelcomeTextBox.dart';
-import 'dart:ui' as ui;
 import 'Screens/EndGamePage.dart';
 import 'Widgets/Afrique/AfriqueSquareAnimal.dart';
 import 'Widgets/Afrique/AfriqueAnimalOption.dart';
@@ -42,17 +44,94 @@ import 'Screens/MiniJeux/AfriqueMiniJeu.dart';
 import 'Screens/MiniJeux/throw_garbage.dart';
 import 'Screens/MiniJeux/AmeriqueDuSudMiniJeu.dart';
 import 'Widgets/Oceanie/Timer.dart';
-import 'dart:io';
+import 'settings.dart';
+//                    ----------------------
+//                    ----------------------
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+//                    ----------------------
+//                    ----------------------
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+//                    ----------------------
+//                    ----------------------
+import 'progress/progress.dart';
+import 'backend/local_progress/local_progress.dart';
+import 'backend/progress_controllers.dart';
+import 'backend/synchronization.dart';
+import 'backend/database.dart';
+//                    ----------------------
+//                    ----------------------
+late UserProgress user;
+late bool isConnected;
+//                    ----------------------
+//                    ----------------------
 
-//----------------------
-
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.landscapeRight, DeviceOrientation.landscapeLeft]);
   if (Platform.isAndroid) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
   }
+
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  isConnected = await InternetConnectionChecker().hasConnection;
+  kUser = await prefs.getString('kUser') ?? 'guest';
+  kLang = await prefs.getString('kLang') ?? 'fr';
+  kLogin = await prefs.getBool('kLogin') ?? false;
+  kSound = await prefs.getBool('kSound') ?? true;
+
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+
+  //! Online vs Local
+  // ignore: unused_local_variable
+  Future<UserProgress> online;
+  Future<UserProgress> local;
+
+  if (kLogin) {
+    /*
+    //! Modification
+    if (isConnected) {
+      // online = LocalProgress.getChildren(kUser);
+      //! Get only children
+      Future<List<UserProgress>> c = OnlineProgress.getChildren(kUser);
+      children = await c;
+      //! if length != 0
+      if (children.length != 0) {
+        Future<String> d = OnlineProgress.getParentOnlineDate(kUser);
+        kOnlineDate = await d;
+        if (kOnlineDate.compareTo(kLocalDate) == 1) {
+          //! Get All Children
+          Future<UserProgress> ch = getFireBase(kUser);
+          children = await ch;
+          for (UserProgress childProgress in children) {
+            LocalProgress.addChild(kUser, childProgress);
+          }
+        } else if (kOnlineDate.compareTo(kLocalDate) == -1) {
+          //! Get All Children
+          Future<UserProgress> ch = getSQFLite(kUser);
+          children = await ch;
+          for (UserProgress childProgress in children) {
+            OnlineProgress.updateChild(childProgress);
+          }
+        } else {
+          Future<List<ChildProgress>> ch = getSQFLite(kUser);
+          children = await ch;
+        }
+        String date = DateTime.now().toString();
+        prefs.setString('kLocalDate', date);
+        OnlineProgress.updateParent(kUser, date);
+      }
+     */
+    } else {
+      local = getSQFLite(kUser);
+      user = await local;
+    }
   runApp(MyApp());
 }
 
@@ -62,28 +141,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        // body: BigQuiz(
-        //   continentNumber: 1,
-        // ),
         body: WelcomePage1(),
       ),
       routes: <String, WidgetBuilder>{
         '/WelcomeStation': (BuildContext context) => WelcomePage(),
         '/AfriqueMiniJeu': (BuildContext context) => AfriqueMiniJeu(),
-        '/OceanieMiniJeu': (BuildContext context) => Oceanie_miniJeu(),
-        '/AmeriqueSudMiniJeu': (BuildContext context) => Samerique_miniJeu(),
+        '/OceanieMiniJeu': (BuildContext context) =>  Oceanie_miniJeu(),
+        '/AmeriqueSudMiniJeu': (BuildContext context) =>  Samerique_miniJeu(),
         '/EuropeMiniJeu': (BuildContext context) => ThrowGarbage(),
-        '/AmeriqueNordMiniJeu': (BuildContext context) =>
-            FlipCardGane(Level.Medium),
-        '/AsieMiniJeu': (BuildContext context) => FlipCardGane1(Level1.Medium),
+        '/AmeriqueNordMiniJeu': (BuildContext context) =>  FlipCardGame(Level.Medium),
+        '/AsieMiniJeu': (BuildContext context) =>  FlipCardGame1(Level1.Medium),
         '/QuizOceanie': (BuildContext context) => BigQuiz(continentNumber: 0),
-        '/QuizAmeriqueNord': (BuildContext context) =>
-            BigQuiz(continentNumber: 4),
-        '/QuizAfrique': (BuildContext context) => BigQuiz(continentNumber: 2),
         '/QuizAsie': (BuildContext context) => BigQuiz(continentNumber: 1),
+        '/QuizAfrique': (BuildContext context) => BigQuiz(continentNumber: 2),
         '/QuizEurope': (BuildContext context) => BigQuiz(continentNumber: 3),
-        '/QuizAmeriqueSud': (BuildContext context) =>
-            BigQuiz(continentNumber: 5),
+        '/QuizAmeriqueNord': (BuildContext context) => BigQuiz(continentNumber: 4),
+        '/QuizAmeriqueSud': (BuildContext context) => BigQuiz(continentNumber: 5),
       },
     );
   }

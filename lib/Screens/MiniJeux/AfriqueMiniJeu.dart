@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import '../../Widgets/Afrique/AnimalSauve.dart';
 import '../../Widgets/Afrique/AfriqueSquareAnimal.dart';
@@ -7,8 +6,12 @@ import '../../Widgets/Afrique/AfriqueAnimalOption.dart';
 import '../../Widgets/Iconbutton.dart';
 import '../../Widgets/Afrique/ListeAfrica.dart';
 import '../help.dart';
+import 'package:projet_2cp/backend/progress_controllers.dart';
+import 'package:projet_2cp/progress/progress.dart';
 
 class AfriqueMiniJeu extends StatefulWidget {
+  AfriqueMiniJeu({super.key});
+
   final List<String> listAnimaux = [
     'assets/images/afrique/zebre.png',
     'assets/images/afrique/elephant.png',
@@ -148,6 +151,9 @@ class AfriqueMiniJeu extends StatefulWidget {
 }
 
 class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
+  final StationProgress stationProgress = userProgress.stations[2];
+  final GameProgress gameProgress = userProgress.stations[2].games[1];
+
   bool answer = false;
   String text = 'je suis en voie de disparition';
   double y = 1;
@@ -156,7 +162,7 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
   int index = 0;
   bool pressed = false;
   int animal = 0;
-  Color couleur = Color.fromARGB(255, 255, 243, 210);
+  Color couleur = const Color.fromARGB(255, 255, 243, 210);
   int click = 0;
   IconData _icone = Icons.music_note;
 
@@ -171,7 +177,7 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
       if (isPressed && isCorrect) {
         answer = true;
         text = name;
-        couleur = Color(0xffD2FFDF);
+        couleur = const Color(0xffD2FFDF);
         cpt++;
         if (cpt == 1) {
           y = 0;
@@ -180,7 +186,6 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
         if (cpt == 2) {
           y = -1;
         }
-        print('object');
       }
     });
   }
@@ -215,25 +220,24 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
       index = index + 3;
       pressed = false;
       animal++;
-      couleur = Color.fromARGB(255, 255, 243, 210);
+      couleur = const Color.fromARGB(255, 255, 243, 210);
     });
   }
 
   void clickCpt() {
     click++;
-    print(click);
   }
 
   Widget _buildWidget() {
     if (y == -1) {
       return FutureBuilder(
-        future: Future.delayed(Duration(seconds: 1)),
+        future: Future.delayed(const Duration(seconds: 1)),
         initialData: Stack(
           children: [
             Container(
               height: double.infinity,
               width: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
                       'assets/images/afrique/Background_Africa_1.png'),
@@ -280,7 +284,7 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
                             borderRadius: BorderRadius.circular(
                                 MediaQuery.of(context).size.width * (6 / 800)),
                             border: Border.all(
-                              color: Color(0xff727271),
+                              color: const Color(0xff727271),
                               width: 1,
                             )),
                         child: Center(
@@ -370,9 +374,9 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
                                   (62 / 800),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Color(0xFFE84560),
+                                color: const Color(0xFFE84560),
                                 border: Border.all(
-                                  color: Color(0xff752683),
+                                  color: const Color(0xff752683),
                                   width: 2,
                                 ),
                               ),
@@ -387,10 +391,10 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
                                   pressed = true;
                                 });
                               },
-                              icon: Icon(Icons.arrow_forward),
+                              icon: const Icon(Icons.arrow_forward),
                               iconSize: MediaQuery.of(context).size.width *
                                   (40 / 800),
-                              color: Color.fromARGB(255, 255, 255, 255),
+                              color: const Color.fromARGB(255, 255, 255, 255),
                             ),
                           ],
                         )),
@@ -403,8 +407,7 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
               left: MediaQuery.of(context).size.width * (29 / 800),
               child: Column(
                 children: [
-                  Container(
-                      child: Stack(
+                  Stack(
                     alignment: Alignment.center,
                     children: [
                       Container(
@@ -412,9 +415,9 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
                         height: MediaQuery.of(context).size.width * (39 / 800),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Color(0xFFE84560),
+                          color: const Color(0xFFE84560),
                           border: Border.all(
-                            color: Color(0xff752683),
+                            color: const Color(0xff752683),
                             width: 2,
                           ),
                         ),
@@ -432,15 +435,14 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
                         icon: Icon(_icone),
                         iconSize:
                             MediaQuery.of(context).size.width * (20 / 800),
-                        color: Color.fromARGB(255, 255, 255, 255),
+                        color: const Color.fromARGB(255, 255, 255, 255),
                       ),
                     ],
-                  )),
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * (12 / 360),
                   ),
-                  Container(
-                      child: Stack(
+                  Stack(
                     alignment: Alignment.center,
                     children: [
                       Container(
@@ -449,9 +451,9 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
                         height: MediaQuery.of(context).size.width * (39 / 800),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Color(0xFFE84560),
+                          color: const Color(0xFFE84560),
                           border: Border.all(
-                            color: Color(0xff752683),
+                            color: const Color(0xff752683),
                             width: 2,
                           ),
                         ),
@@ -460,13 +462,13 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: Icon(Icons.close_rounded),
+                        icon: const Icon(Icons.close_rounded),
                         iconSize:
                             MediaQuery.of(context).size.width * (25 / 800),
-                        color: Color.fromARGB(255, 255, 255, 255),
+                        color: const Color.fromARGB(255, 255, 255, 255),
                       ),
                     ],
-                  )),
+                  ),
                 ],
               ),
             ),
@@ -474,7 +476,7 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
               right: MediaQuery.of(context).size.width * (32 / 800),
               top: MediaQuery.of(context).size.height * (30 / 360),
               child: Iconbutton(
-                icon: Icon(Icons.question_mark),
+                icon: const Icon(Icons.question_mark),
                 pourcentage: (39 / 800),
                 pourcentageMargin: 0,
                 pourcentageIcon: 0.03,
@@ -485,6 +487,8 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return AnimalSauve(
+              stationProgress,
+              gameProgress,
               animal: widget.listAnimaux[animal],
               next: next,
               score: click,
@@ -500,7 +504,7 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
           Container(
             height: double.infinity,
             width: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image:
                     AssetImage('assets/images/afrique/Background_Africa_1.png'),
@@ -547,7 +551,7 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
                           borderRadius: BorderRadius.circular(
                               MediaQuery.of(context).size.width * (6 / 800)),
                           border: Border.all(
-                            color: Color(0xff727271),
+                            color: const Color(0xff727271),
                             width: 1,
                           )),
                       child: Center(
@@ -636,9 +640,9 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
                                 MediaQuery.of(context).size.width * (62 / 800),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Color(0xFFE84560),
+                              color: const Color(0xFFE84560),
                               border: Border.all(
-                                color: Color(0xff752683),
+                                color: const Color(0xff752683),
                                 width: 2,
                               ),
                             ),
@@ -649,15 +653,15 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
                                 index = index + 3;
                                 isVisible = false;
                                 text = 'je suis en voie de disparition';
-                                couleur = Color.fromARGB(255, 255, 255, 255);
+                                couleur = const Color.fromARGB(255, 255, 255, 255);
                                 answer = false;
                                 pressed = true;
                               });
                             },
-                            icon: Icon(Icons.arrow_forward),
+                            icon: const Icon(Icons.arrow_forward),
                             iconSize:
                                 MediaQuery.of(context).size.width * (40 / 800),
-                            color: Color.fromARGB(255, 255, 255, 255),
+                            color: const Color.fromARGB(255, 255, 255, 255),
                           ),
                         ],
                       )),
@@ -670,8 +674,7 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
             left: MediaQuery.of(context).size.width * (29 / 800),
             child: Column(
               children: [
-                Container(
-                    child: Stack(
+                Stack(
                   alignment: Alignment.center,
                   children: [
                     Container(
@@ -679,9 +682,9 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
                       height: MediaQuery.of(context).size.width * (39 / 800),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(0xFFE84560),
+                        color: const Color(0xFFE84560),
                         border: Border.all(
-                          color: Color(0xff752683),
+                          color: const Color(0xff752683),
                           width: 2,
                         ),
                       ),
@@ -698,26 +701,24 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
                       },
                       icon: Icon(_icone),
                       iconSize: MediaQuery.of(context).size.width * (25 / 800),
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      color: const Color.fromARGB(255, 255, 255, 255),
                     ),
                   ],
-                )),
+                ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * (5 / 360),
                 ),
-                Container(
-                    child: Stack(
+                Stack(
                   alignment: Alignment.center,
                   children: [
                     Container(
-                      //margin: EdgeInsets.only(bottom: 12.0),
                       width: MediaQuery.of(context).size.width * (40 / 800),
                       height: MediaQuery.of(context).size.width * (40 / 800),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(0xFFE84560),
+                        color: const Color(0xFFE84560),
                         border: Border.all(
-                          color: Color(0xff752683),
+                          color: const Color(0xff752683),
                           width: 2,
                         ),
                       ),
@@ -726,20 +727,19 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: Icon(Icons.close_rounded),
+                      icon: const Icon(Icons.close_rounded),
                       iconSize: MediaQuery.of(context).size.width * (30 / 800),
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      color: const Color.fromARGB(255, 255, 255, 255),
                     ),
                   ],
-                )),
+                ),
               ],
             ),
           ),
           Positioned(
             right: MediaQuery.of(context).size.width * (32 / 800),
             top: MediaQuery.of(context).size.height * (30 / 360),
-            child: Container(
-                child: Stack(
+            child: Stack(
               alignment: Alignment.center,
               children: [
                 Container(
@@ -748,9 +748,9 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
                   height: MediaQuery.of(context).size.width * (40 / 800),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Color(0xFFE84560),
+                    color: const Color(0xFFE84560),
                     border: Border.all(
-                      color: Color(0xff752683),
+                      color: const Color(0xff752683),
                       width: 2,
                     ),
                   ),
@@ -766,12 +766,12 @@ class _AfriqueMiniJeu extends State<AfriqueMiniJeu> {
                                       'assets/images/oceanie/Background_Ocean_1.png',
                                 )));
                   },
-                  icon: Icon(Icons.question_mark),
+                  icon: const Icon(Icons.question_mark),
                   iconSize: MediaQuery.of(context).size.width * 0.035,
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  color: const Color.fromARGB(255, 255, 255, 255),
                 ),
               ],
-            )),
+            ),
           ),
         ],
       );

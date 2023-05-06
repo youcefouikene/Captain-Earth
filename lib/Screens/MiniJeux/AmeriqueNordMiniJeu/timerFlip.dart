@@ -1,43 +1,49 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../EndGamePage.dart';
+import 'package:projet_2cp/backend/progress_controllers.dart';
+import 'package:projet_2cp/constants.dart';
+import 'package:projet_2cp/progress/progress.dart';
 
 class TimeFlip extends StatefulWidget {
-  TimeFlip(
-      {required this.ignore,
-      required this.background,
-      required this.station,
-      required this.refreshPath});
   String station;
   String background;
   bool ignore;
   String refreshPath;
+
+  TimeFlip(
+    this.station,
+    this.background,
+    this.ignore,
+    this.refreshPath,
+  );
   @override
   _TimeFlip createState() => _TimeFlip();
 }
 
 class _TimeFlip extends State<TimeFlip> {
-  int _secondsElapsed = 90;
-  Color _backgroundColor = Colors.white;
+  final StationProgress stationProgress = userProgress.stations[4];
+  final GameProgress gameProgress = userProgress.stations[4].games[1];
 
+  int _secondsElapsed = 90;
   void _startTimer() {
-    Timer.periodic(Duration(seconds: 1), (Timer timer) {
+    Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       setState(() {
         _secondsElapsed--;
       });
-      print(widget.ignore);
       if ((_secondsElapsed == 0) || (widget.ignore == true)) {
-        print(_secondsElapsed);
         timer.cancel();
+        dataUpdator(context, stationProgress, gameProgress, _secondsElapsed, (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 30 + 1);
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => EndGamePage(
-                background: widget.background,
-                score: _secondsElapsed,
+                score: userProgress.leaves,
                 stars: (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 30 + 1,
+                background: widget.background,
                 station: widget.station,
                 refreshPath: widget.refreshPath,
+                stationIndex: stationProgress.stationIndex,
               ),
             ));
       }
@@ -62,7 +68,7 @@ class _TimeFlip extends State<TimeFlip> {
               color: Colors.white,
               borderRadius: BorderRadius.circular(36.5),
               border: Border.all(
-                color: Color(0xffE84560),
+                color: const Color(0xffE84560),
                 width: 3,
               ),
             ),
@@ -77,7 +83,7 @@ class _TimeFlip extends State<TimeFlip> {
                   fontFamily: 'Atma',
                   fontSize: MediaQuery.of(context).size.width * 0.025,
                   fontWeight: FontWeight.w500,
-                  color: Color.fromARGB(255, 0, 0, 0),
+                  color: const Color.fromARGB(255, 0, 0, 0),
                 ),
               ),
             ),
@@ -89,7 +95,7 @@ class _TimeFlip extends State<TimeFlip> {
               color: Colors.white,
               shape: BoxShape.circle,
               border: Border.all(
-                color: Color(0xffE84560),
+                color: const Color(0xffE84560),
                 width: 3,
               ),
             ),

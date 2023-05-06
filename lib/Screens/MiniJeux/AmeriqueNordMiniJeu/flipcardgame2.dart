@@ -1,23 +1,26 @@
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
-import 'package:projet_2cp/Widgets/Oceanie/Timer.dart';
-import '../../../Screens/EndGamePage.dart';
+import 'package:projet_2cp/progress/progress.dart';
 import '../../help.dart';
 import 'dataAmerique.dart';
 import 'dart:async';
-import '../../../Widgets/PointBar.dart';
 import '../../../Widgets/PointBarTime.dart';
 import 'timerFlip.dart';
+import 'package:projet_2cp/backend/progress_controllers.dart';
 
-class FlipCardGane extends StatefulWidget {
+
+class FlipCardGame extends StatefulWidget {
   final Level _level;
-  FlipCardGane(this._level);
+  const FlipCardGame(this._level, {super.key});
   @override
-  _FlipCardGaneState createState() => _FlipCardGaneState(_level);
+  _FlipCardGameState createState() => _FlipCardGameState(_level);
 }
 
-class _FlipCardGaneState extends State<FlipCardGane> {
-  _FlipCardGaneState(this._level);
+class _FlipCardGameState extends State<FlipCardGame> {
+  final StationProgress stationProgress = userProgress.stations[4];
+  final GameProgress gameProgress = userProgress.stations[4].games[1];
+
+  _FlipCardGameState(this._level);
   int _previousIndex = -1;
   bool _flip = false;
   bool _start = false;
@@ -36,7 +39,7 @@ class _FlipCardGaneState extends State<FlipCardGane> {
     return Container(
       decoration: BoxDecoration(
           color: Colors.grey[100],
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Colors.black45,
               blurRadius: 3,
@@ -45,13 +48,13 @@ class _FlipCardGaneState extends State<FlipCardGane> {
             )
           ],
           borderRadius: BorderRadius.circular(5)),
-      margin: EdgeInsets.all(4.0),
+      margin: const EdgeInsets.all(4.0),
       child: Image.asset(_data![index]),
     );
   }
 
   startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 1), (t) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (t) {
       setState(() {
         _time = _time - 1;
       });
@@ -80,7 +83,6 @@ class _FlipCardGaneState extends State<FlipCardGane> {
   @override
   void initState() {
     super.initState();
-
     restart();
   }
 
@@ -89,7 +91,7 @@ class _FlipCardGaneState extends State<FlipCardGane> {
     super.dispose();
   }
 
-  int Stars() {
+  int stars() {
     if (_score <= 5) {
       return 0;
     } else if (_score > 5 && _score <= 15) {
@@ -104,22 +106,13 @@ class _FlipCardGaneState extends State<FlipCardGane> {
     final size = MediaQuery.of(context).size;
     final wid = size.width;
     final het = size.height;
-    final PaddingWidht = size.width;
+    final paddingWidth = size.width;
 
-    return /*_isFinished!
-        ? EndGamePage(
-            background:
-                'assets/images/ameriqueNord/Background_NorthAmerica.png',
-            stars: Stars(),
-            score: _score,
-            station: 'Station 05',
-            refreshPath: '/AmeriqueNordMiniJeu')
-        : */
-        Scaffold(
+    return Scaffold(
       body: Container(
         width: size.width,
         height: size.height,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
                 "assets/images/ameriqueNord/Background_NorthAmerica.png"),
@@ -142,20 +135,20 @@ class _FlipCardGaneState extends State<FlipCardGane> {
                           child: _time > 0
                               ? PointBarTime(score: _time)
                               : TimeFlip(
-                                  ignore: _isFinished!,
-                                  background:
-                                      'assets/images/ameriqueNord/Background_NorthAmerica.png',
-                                  station: 'Station 05',
-                                  refreshPath: '/AmeriqueNordMiniJeu')),
+                                  'Station 05',
+                                  'assets/images/ameriqueNord/Background_NorthAmerica.png',
+                                  _isFinished!,
+                                  '/AmeriqueNordMiniJeu',
+                              )),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: GridView.builder(
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         padding: EdgeInsets.only(
-                            left: PaddingWidht * 0.15,
-                            right: PaddingWidht * 0.15),
+                            left: paddingWidth * 0.15,
+                            right: paddingWidth * 0.15),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 4,
                           crossAxisSpacing: 10,
@@ -227,7 +220,7 @@ class _FlipCardGaneState extends State<FlipCardGane> {
                                   decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(5),
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           color: Colors.black45,
                                           blurRadius: 3,
@@ -235,7 +228,7 @@ class _FlipCardGaneState extends State<FlipCardGane> {
                                           offset: Offset(2.0, 1),
                                         )
                                       ]),
-                                  margin: EdgeInsets.all(4.0),
+                                  margin: const EdgeInsets.all(4.0),
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Image.asset(
@@ -258,8 +251,7 @@ class _FlipCardGaneState extends State<FlipCardGane> {
                 left: MediaQuery.of(context).size.width * (29 / 800),
                 child: Column(
                   children: [
-                    Container(
-                        child: Stack(
+                    Stack(
                       alignment: Alignment.center,
                       children: [
                         Container(
@@ -268,9 +260,9 @@ class _FlipCardGaneState extends State<FlipCardGane> {
                               MediaQuery.of(context).size.width * (39 / 800),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Color(0xFFE84560),
+                            color: const Color(0xFFE84560),
                             border: Border.all(
-                              color: Color(0xff752683),
+                              color: const Color(0xff752683),
                               width: 2,
                             ),
                           ),
@@ -288,15 +280,14 @@ class _FlipCardGaneState extends State<FlipCardGane> {
                           icon: Icon(icone),
                           iconSize:
                               MediaQuery.of(context).size.width * (25 / 800),
-                          color: Color.fromARGB(255, 255, 255, 255),
+                          color: const Color.fromARGB(255, 255, 255, 255),
                         ),
                       ],
-                    )),
+                    ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * (5 / 360),
                     ),
-                    Container(
-                        child: Stack(
+                    Stack(
                       alignment: Alignment.center,
                       children: [
                         Container(
@@ -306,9 +297,9 @@ class _FlipCardGaneState extends State<FlipCardGane> {
                               MediaQuery.of(context).size.width * (40 / 800),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Color(0xFFE84560),
+                            color: const Color(0xFFE84560),
                             border: Border.all(
-                              color: Color(0xff752683),
+                              color: const Color(0xff752683),
                               width: 2,
                             ),
                           ),
@@ -317,32 +308,30 @@ class _FlipCardGaneState extends State<FlipCardGane> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          icon: Icon(Icons.close_rounded),
+                          icon: const Icon(Icons.close_rounded),
                           iconSize:
                               MediaQuery.of(context).size.width * (30 / 800),
-                          color: Color.fromARGB(255, 255, 255, 255),
+                          color: const Color.fromARGB(255, 255, 255, 255),
                         ),
                       ],
-                    )),
+                    ),
                   ],
                 ),
               ),
               Positioned(
                 right: MediaQuery.of(context).size.width * (32 / 800),
                 top: MediaQuery.of(context).size.height * (30 / 360),
-                child: Container(
-                    child: Stack(
+                child: Stack(
                   alignment: Alignment.center,
                   children: [
                     Container(
-                      //margin: EdgeInsets.only(bottom: 12.0),
                       width: MediaQuery.of(context).size.width * (40 / 800),
                       height: MediaQuery.of(context).size.width * (40 / 800),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(0xFFE84560),
+                        color: const Color(0xFFE84560),
                         border: Border.all(
-                          color: Color(0xff752683),
+                          color: const Color(0xff752683),
                           width: 2,
                         ),
                       ),
@@ -358,12 +347,12 @@ class _FlipCardGaneState extends State<FlipCardGane> {
                                           'assets/images/oceanie/Background_Ocean_1.png',
                                     )));
                       },
-                      icon: Icon(Icons.question_mark),
+                      icon: const Icon(Icons.question_mark),
                       iconSize: MediaQuery.of(context).size.width * 0.035,
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      color: const Color.fromARGB(255, 255, 255, 255),
                     ),
                   ],
-                )),
+                ),
               ),
             ],
           ),

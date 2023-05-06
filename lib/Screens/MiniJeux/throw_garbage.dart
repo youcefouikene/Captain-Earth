@@ -1,27 +1,32 @@
 import 'package:flutter/material.dart';
-import '../../Screens/EndGamePage.dart';
+import 'package:projet_2cp/progress/progress.dart';
 import '../../Screens/helpPageEu.dart';
-import '../../Widgets/CustomContainer.dart';
 import '../../Widgets/Europe/dechetModel.dart';
-// import '../../widgets.dart';
 import '../../Widgets/PointBar.dart';
 import '../../Widgets/WiningBox.dart';
 import '../indication_throw_garbage.dart';
+import 'package:projet_2cp/backend/progress_controllers.dart';
+import 'package:projet_2cp/constants.dart';
 
 class ThrowGarbage extends StatefulWidget {
-  const ThrowGarbage({Key? key}) : super(key: key);
+
+  const ThrowGarbage({super.key});
 
   @override
   State<ThrowGarbage> createState() => _ThrowGarbageState();
 }
 
 class _ThrowGarbageState extends State<ThrowGarbage> {
+  final StationProgress stationProgress = userProgress.stations[3];
+  final GameProgress gameProgress = userProgress.stations[3].games[1];
+
   late List<DechetModel> listDechets;
   late List<DechetModel> listPoubelles;
   //var player = AudioCache();
 
   late int echec;
   late bool gameOver;
+  int score = 0;
 
   int choix = -1;
 
@@ -29,21 +34,9 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
   String plusOrMinus = "";
 
   late int currentIndex;
-  int totalScore = 509;
 
   IconData _icone = Icons.music_note;
   Color col = const Color.fromRGBO(232, 69, 96, 1);
-
-  // AudioPlayer audioPlayer = AudioPlayer();
-  //int correctSoundId;
-  //int wrongSoundId;
-
-  // Future<void> loadAudioFiles() async {
-  //   String correctSound = "path/to/correct_sound.mp3";
-  //   String wrongSound = "path/to/wrong_sound.mp3";
-  //   correctSoundId = await audioPlayer?.setUrl(correctSound);
-  //   wrongSoundId = await audioPlayer?.setUrl(wrongSound);
-  // }
 
   void handleAccept() {
     setState(() {
@@ -52,14 +45,12 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
   }
 
   initGame() {
-    totalScore = 509;
     gameOver = false;
     echec = 0;
+    score = 0;
     currentIndex = 0;
-
     listDechets = myDechetList;
     listPoubelles = myPoubelleList;
-
     listDechets.shuffle();
   }
 
@@ -73,6 +64,9 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
   Widget build(BuildContext context) {
     if (currentIndex == (myDechetList.length)) {
       gameOver = true;
+      int stars;
+      (echec <= 3) ? stars = 3 : (echec <= 6) ? stars = 2 : (echec <= 12) ? stars = 1 : stars = 0;
+      dataUpdator(context, stationProgress, gameProgress,score,stars);
     }
 
     return Scaffold(
@@ -98,16 +92,9 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    // EndGamePage(background: 'assets/images/europeBackground.png', stars: stars, score: score, station: station, refreshPath: refreshPath)
                     WiningBox(
-                      Score: totalScore,
-                      Stars: (echec <= 3)
-                          ? 3
-                          : (echec <= 6)
-                              ? 2
-                              : (echec <= 12)
-                                  ? 1
-                                  : 0,
+                      Score: userProgress.leaves,
+                      Stars: (echec <= 3) ? 3: (echec <= 6)? 2: (echec <= 12)? 1 : 0,
                       station: 'station 04',
                       refreshPath: '/EuropeMiniJeu',
                     ),
@@ -138,8 +125,7 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                         top: MediaQuery.of(context).size.height * (18 / 360)),
                     child: Column(
                       children: [
-                        Container(
-                            child: Stack(
+                        Stack(
                           alignment: Alignment.center,
                           children: [
                             Container(
@@ -149,9 +135,9 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                                   (40 / 800),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Color(0xFFE84560),
+                                color: const Color(0xFFE84560),
                                 border: Border.all(
-                                  color: Color(0xff752683),
+                                  color: const Color(0xff752683),
                                   width: 2,
                                 ),
                               ),
@@ -169,29 +155,27 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                               icon: Icon(_icone),
                               iconSize: MediaQuery.of(context).size.width *
                                   (25 / 800),
-                              color: Color.fromARGB(255, 255, 255, 255),
+                              color: const Color.fromARGB(255, 255, 255, 255),
                             ),
                           ],
-                        )),
+                        ),
                         SizedBox(
                           height:
                               MediaQuery.of(context).size.height * (5 / 360),
                         ),
-                        Container(
-                            child: Stack(
+                        Stack(
                           alignment: Alignment.center,
                           children: [
                             Container(
-                              //margin: EdgeInsets.only(bottom: 12.0),
                               width: MediaQuery.of(context).size.width *
                                   (40 / 800),
                               height: MediaQuery.of(context).size.width *
                                   (40 / 800),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Color(0xFFE84560),
+                                color: const Color(0xFFE84560),
                                 border: Border.all(
-                                  color: Color(0xff752683),
+                                  color: const Color(0xff752683),
                                   width: 2,
                                 ),
                               ),
@@ -200,13 +184,13 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                               onPressed: () {
                                 Navigator.pop(context);
                               },
-                              icon: Icon(Icons.close_rounded),
+                              icon: const Icon(Icons.close_rounded),
                               iconSize: MediaQuery.of(context).size.width *
                                   (30 / 800),
-                              color: Color.fromARGB(255, 255, 255, 255),
+                              color: const Color.fromARGB(255, 255, 255, 255),
                             ),
                           ],
-                        )),
+                        ),
                       ],
                     ),
                   ),
@@ -218,7 +202,7 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                     children: [
                       Column(
                         children: [
-                          PointBar(score: totalScore),
+                          PointBar(score: userProgress.leaves + score),
                           Container(
                             margin: const EdgeInsets.all(6),
                             child: Draggable<DechetModel>(
@@ -244,7 +228,7 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                                 if (item.value == receivedItem.value) {
                                   setState(() {
                                     handleAccept();
-                                    totalScore++;
+                                    score++;
                                     choixBonus = item.value;
                                     plusOrMinus = "plus";
                                   });
@@ -303,8 +287,7 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                             padding: EdgeInsets.only(
                                 top: MediaQuery.of(context).size.height *
                                     (16 / 360)),
-                            child: Container(
-                                child: Stack(
+                            child: Stack(
                               alignment: Alignment.center,
                               children: [
                                 Container(
@@ -315,9 +298,9 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                                       (40 / 800),
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: Color(0xFFE84560),
+                                    color: const Color(0xFFE84560),
                                     border: Border.all(
-                                      color: Color(0xff752683),
+                                      color: const Color(0xff752683),
                                       width: 2,
                                     ),
                                   ),
@@ -330,13 +313,13 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                                             builder: (context) =>
                                                 helpPageEu()));
                                   },
-                                  icon: Icon(Icons.question_mark),
+                                  icon: const Icon(Icons.question_mark),
                                   iconSize:
                                       MediaQuery.of(context).size.width * 0.03,
-                                  color: Color.fromARGB(255, 255, 255, 255),
+                                  color: const Color.fromARGB(255, 255, 255, 255),
                                 ),
                               ],
-                            )),
+                            ),
                           ),
                         ),
                         const SizedBox(

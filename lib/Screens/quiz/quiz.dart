@@ -1,35 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
+import 'package:projet_2cp/progress/progress.dart';
 import '../../Screens/quiz/quiz_db.dart';
-
-import '../../Widgets/Iconbutton.dart';
 import '../../Widgets/PointBar.dart';
 import '../EndGamePage.dart';
-// import '../../widgets.dart';
-// import '../games.dart';
+import 'package:projet_2cp/backend/progress_controllers.dart';
+import 'package:projet_2cp/constants.dart';
+import 'package:projet_2cp/constants.dart';
+import 'package:audioplayers/audioplayers.dart';
 
-late bool clickRight;
-List<int> choices = [0, 1, 2, 3];
 List<Question> qqsBank = [];
-final player = AudioPlayer();
-bool didAnswer = false;
+final player1 = AudioPlayer();
+final player2= AudioPlayer();
+
+
 //                       *****************
 // ***************         THE QUIZ GAME        ******************
 //                       *****************
 
-class BigQuiz extends StatefulWidget {
+class BigQuiz extends StatefulWidget{
   final int continentNumber;
-
-  const BigQuiz({
-    super.key,
+  BigQuiz({
     required this.continentNumber,
+    super.key
   });
-
   @override
   State<BigQuiz> createState() => _BigQuizState();
 }
 
 class _BigQuizState extends State<BigQuiz> {
+  AudioPlayer player = AudioPlayer();
+  late StationProgress stationProgress;
+  late GameProgress gameProgress;
+  
   void loadQuestions() async {
     qqsBank = [];
     Future<List<Question>> q = QuizData.getQuestions(widget.continentNumber);
@@ -44,16 +46,34 @@ class _BigQuizState extends State<BigQuiz> {
   @override
   void initState() {
     super.initState();
+    playAudio();
+    stationProgress = userProgress.stations[widget.continentNumber];
+    gameProgress = userProgress.stations[widget.continentNumber].games[0];
+    
     loadQuestions();
     setState(() {
       clickRight = true;
     });
   }
+    @override
+  void dispose() {
+    player.stop();
+    super.dispose();
+  }
+  Future<void> playAudio() async {
+    await player.play(AssetSource('sound.mp3'));
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
+    //playLoopedAudio('assets/sounds/stations/station_1.mp3');
     return Quiz(
       continentNumber: widget.continentNumber,
+      userProgress: userProgress,
+      stationProgress: stationProgress,
+      gameProgress: gameProgress,
     );
   }
 }
@@ -64,10 +84,16 @@ class _BigQuizState extends State<BigQuiz> {
 
 class Quiz extends StatefulWidget {
   final int continentNumber;
+  final UserProgress userProgress;
+  final StationProgress stationProgress;
+  final GameProgress gameProgress;
 
   const Quiz({
     super.key,
     required this.continentNumber,
+    required this.userProgress,
+    required this.stationProgress,
+    required this.gameProgress,
   });
 
   @override
@@ -101,7 +127,7 @@ class _QuizState extends State<Quiz> {
   void incrementScore() {
     clickRight = false;
     setState(() {
-      score++;
+      score+=2;
     });
   }
 
@@ -171,6 +197,8 @@ class _QuizState extends State<Quiz> {
             : (score >= qqsBank.length - stage * 2)
                 ? stars = 1
                 : stars = 0;
+
+
     // push to the endGameWidget
     if (widget.continentNumber == 0) {
       refreshPath = '/QuizOceanie';
@@ -198,16 +226,21 @@ class _QuizState extends State<Quiz> {
     } else {
       background = 'assets/images/ameriqueSud/Background_SouthAmerica_1.png';
     }
+    
+    dataUpdator(context, widget.stationProgress, widget.gameProgress,score,stars);
+
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-          builder: (context) => EndGamePage(
-                background: background,
-                stars: stars,
-                score: score,
-                station: 'Station 0${widget.continentNumber + 1}',
-                refreshPath: refreshPath,
-              )),
+        builder: (context) => EndGamePage(
+          stars: stars,
+          score: widget.userProgress.leaves,
+          background: background,
+          station: 'Station 0${widget.continentNumber + 1}',
+          stationIndex : widget.continentNumber,
+          refreshPath: refreshPath,
+        )
+      ),
     );
   }
 
@@ -220,11 +253,12 @@ class _QuizState extends State<Quiz> {
 
   @override
   Widget build(BuildContext context) {
-    IconData _icone = Icons.music_note;
+    IconData icone = Icons.music_note;
     String background;
     if (clickRight) {
       playQqs(
-          'quiz/question${widget.continentNumber + 1}_${qqsBank[currentQqs].number + 1}');
+        'quiz/question${widget.continentNumber + 1}_${currentQqs + 1}',
+      );
     }
     if (widget.continentNumber == 0) {
       background = 'assets/images/oceanie/Background_Ocean_1.png';
@@ -239,13 +273,9 @@ class _QuizState extends State<Quiz> {
     } else {
       background = 'assets/images/ameriqueSud/Background_SouthAmerica_1.png';
     }
-    print(qqsBank.length);
-    print(currentQqs);
     return Scaffold(
       body: SafeArea(
         child: Container(
-          // width: double.infinity,
-          // height: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(background),
@@ -259,8 +289,7 @@ class _QuizState extends State<Quiz> {
                 left: MediaQuery.of(context).size.width * (29 / 800),
                 child: Column(
                   children: [
-                    Container(
-                        child: Stack(
+                    Stack(
                       alignment: Alignment.center,
                       children: [
                         Container(
@@ -269,9 +298,9 @@ class _QuizState extends State<Quiz> {
                               MediaQuery.of(context).size.width * (39 / 800),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Color(0xFFE84560),
+                            color: const Color(0xFFE84560),
                             border: Border.all(
-                              color: Color(0xff752683),
+                              color: const Color(0xff752683),
                               width: 2,
                             ),
                           ),
@@ -279,25 +308,24 @@ class _QuizState extends State<Quiz> {
                         IconButton(
                           onPressed: () {
                             setState(() {
-                              if (_icone == Icons.music_note) {
-                                _icone = Icons.music_off;
+                              if (icone == Icons.music_note) {
+                                icone = Icons.music_off;
                               } else {
-                                _icone = Icons.music_note;
+                                icone = Icons.music_note;
                               }
                             });
                           },
-                          icon: Icon(_icone),
+                          icon: Icon(icone),
                           iconSize:
                               MediaQuery.of(context).size.width * (25 / 800),
-                          color: Color.fromARGB(255, 255, 255, 255),
+                          color: const Color.fromARGB(255, 255, 255, 255),
                         ),
                       ],
-                    )),
+                    ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * (5 / 360),
                     ),
-                    Container(
-                        child: Stack(
+                    Stack(
                       alignment: Alignment.center,
                       children: [
                         Container(
@@ -307,9 +335,9 @@ class _QuizState extends State<Quiz> {
                               MediaQuery.of(context).size.width * (40 / 800),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: Color(0xFFE84560),
+                            color: const Color(0xFFE84560),
                             border: Border.all(
-                              color: Color(0xff752683),
+                              color: const Color(0xff752683),
                               width: 2,
                             ),
                           ),
@@ -318,20 +346,20 @@ class _QuizState extends State<Quiz> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          icon: Icon(Icons.close_rounded),
+                          icon: const Icon(Icons.close_rounded),
                           iconSize:
                               MediaQuery.of(context).size.width * (30 / 800),
-                          color: Color.fromARGB(255, 255, 255, 255),
+                          color: const Color.fromARGB(255, 255, 255, 255),
                         ),
                       ],
-                    )),
+                    ),
                   ],
                 ),
               ),
               Positioned(
                   left: MediaQuery.of(context).size.width * 0.418,
                   top: MediaQuery.of(context).size.height * 0.06,
-                  child: PointBar(score: score)),
+                  child: PointBar(score: userProgress.leaves + score)),
               Center(
                 child: Column(
                     // mainAxisAlignment: MainAxisAlignment.center,
@@ -445,8 +473,7 @@ class QuestionBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        playQqs(
-            'quiz/question${continentNumber + 1}_${qqsBank[question].number + 1}');
+        playQqs("question${continentNumber}_${question + 1}",);
       },
       child: Container(
         margin: EdgeInsets.only(
@@ -518,6 +545,7 @@ class _QuizOptionState extends State<QuizOption> {
 
   @override
   Widget build(BuildContext context) {
+   
     return Container(
       margin: EdgeInsets.only(
           bottom: MediaQuery.of(context).size.height * widget.pourcentage3),
@@ -604,10 +632,7 @@ class _QuizOptionState extends State<QuizOption> {
   }
 }
 
-void playQqs(sound) {
-  player.play(
-    AssetSource(
-      'sounds/questions/$sound.mp3',
-    ),
-  );
-}
+
+
+
+

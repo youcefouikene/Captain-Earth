@@ -7,6 +7,7 @@ class PointBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Stack(
       alignment: Alignment.centerLeft,
       children: [
@@ -17,7 +18,7 @@ class PointBar extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(36.5),
             border: Border.all(
-              color: Color(0xff752683),
+              color: const Color(0xff752683),
               width: 3,
             ),
           ),
@@ -32,7 +33,7 @@ class PointBar extends StatelessWidget {
                 fontFamily: 'Atma',
                 fontWeight: FontWeight.w500,
                 fontSize: MediaQuery.of(context).size.width * 0.025,
-                color: Color.fromARGB(255, 0, 0, 0),
+                color: const Color.fromARGB(255, 0, 0, 0),
               ),
             ),
           ),
@@ -44,11 +45,11 @@ class PointBar extends StatelessWidget {
             color: Colors.white,
             shape: BoxShape.circle,
             border: Border.all(
-              color: Color(0xff752683),
+              color: const Color(0xff752683),
               width: 3,
             ),
           ),
-          child: Image(
+          child: const Image(
             image: AssetImage('assets/images/leaf.png'),
             //width: 10,
           ),
