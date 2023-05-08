@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:projet_2cp/Screens/LoadingPage.dart';
 import 'dart:io';
 import 'dart:ui' as ui;
 //                    ----------------------
@@ -141,16 +142,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: WelcomePage1(),
+        body: LoadingPage(),
       ),
       routes: <String, WidgetBuilder>{
         '/WelcomeStation': (BuildContext context) => WelcomePage(),
         '/AfriqueMiniJeu': (BuildContext context) => AfriqueMiniJeu(),
-        '/OceanieMiniJeu': (BuildContext context) =>  Oceanie_miniJeu(),
+        '/OceanieMiniJeu': (BuildContext context) =>   Oceanie_miniJeu(),
         '/AmeriqueSudMiniJeu': (BuildContext context) =>  Samerique_miniJeu(),
         '/EuropeMiniJeu': (BuildContext context) => ThrowGarbage(),
-        '/AmeriqueNordMiniJeu': (BuildContext context) =>  FlipCardGame(Level.Medium),
-        '/AsieMiniJeu': (BuildContext context) =>  FlipCardGame1(Level1.Medium),
+        '/AmeriqueNordMiniJeu': (BuildContext context) =>  const FlipCardGame(Level.Medium),
+        '/AsieMiniJeu': (BuildContext context) =>  const FlipCardGame1(Level1.Medium),
         '/QuizOceanie': (BuildContext context) => BigQuiz(continentNumber: 0),
         '/QuizAsie': (BuildContext context) => BigQuiz(continentNumber: 1),
         '/QuizAfrique': (BuildContext context) => BigQuiz(continentNumber: 2),

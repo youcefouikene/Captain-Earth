@@ -17,7 +17,17 @@ class _Samerique_miniJeuState extends State<Samerique_miniJeu> {
   final GameProgress gameProgress = userProgress.stations[5].games[1];
 
   IconData _icone = Icons.music_note;
-  final List<bool> _ignore = [false, false, false, false, false, false, false, false, false,];
+  final List<bool> _ignore = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
   List<String> feu = [
     'assets/images/ameriqueSud/fire1.png',
     'assets/images/ameriqueSud/fire2.png',
@@ -242,9 +252,9 @@ class _Samerique_miniJeuState extends State<Samerique_miniJeu> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => helpPage(
-                                  numStation: 0,
+                                  numStation: 5,
                                   background:
-                                      'assets/images/oceanie/Background_Ocean_1.png',
+                                      'assets/images/ameriqueSud/Background_SouthAmerica_1.png',
                                 )));
                   },
                   icon: const Icon(Icons.question_mark),

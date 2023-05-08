@@ -14,55 +14,67 @@ class _WelcomePageState extends State<WelcomePage> {
       'Bienvenue en Oceanie',
       'Ici la terre est divisée en de nombreuses îles entourées d\'eau ! Avez-vous une idée de ce que sera notre mission ?',
       '25',
+      '378',
       'assets/images/oceanie/Background_Ocean_1.png',
       'Allons-y !',
       'à travers cette mission, nous en apprendrons plus sur la pollution de l\'eau et ses effets nocifs sur la planete',
-      '10'
+      '26',
+      '399'
     ],
     [
       'Bienvenue en Asie',
       'Ici ou se trouve la plupart des usines des sociétés industrielle ! Avez-vous une idée de ce que sera notre mission ? ',
       '24',
+      '410',
       'assets/images/asie/Background_Asia.png',
       'Allons-y !',
       'à travers cette mission, nous en apprendrons plus sur la pollution de l\'aire et ses effets nocifs sur la planete',
-      '20'
+      '26',
+      '395',
     ],
     [
       'Bienvenue en Afrique',
-      'Plus de 1000 mammifères et 2600 espèces d\'oiseaux vivent ici ! Avez-vous une idée de ce que sera notre mission ? ',
+      'Plus de 1000 mammifères et 2600 espèces d\'oiseaux vivent ici !Avez-vous une idée de ce que sera notre mission ? ',
       '25',
+      '376',
       'assets/images/afrique/Background_Africa_1.png',
       'Allons-y !',
       ' à travers cette mission, nous en apprendrons plus sur les animaux en danger et comment les préservés !',
-      '20'
+      '26',
+      '391'
     ],
     [
       'Benvenue en Europe',
-      'Ici  48 % des déchets ont été recyclés l\'an dernier! Avez-vous une idée de ce que sera notre mission ? ',
+      'Ici  48 % des déchets ont été recyclés l\'an dernier!Avez-vous une idée de ce que sera notre mission ? ',
       '22',
+      '369',
       'assets/images/europeBackground.png',
       'Allons-y !',
       'à travers cette mission, nous en apprendrons plus sur le recyclage des déchets et comment peut-on l\'appliquer au quotidien  !',
-      '10'
+      '20',
+      '380'
     ],
     [
       'Bienvenue en Amerique du nord',
-      'Ici les sources d\'énergie renouvelables représentaient environ 12,4 % de la consommation d\'énergie. Avez-vous une idée de ce que sera notre mission ? ',
-      '2',
+      'Ici les sources d\'énergie renouvelables représentaient environ 12,4 % de la consommation totale d\'énergie primaire.Avez-vous une idée de ce que seranotre mission ? ',
+      '13',
+      '448',
       'assets/images/ameriqueNord/Background_NorthAmerica.png',
       'Allons-y !',
       'à travers cette mission, nous en apprendrons plus sur les énergies  renouvelables et leurs impact positive sur la planète',
-      '10'
+      '26',
+      '361'
     ],
     [
       'Bienvenue en Amerique du sud',
-      ' Ici la moitié de la surface du continent est boisée ! Avez-vous une idée de ce que sera notre mission ? ',
+      'Ici la moitié de la surface du continent est boisée !\nAvez-vous une idée de ce que sera notre mission ? ',
       '22',
+      '371',
       'assets/images/ameriqueSud/Background_SouthAmerica_1.png',
       'Allons-y !',
       'à travers cette mission, nous en apprendrons plus sur la déforestation et comment peut-on préserver la flore !',
-      '10'
+      '17',
+      '388',
     ],
   ];
   int index = 0;
@@ -92,7 +104,7 @@ class _WelcomePageState extends State<WelcomePage> {
         Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(listeGlobale[numStation][3]),
+              image: AssetImage(listeGlobale[numStation][4]),
               fit: BoxFit.cover,
             ),
           ),
@@ -113,11 +125,11 @@ class _WelcomePageState extends State<WelcomePage> {
                         height:
                             MediaQuery.of(context).size.height * (298 / 360),
                         decoration: BoxDecoration(
-                          color: const Color(0xffffffff),
+                          color: Color(0xffffffff),
                           borderRadius: BorderRadius.circular(
                               MediaQuery.of(context).size.width * (97 / 800)),
                           border: Border.all(
-                            color: const Color(0xff135617),
+                            color: Color(0xff135617),
                             width: 3,
                           ),
                         ),
@@ -132,13 +144,14 @@ class _WelcomePageState extends State<WelcomePage> {
                             if (listeGlobale[numStation][index] == 'Allons-y !')
                               Container(
                                 child: Text(
-                                  listeGlobale[numStation][index],
+                                  'Allons-y !',
                                   style: TextStyle(
+                                    height: 30 / 32,
                                     decoration: TextDecoration.none,
                                     fontFamily: 'Atma',
                                     fontSize:
                                         MediaQuery.of(context).size.width *
-                                            (32 / 800),
+                                            (28 / 800),
                                     color: Color(0xff134E49),
                                     fontWeight: FontWeight.w700,
                                   ),
@@ -151,9 +164,10 @@ class _WelcomePageState extends State<WelcomePage> {
                                   style: TextStyle(
                                     decoration: TextDecoration.none,
                                     fontFamily: 'Atma',
+                                    height: 30 / 26,
                                     fontSize:
                                         MediaQuery.of(context).size.width *
-                                            (28 / 800),
+                                            (26 / 800),
                                     color: Color(0xff134E49),
                                     fontWeight: FontWeight.w700,
                                   ),
@@ -167,15 +181,18 @@ class _WelcomePageState extends State<WelcomePage> {
                             ),
                             Container(
                               width: MediaQuery.of(context).size.width *
-                                  (450 / 800),
+                                  (int.parse(
+                                          listeGlobale[numStation][index + 3]) /
+                                      800),
                               child: Text(
                                 listeGlobale[numStation][index + 1],
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
+                                  height: 38 / 26,
                                   decoration: TextDecoration.none,
                                   fontFamily: 'Atma',
                                   fontSize: MediaQuery.of(context).size.width *
-                                      (28 / 800),
+                                      (26 / 800),
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -247,17 +264,17 @@ class _WelcomePageState extends State<WelcomePage> {
                             onPressed: () {
                               setState(() {
                                 if (index == 0) {
-                                  index = index + 4;
+                                  index = index + 5;
                                 } else {
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => ChooseGamePage(
-                                              pathBackGround: listeGlobale[numStation][3],
+                                              pathBackGround:
+                                                  listeGlobale[numStation][4],
                                               stationIndex: numStation,
                                               pathJeu: pathJeu,
-                                              pathQuiz: pathQuiz))
-                                  );
+                                              pathQuiz: pathQuiz)));
                                 }
                               });
                             },

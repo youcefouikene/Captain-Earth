@@ -72,7 +72,11 @@ class _AfricaAnimalState extends State<AfricaAnimal> {
           widget.click();
         },
         child: FractionallySizedBox(
-          widthFactor: 1,
+          widthFactor: (widget.image == 'assets/images/afrique/dog.png')
+              ? 0.65
+              : (widget.image == 'assets/images/afrique/gazelle.png')
+                  ? 0.8
+                  : 1,
           child: Image.asset(
             widget.image,
             fit: BoxFit.contain,

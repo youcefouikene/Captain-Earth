@@ -23,7 +23,7 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
     double het = MediaQuery.of(context).size.height;
     const double widthBloc = 243.0;
     int acquisitionTotale = userProgress.leaves;
-
+    print(userProgress.stations[1].leaves);
     return Scaffold(
         backgroundColor: const Color.fromRGBO(158, 231, 251, 1),
         body: Stack(
@@ -67,7 +67,11 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                         child: Stack(
                           children: [
                             Container(
-                              width: wid * (userProgress.stations[0].leaves * widthBloc / maxLeavesOceanieStation) / 800,
+                              width: wid *
+                                  (userProgress.stations[0].leaves *
+                                      widthBloc /
+                                      maxLeavesOceanieStation) /
+                                  800,
                               height: het * 41 / 360,
                               decoration: BoxDecoration(
                                 color: const Color.fromRGBO(104, 216, 104, 1),
@@ -106,7 +110,11 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                         child: Stack(
                           children: [
                             Container(
-                              width: (wid) * (userProgress.stations[1].leaves * widthBloc / maxLeavesAsieStation) / 800,
+                              width: (wid) *
+                                  (userProgress.stations[1].leaves *
+                                      widthBloc /
+                                      maxLeavesAsieStation) /
+                                  800,
                               height: het * 41 / 360,
                               decoration: BoxDecoration(
                                 color: const Color.fromRGBO(104, 216, 104, 1),
@@ -145,7 +153,11 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                         child: Stack(
                           children: [
                             Container(
-                              width: wid * (userProgress.stations[2].leaves * widthBloc / maxLeavesAfriqueStation) / 800,
+                              width: wid *
+                                  (userProgress.stations[2].leaves *
+                                      widthBloc /
+                                      maxLeavesAfriqueStation) /
+                                  800,
                               height: het * 41 / 360,
                               decoration: BoxDecoration(
                                 color: const Color.fromRGBO(104, 216, 104, 1),
@@ -188,7 +200,11 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                         child: Stack(
                           children: [
                             Container(
-                              width: wid * (userProgress.stations[3].leaves * widthBloc / maxLeavesEuropeStation) / 800, //il change suivant un pourcentage de points
+                              width: wid *
+                                  (userProgress.stations[3].leaves *
+                                      widthBloc /
+                                      maxLeavesEuropeStation) /
+                                  800, //il change suivant un pourcentage de points
                               height: het * 41 / 360,
                               decoration: BoxDecoration(
                                 color: const Color.fromRGBO(104, 216, 104, 1),
@@ -227,7 +243,11 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                         child: Stack(
                           children: [
                             Container(
-                              width: wid * (userProgress.stations[4].leaves * widthBloc / maxLeavesAmeriqueNordStation) / 800, //il change suivant un pourcentage de points
+                              width: wid *
+                                  (userProgress.stations[4].leaves *
+                                      widthBloc /
+                                      maxLeavesAmeriqueNordStation) /
+                                  800, //il change suivant un pourcentage de points
                               height: het * 41 / 360,
                               decoration: BoxDecoration(
                                 color: const Color.fromRGBO(104, 216, 104, 1),
@@ -266,7 +286,11 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                         child: Stack(
                           children: [
                             Container(
-                              width: (wid) * (userProgress.stations[5].leaves * widthBloc / maxLeavesAmeriqueSudStation) / 800, //il change suivant un pourcentage de points
+                              width: (wid) *
+                                  (userProgress.stations[5].leaves *
+                                      widthBloc /
+                                      maxLeavesAmeriqueSudStation) /
+                                  800, //il change suivant un pourcentage de points
                               height: het * 41 / 360,
                               decoration: BoxDecoration(
                                 color: const Color.fromRGBO(104, 216, 104, 1),
@@ -310,7 +334,9 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                         ),
                       ),
                       Container(
-                        width: wid * (acquisitionTotale * 584 / maxLeavesTotal) / 800, //il change suivant un pourcentage de points
+                        width: wid *
+                            (acquisitionTotale * 584 / maxLeavesTotal) /
+                            800, //il change suivant un pourcentage de points
                         height: het * 7 / 360,
                         decoration: BoxDecoration(
                           color: const Color.fromRGBO(232, 69, 96, 1),

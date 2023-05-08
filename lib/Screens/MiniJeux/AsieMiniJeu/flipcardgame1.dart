@@ -10,7 +10,7 @@ import 'package:projet_2cp/progress/progress.dart';
 
 class FlipCardGame1 extends StatefulWidget {
   final Level1 _level;
-  const FlipCardGame1(this._level,{super.key});
+  const FlipCardGame1(this._level, {super.key});
   @override
   _FlipCardGame1State createState() => _FlipCardGame1State(_level);
 }
@@ -107,8 +107,7 @@ class _FlipCardGame1State extends State<FlipCardGame1> {
     final het = size.height;
     final PaddingWidth = size.width;
 
-    return
-        Scaffold(
+    return Scaffold(
       body: Container(
         width: size.width,
         height: size.height,
@@ -137,7 +136,7 @@ class _FlipCardGame1State extends State<FlipCardGame1> {
                                   'assets/images/asie/Background_Asia.png',
                                   _isFinished!,
                                   '/AsieMiniJeu',
-                              )),
+                                )),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(4.0),
@@ -146,8 +145,7 @@ class _FlipCardGame1State extends State<FlipCardGame1> {
                         physics: const NeverScrollableScrollPhysics(),
                         padding: EdgeInsets.only(
                             left: PaddingWidth * 0.15,
-                            right: PaddingWidth * 0.15
-                        ),
+                            right: PaddingWidth * 0.15),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 4,
                           crossAxisSpacing: 10,
@@ -343,9 +341,9 @@ class _FlipCardGame1State extends State<FlipCardGame1> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => helpPage(
-                                      numStation: 0,
+                                      numStation: 1,
                                       background:
-                                          'assets/images/oceanie/Background_Ocean_1.png',
+                                          'assets/images/asie/Background_Asia.png',
                                     )));
                       },
                       icon: const Icon(Icons.question_mark),

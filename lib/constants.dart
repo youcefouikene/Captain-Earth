@@ -13,14 +13,18 @@ late bool clickRight;
 List<int> choices = [0, 1, 2, 3];
 bool didAnswer = false;
 
-int maxLeavesOceanieStation = 54; // OceaniaQuizzes(12 Questions) * 2 + Mini jeu 30
+int maxLeavesOceanieStation =
+    54; // OceaniaQuizzes(12 Questions) * 2 + Mini jeu 30
 int maxLeavesAsieStation = 48; // AsiaQuizzes(9 Questions) * 2 + Mini jeu 30
-int maxLeavesAfriqueStation = 48; // AfriqueQuizzes (12 Questions) * 2 + Mini jeu 24
-int maxLeavesEuropeStation =  60; // EuropeQuizzes (15 Questions) * 2 + Mini jeu 30
-int maxLeavesAmeriqueNordStation = 48; // Amerique de nord Quizzes (9 Questions) * 2 + Mini jeu 30
-int maxLeavesAmeriqueSudStation = 54; // Amerique de sud Quizzes (12 Questions) * 2 + Mini jeu 30
+int maxLeavesAfriqueStation =
+    48; // AfriqueQuizzes (12 Questions) * 2 + Mini jeu 24
+int maxLeavesEuropeStation =
+    60; // EuropeQuizzes (15 Questions) * 2 + Mini jeu 30
+int maxLeavesAmeriqueNordStation =
+    48; // Amerique de nord Quizzes (9 Questions) * 2 + Mini jeu 30
+int maxLeavesAmeriqueSudStation =
+    54; // Amerique de sud Quizzes (12 Questions) * 2 + Mini jeu 30
 int maxLeavesTotal = 312;
-
 int max(int x, int y) => x > y ? x : y;
 
 void dataUpdator(BuildContext context, StationProgress stationProgress,
@@ -43,10 +47,11 @@ void dataUpdator(BuildContext context, StationProgress stationProgress,
     }
   }
   if (gameProgress.leaves < leaves) {
+    userProgress.leaves = userProgress.leaves - gameProgress.leaves + leaves;
+    stationProgress.leaves =
+        stationProgress.leaves - gameProgress.leaves + leaves;
     gameProgress.leaves = leaves;
   }
-  userProgress.leaves += leaves;
-  stationProgress.leaves += leaves;
 
   //! Updates
   LocalProgress.updateUser(userProgress);

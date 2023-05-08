@@ -4,6 +4,8 @@ import '../../Widgets/Oceanie/Timer.dart';
 import '../../Widgets/Oceanie/GarbagItem.dart';
 import 'package:projet_2cp/backend/progress_controllers.dart';
 import 'package:projet_2cp/progress/progress.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:flutter/services.dart';
 
 class Oceanie_miniJeu extends StatefulWidget {
   const Oceanie_miniJeu({super.key});
@@ -13,11 +15,52 @@ class Oceanie_miniJeu extends StatefulWidget {
 }
 
 class _Oceanie_miniJeuState extends State<Oceanie_miniJeu> {
+  late AudioPlayer audioPlayer;
+  bool isPlaying = false;
+  @override
+  void initState() {
+    super.initState();
+    audioPlayer = AudioPlayer();
+    playMusic(); // start playing the audio automatically
+  }
+
+  void playMusic() async {
+    await audioPlayer.play(
+      AssetSource('assets/sounds/stations/station_1.mp3'),
+    );
+    audioPlayer.setReleaseMode(ReleaseMode.loop);
+    setState(() {
+      isPlaying = true;
+    });
+  }
+
+  void stopMusic() async {
+    await audioPlayer.stop();
+    setState(() {
+      isPlaying = false;
+    });
+  }
+
+  void toggleMusic() {
+    if (isPlaying) {
+      stopMusic();
+    } else {
+      playMusic();
+    }
+  }
+
   final StationProgress stationProgress = userProgress.stations[0];
   final GameProgress gameProgress = userProgress.stations[0].games[1];
 
   IconData _icone = Icons.music_note;
-  final List<bool> _ignore = [false, false, false, false, false, false,];
+  final List<bool> _ignore = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ];
   List<String> listeGarbages = [
     'assets/images/oceanie/boutle.png',
     'assets/images/oceanie/materialTrash1.png',
@@ -160,15 +203,21 @@ class _Oceanie_miniJeuState extends State<Oceanie_miniJeu> {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {
+                      onPressed: toggleMusic,
+                      /* () {
                         setState(() {
                           if (_icone == Icons.music_note) {
                             _icone = Icons.music_off;
                           } else {
                             _icone = Icons.music_note;
                           }
+                          if (isPlaying) {
+                            stopMusic();
+                          } else {
+                            playMusic();
+                          }
                         });
-                      },
+                      },*/
                       icon: Icon(_icone),
                       iconSize: MediaQuery.of(context).size.width * (25 / 800),
                       color: const Color.fromARGB(255, 255, 255, 255),
@@ -247,7 +296,7 @@ class _Oceanie_miniJeuState extends State<Oceanie_miniJeu> {
             left: MediaQuery.of(context).size.width * (340 / 800),
             top: MediaQuery.of(context).size.height * (20 / 360),
             child: Time(
-              stationIndex : 0,
+              stationIndex: 0,
               ignore: _ignore[0] &&
                   _ignore[1] &&
                   _ignore[2] &&
@@ -263,5 +312,10 @@ class _Oceanie_miniJeuState extends State<Oceanie_miniJeu> {
         ],
       ),
     );
+  }
+
+  void dispose() {
+    audioPlayer.dispose();
+    super.dispose();
   }
 }

@@ -10,13 +10,8 @@ class TimeFlipAsie extends StatefulWidget {
   String background;
   bool ignore;
   String refreshPath;
-  TimeFlipAsie(
-    this.station,
-    this.background,
-    this.ignore,
-    this.refreshPath,
-    {super.key}
-  );
+  TimeFlipAsie(this.station, this.background, this.ignore, this.refreshPath,
+      {super.key});
 
   @override
   _TimeFlipAsie createState() => _TimeFlipAsie();
@@ -36,13 +31,18 @@ class _TimeFlipAsie extends State<TimeFlipAsie> {
       });
       if ((_secondsElapsed == 0) || (widget.ignore == true)) {
         timer.cancel();
-        dataUpdator(context, stationProgress, gameProgress, _secondsElapsed, (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 30 + 1);
+        dataUpdator(
+            context,
+            stationProgress,
+            gameProgress,
+            _secondsElapsed ~/ 3,
+            (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 30 + 1);
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => EndGamePage(
                 stars: (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 30 + 1,
-                score: userProgress.leaves,
+                score: _secondsElapsed,
                 background: widget.background,
                 stationIndex: stationProgress.stationIndex,
                 station: widget.station,

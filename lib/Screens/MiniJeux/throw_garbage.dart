@@ -93,7 +93,7 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     WiningBox(
-                      Score: userProgress.leaves,
+                      Score: (echec>30)?0:30-echec,
                       Stars: (echec <= 3) ? 3: (echec <= 6)? 2: (echec <= 12)? 1 : 0,
                       station: 'station 04',
                       refreshPath: '/EuropeMiniJeu',
@@ -202,7 +202,7 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                     children: [
                       Column(
                         children: [
-                          PointBar(score: userProgress.leaves + score),
+                          PointBar(score: (echec>30)?0:30-echec),
                           Container(
                             margin: const EdgeInsets.all(6),
                             child: Draggable<DechetModel>(

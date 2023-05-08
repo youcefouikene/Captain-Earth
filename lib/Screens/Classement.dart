@@ -113,9 +113,9 @@ class _ClassementState extends State<Classement> {
                               ))),
                     ],
                   ),
-                  SizedBox(
-                    height: het * 29 / 360,
-                  ),
+                  // SizedBox(
+                  //   height: het * 29 / 360,
+                  // ),
                   Row(
                     children: [
                       Positioned(
@@ -203,9 +203,9 @@ class _ClassementState extends State<Classement> {
                               ))),
                     ],
                   ),
-                  SizedBox(
-                    height: het * 29 / 360,
-                  ),
+                  // SizedBox(
+                  //   height: het * 29 / 360,
+                  // ),
                   Row(
                     children: [
                       Positioned(

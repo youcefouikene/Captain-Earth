@@ -38,7 +38,7 @@ class _TimeFlip extends State<TimeFlip> {
             context,
             MaterialPageRoute(
               builder: (context) => EndGamePage(
-                score: userProgress.leaves,
+                score: _secondsElapsed,
                 stars: (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 30 + 1,
                 background: widget.background,
                 station: widget.station,

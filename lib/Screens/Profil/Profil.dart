@@ -83,65 +83,65 @@ class _ProfilState extends State<Profil> {
                   Stack(
                     alignment: Alignment.center,
                     children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width * (40 / 800),
-                          height: MediaQuery.of(context).size.width * (40 / 800),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: const Color(0xFFE84560),
-                            border: Border.all(
-                              color: const Color(0xff752683),
-                              width: 2,
-                            ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * (40 / 800),
+                        height: MediaQuery.of(context).size.width * (40 / 800),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: const Color(0xFFE84560),
+                          border: Border.all(
+                            color: const Color(0xff752683),
+                            width: 2,
                           ),
                         ),
-                        IconButton(
-                          onPressed: () {
-                            setState(() {
-                              if (_icone == Icons.music_note) {
-                                _icone = Icons.music_off;
-                              } else {
-                                _icone = Icons.music_note;
-                              }
-                            });
-                          },
-                          icon: Icon(_icone),
-                          iconSize:
-                              MediaQuery.of(context).size.width * (25 / 800),
-                          color: const Color.fromARGB(255, 255, 255, 255),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * (5 / 360),
-                    ),
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Container(
-                          //margin: EdgeInsets.only(bottom: 12.0),
-                          width: MediaQuery.of(context).size.width * (40 / 800),
-                          height: MediaQuery.of(context).size.width * (40 / 800),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: const Color(0xFFE84560),
-                            border: Border.all(
-                              color: const Color(0xff752683),
-                              width: 2,
-                            ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          setState(() {
+                            if (_icone == Icons.music_note) {
+                              _icone = Icons.music_off;
+                            } else {
+                              _icone = Icons.music_note;
+                            }
+                          });
+                        },
+                        icon: Icon(_icone),
+                        iconSize:
+                            MediaQuery.of(context).size.width * (25 / 800),
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * (5 / 360),
+                  ),
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        //margin: EdgeInsets.only(bottom: 12.0),
+                        width: MediaQuery.of(context).size.width * (40 / 800),
+                        height: MediaQuery.of(context).size.width * (40 / 800),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: const Color(0xFFE84560),
+                          border: Border.all(
+                            color: const Color(0xff752683),
+                            width: 2,
                           ),
                         ),
-                        IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: const Icon(Icons.map_outlined),
-                          iconSize:
-                              MediaQuery.of(context).size.width * (24 / 800),
-                          color: const Color.fromARGB(255, 255, 255, 255),
-                        ),
-                      ],
-                    ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: const Icon(Icons.map_outlined),
+                        iconSize:
+                            MediaQuery.of(context).size.width * (24 / 800),
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -284,7 +284,8 @@ class _ProfilState extends State<Profil> {
                                 width: wid * (34 / 800),
                               ),
                               Text(
-                                userProgress.leaves.toString(), //apres une variable
+                                userProgress.leaves
+                                    .toString(), //apres une variable
                                 style: TextStyle(
                                   fontFamily: 'Atma',
                                   fontSize: wid * (18 / 800),
@@ -319,7 +320,7 @@ class _ProfilState extends State<Profil> {
                                         // ptEurope: widget.ptEurope,
                                         // ptAmeriqueNord: widget.ptAmeriqueNord,
                                         // ptAmeriqueSud: widget.ptAmeriqueSud
-                                    );
+                                        );
                                   },
                                 ),
                               );
@@ -355,15 +356,15 @@ class _ProfilState extends State<Profil> {
                                 ),
                               );
                             },
-                              child: Text(
-                                " Défi",
-                                style: TextStyle(
-                                  fontFamily: 'Atma',
-                                  fontSize: wid * (24 / 800),
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black,
-                                ),
+                            child: Text(
+                              " Défi",
+                              style: TextStyle(
+                                fontFamily: 'Atma',
+                                fontSize: wid * (24 / 800),
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
                               ),
+                            ),
                           ))),
                     ),
                     SizedBox(
@@ -375,27 +376,25 @@ class _ProfilState extends State<Profil> {
                           contentcolor: Colors.white,
                           element: Center(
                               child: GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (_) {
-                                        return const Classement();
-                                      },
-                                    ),
-                                  );
-                                },
-                                  child: Text(
-                                    " Classement",
-                                    style: TextStyle(
-                                      fontFamily: 'Atma',
-                                      fontSize: wid * (24 / 800),
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                              )
-                          )
-                      ),
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) {
+                                    return const Classement();
+                                  },
+                                ),
+                              );
+                            },
+                            child: Text(
+                              " Classement",
+                              style: TextStyle(
+                                fontFamily: 'Atma',
+                                fontSize: wid * (24 / 800),
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ))),
                     ),
                   ],
                 )),
@@ -429,7 +428,9 @@ class _ProfilState extends State<Profil> {
                     'DECONNEXION',
                     style: TextStyle(
                       fontFamily: 'Atma',
-                      fontSize: MediaQuery.of(context).size.width * (21 / 800),
+                      fontWeight: FontWeight.w600,
+                      height: 34 / 21,
+                      fontSize: MediaQuery.of(context).size.width * (19 / 800),
                     ),
                   ),
                 ),
