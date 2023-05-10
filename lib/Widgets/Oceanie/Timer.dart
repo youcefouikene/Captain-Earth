@@ -13,37 +13,42 @@ class Time extends StatefulWidget {
   bool ignore;
   String refreshPath;
   Time(
-  {
-    required this.stationIndex,
-    required this.ignore,
-    required this.callback,
-    required this.background,
-    required this.station,
-    required this.refreshPath
-  });
+      {required this.stationIndex,
+      required this.ignore,
+      required this.callback,
+      required this.background,
+      required this.station,
+      required this.refreshPath});
   @override
   _Time createState() => _Time();
 }
 
 class _Time extends State<Time> {
   int _secondsElapsed = 30;
-  final Color _backgroundColor = Colors.white;
-
   void _startTimer() {
     Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       setState(() {
         _secondsElapsed--;
       });
       if ((_secondsElapsed == 0) || (widget.ignore == true)) {
-        print(_secondsElapsed);
+        if(widget.stationIndex == 0){
+          backgroundPlayerOceanie.stopMusic();
+        }else if (widget.stationIndex == 5){
+          backgroundPlayerAmeriqueSud.stopMusic();
+        }
         widget.callback(_secondsElapsed);
         timer.cancel();
-        dataUpdator(context, userProgress.stations[widget.stationIndex], userProgress.stations[widget.stationIndex].games[1], _secondsElapsed, (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 10 + 1);
+        dataUpdator(
+            context,
+            userProgress.stations[widget.stationIndex],
+            userProgress.stations[widget.stationIndex].games[1],
+            _secondsElapsed,
+            (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 10 + 1);
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => EndGamePage(
-                score: userProgress.leaves,
+                score: _secondsElapsed,
                 stars: (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 10 + 1,
                 stationIndex: widget.stationIndex,
                 background: widget.background,
@@ -82,7 +87,7 @@ class _Time extends State<Time> {
                 width: 3,
               ),
             ),
-            //padding: EdgeInsets.all(10),
+
             child: Padding(
               padding: EdgeInsets.only(
                   left: MediaQuery.of(context).size.width * 0.05),

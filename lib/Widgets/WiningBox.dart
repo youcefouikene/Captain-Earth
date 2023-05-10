@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:projet_2cp/constants.dart';
 import '../Screens/ChooseGamePage.dart';
 import '../Widgets/ScoreBAR.dart';
-import '../progress/progress.dart';
 import 'StationBar.dart';
-import 'quizOption.dart';
-import 'RectangleButton.dart';
 import 'Etoiles1.dart';
-import 'Iconbutton.dart';
+import 'package:projet_2cp/settings.dart';
 
 class WiningBox extends StatelessWidget {
   final String station;
@@ -149,7 +147,6 @@ class WiningBox extends StatelessWidget {
                   alignment: Alignment.center,
                   children: [
                     Container(
-                      //margin: EdgeInsets.only(bottom: 12.0),
                       width: MediaQuery.of(context).size.width * (43 / 800),
                       height: MediaQuery.of(context).size.width * (43 / 800),
                       decoration: BoxDecoration(
@@ -185,6 +182,16 @@ class WiningBox extends StatelessWidget {
                   ),
                   child: ElevatedButton(
                     onPressed: () {
+                      if(kSound){
+                        if(station == "station 04"){
+                          backgroundPlayerEurope.stopMusic();
+                        }else if(station == "station 05"){
+                          backgroundPlayerAmeriqueNord.stopMusic();
+                        }else if(station == "station 03"){
+                          backgroundPlayerAfrique.stopMusic();
+                        }
+                        backgroundPlayerMap.playMusic();
+                      }
                       Navigator.pop(context);
                       Navigator.pop(context);
                       Navigator.push(
@@ -207,7 +214,6 @@ class WiningBox extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(
                             MediaQuery.of(context).size.width * (10 / 800) - 3),
-                        //side: BorderSide(color: Color(0xff7B2B85)),
                       ),
                     ),
                     child: Text(

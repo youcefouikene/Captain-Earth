@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../Widgets/BoxInfo.dart';
-import '../../Widgets/RectangleButton.dart';
 import '../Classement.dart';
 import '../AcquisitionPage.dart';
-//import '../Widgets/DefiContainer.dart';
 import '../DefiPage.dart';
 import 'package:projet_2cp/progress/progress.dart';
+import 'package:projet_2cp/constants.dart';
+import 'package:projet_2cp/settings.dart';
 
 class Profil extends StatefulWidget {
   String? username;
@@ -35,7 +35,6 @@ class Profil extends StatefulWidget {
 }
 
 class _ProfilState extends State<Profil> {
-  IconData _icone = Icons.music_note;
   Color? col = const Color.fromRGBO(232, 69, 96, 1); //attribut de la classe
 
   void incrementScore(int add) {
@@ -83,65 +82,68 @@ class _ProfilState extends State<Profil> {
                   Stack(
                     alignment: Alignment.center,
                     children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width * (40 / 800),
-                          height: MediaQuery.of(context).size.width * (40 / 800),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: const Color(0xFFE84560),
-                            border: Border.all(
-                              color: const Color(0xff752683),
-                              width: 2,
-                            ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * (40 / 800),
+                        height: MediaQuery.of(context).size.width * (40 / 800),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: const Color(0xFFE84560),
+                          border: Border.all(
+                            color: const Color(0xff752683),
+                            width: 2,
                           ),
                         ),
-                        IconButton(
-                          onPressed: () {
+                      ),
+                      IconButton(
+                        onPressed: () {
+                        backgroundPlayerMap.toggleMusic();
+                          if(kSound){
                             setState(() {
-                              if (_icone == Icons.music_note) {
-                                _icone = Icons.music_off;
-                              } else {
-                                _icone = Icons.music_note;
-                              }
+                              kSound = false;
+                          });
+                          }else{
+                            setState(() {
+                              kSound = true;
                             });
-                          },
-                          icon: Icon(_icone),
-                          iconSize:
-                              MediaQuery.of(context).size.width * (25 / 800),
-                          color: const Color.fromARGB(255, 255, 255, 255),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * (5 / 360),
-                    ),
-                    Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Container(
-                          //margin: EdgeInsets.only(bottom: 12.0),
-                          width: MediaQuery.of(context).size.width * (40 / 800),
-                          height: MediaQuery.of(context).size.width * (40 / 800),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: const Color(0xFFE84560),
-                            border: Border.all(
-                              color: const Color(0xff752683),
-                              width: 2,
-                            ),
+                          }
+                        },
+                        icon: Icon(iconeTypeFunction()),
+                        iconSize:
+                            MediaQuery.of(context).size.width * (25 / 800),
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * (5 / 360),
+                  ),
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        //margin: EdgeInsets.only(bottom: 12.0),
+                        width: MediaQuery.of(context).size.width * (40 / 800),
+                        height: MediaQuery.of(context).size.width * (40 / 800),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: const Color(0xFFE84560),
+                          border: Border.all(
+                            color: const Color(0xff752683),
+                            width: 2,
                           ),
                         ),
-                        IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: const Icon(Icons.map_outlined),
-                          iconSize:
-                              MediaQuery.of(context).size.width * (24 / 800),
-                          color: const Color.fromARGB(255, 255, 255, 255),
-                        ),
-                      ],
-                    ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: const Icon(Icons.map_outlined),
+                        iconSize:
+                            MediaQuery.of(context).size.width * (24 / 800),
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -284,7 +286,8 @@ class _ProfilState extends State<Profil> {
                                 width: wid * (34 / 800),
                               ),
                               Text(
-                                userProgress.leaves.toString(), //apres une variable
+                                userProgress.leaves
+                                    .toString(), //apres une variable
                                 style: TextStyle(
                                   fontFamily: 'Atma',
                                   fontSize: wid * (18 / 800),
@@ -319,7 +322,7 @@ class _ProfilState extends State<Profil> {
                                         // ptEurope: widget.ptEurope,
                                         // ptAmeriqueNord: widget.ptAmeriqueNord,
                                         // ptAmeriqueSud: widget.ptAmeriqueSud
-                                    );
+                                        );
                                   },
                                 ),
                               );
@@ -355,15 +358,15 @@ class _ProfilState extends State<Profil> {
                                 ),
                               );
                             },
-                              child: Text(
-                                " Défi",
-                                style: TextStyle(
-                                  fontFamily: 'Atma',
-                                  fontSize: wid * (24 / 800),
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black,
-                                ),
+                            child: Text(
+                              " Défi",
+                              style: TextStyle(
+                                fontFamily: 'Atma',
+                                fontSize: wid * (24 / 800),
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
                               ),
+                            ),
                           ))),
                     ),
                     SizedBox(
@@ -375,27 +378,25 @@ class _ProfilState extends State<Profil> {
                           contentcolor: Colors.white,
                           element: Center(
                               child: GestureDetector(
-                                onTap: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (_) {
-                                        return const Classement();
-                                      },
-                                    ),
-                                  );
-                                },
-                                  child: Text(
-                                    " Classement",
-                                    style: TextStyle(
-                                      fontFamily: 'Atma',
-                                      fontSize: wid * (24 / 800),
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                              )
-                          )
-                      ),
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) {
+                                    return const Classement();
+                                  },
+                                ),
+                              );
+                            },
+                            child: Text(
+                              " Classement",
+                              style: TextStyle(
+                                fontFamily: 'Atma',
+                                fontSize: wid * (24 / 800),
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ))),
                     ),
                   ],
                 )),
@@ -429,7 +430,9 @@ class _ProfilState extends State<Profil> {
                     'DECONNEXION',
                     style: TextStyle(
                       fontFamily: 'Atma',
-                      fontSize: MediaQuery.of(context).size.width * (21 / 800),
+                      fontWeight: FontWeight.w600,
+                      height: 34 / 21,
+                      fontSize: MediaQuery.of(context).size.width * (19 / 800),
                     ),
                   ),
                 ),

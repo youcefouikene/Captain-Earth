@@ -4,6 +4,9 @@ import '../../Screens/help.dart';
 import '../../Widgets/Oceanie/Timer.dart';
 import '../../Widgets/AmeriqueSud/fire.dart';
 import 'package:projet_2cp/backend/progress_controllers.dart';
+import 'package:projet_2cp/constants.dart';
+import 'package:projet_2cp/settings.dart';
+
 
 class Samerique_miniJeu extends StatefulWidget {
   const Samerique_miniJeu({super.key});
@@ -17,18 +20,18 @@ class _Samerique_miniJeuState extends State<Samerique_miniJeu> {
   final GameProgress gameProgress = userProgress.stations[5].games[1];
 
   IconData _icone = Icons.music_note;
-  final List<bool> _ignore = [false, false, false, false, false, false, false, false, false,];
-  List<String> feu = [
-    'assets/images/ameriqueSud/fire1.png',
-    'assets/images/ameriqueSud/fire2.png',
-    'assets/images/ameriqueSud/fire3.png',
-    'assets/images/ameriqueSud/fire4.png',
-    'assets/images/ameriqueSud/fire5.png',
-    'assets/images/ameriqueSud/fire6.png',
-    'assets/images/ameriqueSud/fire7.png',
-    'assets/images/ameriqueSud/fire8.png',
-    'assets/images/ameriqueSud/fire9.png',
+  final List<bool> _ignore = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
   ];
+
   int score = 0;
 
   void mettreAJourEtat0() {
@@ -87,6 +90,13 @@ class _Samerique_miniJeuState extends State<Samerique_miniJeu> {
 
   void getScore(int S) {
     score = S;
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    backgroundPlayerAmeriqueSud.playMusic();
   }
 
   @override
@@ -171,15 +181,19 @@ class _Samerique_miniJeuState extends State<Samerique_miniJeu> {
                     ),
                     IconButton(
                       onPressed: () {
-                        setState(() {
-                          if (_icone == Icons.music_note) {
-                            _icone = Icons.music_off;
-                          } else {
-                            _icone = Icons.music_note;
-                          }
-                        });
+                        if(kSound){
+                          setState(() {
+                            kSound = false;
+                            backgroundPlayerAmeriqueSud.stopMusic();
+                          });
+                        }else{
+                          setState(() {
+                            kSound = true;
+                            backgroundPlayerAmeriqueSud.playMusic();
+                          });
+                        }
                       },
-                      icon: Icon(_icone),
+                      icon: Icon(iconeTypeFunction()),
                       iconSize: MediaQuery.of(context).size.width * (25 / 800),
                       color: const Color.fromARGB(255, 255, 255, 255),
                     ),
@@ -206,6 +220,8 @@ class _Samerique_miniJeuState extends State<Samerique_miniJeu> {
                     ),
                     IconButton(
                       onPressed: () {
+                        backgroundPlayerAmeriqueSud.stopMusic();
+                        backgroundPlayerMap.playMusic();
                         Navigator.pop(context);
                       },
                       icon: const Icon(Icons.close_rounded),
@@ -242,10 +258,10 @@ class _Samerique_miniJeuState extends State<Samerique_miniJeu> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => helpPage(
-                                  numStation: 0,
-                                  background:
-                                      'assets/images/oceanie/Background_Ocean_1.png',
-                                )));
+                              numStation: 5,
+                              background:
+                              'assets/images/ameriqueSud/Background_SouthAmerica_1.png',
+                            )));
                   },
                   icon: const Icon(Icons.question_mark),
                   iconSize: MediaQuery.of(context).size.width * 0.035,
@@ -270,7 +286,7 @@ class _Samerique_miniJeuState extends State<Samerique_miniJeu> {
                   _ignore[8],
               callback: getScore,
               background:
-                  'assets/images/ameriqueSud/Background_SouthAmerica_1.png',
+              'assets/images/ameriqueSud/Background_SouthAmerica_1.png',
               station: 'Station 06',
               refreshPath: '/AmeriqueSudMiniJeu',
             ),

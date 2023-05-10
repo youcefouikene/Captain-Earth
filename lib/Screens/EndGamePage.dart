@@ -7,8 +7,8 @@ class EndGamePage extends StatelessWidget {
   final String background;
   final String station;
   final int stationIndex;
-  final int score;
-  final int stars;
+  int score;
+  int stars;
   String refreshPath;
 
   EndGamePage({
@@ -91,18 +91,15 @@ class EndGamePage extends StatelessWidget {
                 SizedBox(
                     width: MediaQuery.of(context).size.width * (left() / 800)),
                 WiningBox(
-                  Score: userProgress.leaves,
+                  Score: score,
                   Stars: stars,
                   station: station,
                   refreshPath: refreshPath,
                 ),
-
                 SizedBox(
                     width: MediaQuery.of(context).size.width *
                         (separateur() / 800)),
                 SizedBox(
-                  //color: Colors.black,
-                  // margin: EdgeInsets.only(top:122),
                   width: MediaQuery.of(context).size.width *
                       (pourcentageAvatar() / 800),
                   child: Image.asset(

@@ -5,24 +5,21 @@ import '../../Widgets/PointBar.dart';
 import '../EndGamePage.dart';
 import 'package:projet_2cp/backend/progress_controllers.dart';
 import 'package:projet_2cp/constants.dart';
-import 'package:projet_2cp/constants.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:projet_2cp/constants.dart';
+import 'package:projet_2cp/settings.dart';
 
 List<Question> qqsBank = [];
 final player1 = AudioPlayer();
-final player2= AudioPlayer();
-
+final player2 = AudioPlayer();
 
 //                       *****************
 // ***************         THE QUIZ GAME        ******************
 //                       *****************
 
-class BigQuiz extends StatefulWidget{
+class BigQuiz extends StatefulWidget {
   final int continentNumber;
-  BigQuiz({
-    required this.continentNumber,
-    super.key
-  });
+  BigQuiz({required this.continentNumber, super.key});
   @override
   State<BigQuiz> createState() => _BigQuizState();
 }
@@ -31,7 +28,7 @@ class _BigQuizState extends State<BigQuiz> {
   AudioPlayer player = AudioPlayer();
   late StationProgress stationProgress;
   late GameProgress gameProgress;
-  
+
   void loadQuestions() async {
     qqsBank = [];
     Future<List<Question>> q = QuizData.getQuestions(widget.continentNumber);
@@ -49,22 +46,22 @@ class _BigQuizState extends State<BigQuiz> {
     playAudio();
     stationProgress = userProgress.stations[widget.continentNumber];
     gameProgress = userProgress.stations[widget.continentNumber].games[0];
-    
+    backgroundPlayerQuiz.playMusic();
     loadQuestions();
     setState(() {
       clickRight = true;
     });
   }
-    @override
+
+  @override
   void dispose() {
     player.stop();
     super.dispose();
   }
+
   Future<void> playAudio() async {
     await player.play(AssetSource('sound.mp3'));
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +124,7 @@ class _QuizState extends State<Quiz> {
   void incrementScore() {
     clickRight = false;
     setState(() {
-      score+=2;
+      score += 2;
     });
   }
 
@@ -190,14 +187,13 @@ class _QuizState extends State<Quiz> {
     int stage = qqsBank.length ~/ 3;
     String refreshPath;
     String background;
-    (score >= qqsBank.length - 1)
+    (score / 2 >= qqsBank.length - 1)
         ? stars = 3
-        : (score >= qqsBank.length - stage)
+        : (score / 2 >= qqsBank.length - stage)
             ? stars = 2
-            : (score >= qqsBank.length - stage * 2)
+            : (score / 2 >= qqsBank.length - stage * 2)
                 ? stars = 1
                 : stars = 0;
-
 
     // push to the endGameWidget
     if (widget.continentNumber == 0) {
@@ -226,21 +222,21 @@ class _QuizState extends State<Quiz> {
     } else {
       background = 'assets/images/ameriqueSud/Background_SouthAmerica_1.png';
     }
-    
-    dataUpdator(context, widget.stationProgress, widget.gameProgress,score,stars);
+    backgroundPlayerQuiz.stopMusic();
+    dataUpdator(
+        context, widget.stationProgress, widget.gameProgress, score, stars);
 
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => EndGamePage(
-          stars: stars,
-          score: widget.userProgress.leaves,
-          background: background,
-          station: 'Station 0${widget.continentNumber + 1}',
-          stationIndex : widget.continentNumber,
-          refreshPath: refreshPath,
-        )
-      ),
+          builder: (context) => EndGamePage(
+                stars: stars,
+                score: score,
+                background: background,
+                station: 'Station 0${widget.continentNumber + 1}',
+                stationIndex: widget.continentNumber,
+                refreshPath: refreshPath,
+              )),
     );
   }
 
@@ -253,7 +249,6 @@ class _QuizState extends State<Quiz> {
 
   @override
   Widget build(BuildContext context) {
-    IconData icone = Icons.music_note;
     String background;
     if (clickRight) {
       playQqs(
@@ -307,15 +302,19 @@ class _QuizState extends State<Quiz> {
                         ),
                         IconButton(
                           onPressed: () {
-                            setState(() {
-                              if (icone == Icons.music_note) {
-                                icone = Icons.music_off;
-                              } else {
-                                icone = Icons.music_note;
-                              }
-                            });
+                            if(kSound){
+                              setState(() {
+                                kSound = false;
+                                backgroundPlayerQuiz.stopMusic();
+                              });
+                            }else{
+                              setState(() {
+                                kSound = true;
+                                backgroundPlayerQuiz.playMusic();
+                              });
+                            }
                           },
-                          icon: Icon(icone),
+                          icon: Icon(iconeTypeFunction()),
                           iconSize:
                               MediaQuery.of(context).size.width * (25 / 800),
                           color: const Color.fromARGB(255, 255, 255, 255),
@@ -329,7 +328,6 @@ class _QuizState extends State<Quiz> {
                       alignment: Alignment.center,
                       children: [
                         Container(
-                          //margin: EdgeInsets.only(bottom: 12.0),
                           width: MediaQuery.of(context).size.width * (40 / 800),
                           height:
                               MediaQuery.of(context).size.width * (40 / 800),
@@ -344,6 +342,8 @@ class _QuizState extends State<Quiz> {
                         ),
                         IconButton(
                           onPressed: () {
+                            backgroundPlayerQuiz.stopMusic();
+                            backgroundPlayerMap.playMusic();
                             Navigator.pop(context);
                           },
                           icon: const Icon(Icons.close_rounded),
@@ -359,10 +359,9 @@ class _QuizState extends State<Quiz> {
               Positioned(
                   left: MediaQuery.of(context).size.width * 0.418,
                   top: MediaQuery.of(context).size.height * 0.06,
-                  child: PointBar(score: userProgress.leaves + score)),
+                  child: PointBar(score: score)),
               Center(
                 child: Column(
-                    // mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       SizedBox(
@@ -473,7 +472,9 @@ class QuestionBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        playQqs("question${continentNumber}_${question + 1}",);
+        playQqs(
+          "question${continentNumber}_${question + 1}",
+        );
       },
       child: Container(
         margin: EdgeInsets.only(
@@ -545,7 +546,6 @@ class _QuizOptionState extends State<QuizOption> {
 
   @override
   Widget build(BuildContext context) {
-   
     return Container(
       margin: EdgeInsets.only(
           bottom: MediaQuery.of(context).size.height * widget.pourcentage3),
@@ -631,8 +631,3 @@ class _QuizOptionState extends State<QuizOption> {
     );
   }
 }
-
-
-
-
-

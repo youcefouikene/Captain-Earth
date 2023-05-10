@@ -204,6 +204,9 @@ flutter:
     - assets/sounds/questions/
     - assets/sounds/questions/quiz/
     - assets/sounds/stations/
+    - assets/sounds/stations/station_1.mp3
+    - assets/images/avatar/logo.png
+    - assets/images/avatar/captain_earth_question.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

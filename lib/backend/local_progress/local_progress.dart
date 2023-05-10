@@ -21,24 +21,21 @@ class LocalProgress {
   static Future<Database> getProgress() async {
     var dbDir = await getDatabasesPath();
     var dbPath = join(dbDir, "progress.db");
-    var exist = false;//await databaseExists(dbPath);
-    //if (!exist) {
+    var exist = await databaseExists(dbPath);
+    if (!exist) {
       ByteData data = await rootBundle.load("assets/data/progress.db");
       List<int> bytes =
-      data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
       await File(dbPath).writeAsBytes(bytes);
-    //}
+    }
     return await openDatabase(dbPath);
   }
 
-
   static Future<UserProgress> getUser(String playerName) async {
     _progress = await getProgress();
-    List<Map<String, dynamic>> user =
-    await _progress
-        .rawQuery('SELECT * FROM Users WHERE playerName="$playerName"');
-
-    if(user.isEmpty && playerName == "guest"){
+    List<Map<String, dynamic>> user = await _progress
+        .rawQuery("SELECT * FROM Users WHERE playerName='$playerName'");
+    if (user.isEmpty && playerName == 'guest') {
       return UserProgress(
         playerName: 'guest',
         email: 'guest',
@@ -61,14 +58,12 @@ class LocalProgress {
         stations: [],
       );
     }
-
   }
-
 
   static Future<List<StationProgress>> getStations(String playerName) async {
     _progress = await getProgress();
-    List<Map<String, dynamic>> stations = await _progress.rawQuery(
-        "SELECT * FROM Stations WHERE playerName='$playerName'");
+    List<Map<String, dynamic>> stations = await _progress
+        .rawQuery("SELECT * FROM stations WHERE playerName='$playerName'");
     return List.generate(stations.length, (index) {
       return StationProgress(
         stationName: stations[index]['stationName'],
@@ -81,21 +76,21 @@ class LocalProgress {
     });
   }
 
-  static Future<List<GameProgress>> getGames(String playerName, int stationIndex) async {
+  static Future<List<GameProgress>> getGames(
+      String playerName, int stationIndex) async {
     _progress = await getProgress();
     List<Map<String, dynamic>> games = await _progress.rawQuery(
-        'SELECT * FROM Games WHERE station="$stationIndex" AND playerName="$playerName"');
+        "SELECT * FROM games WHERE stationIndex='$stationIndex' AND playerName='$playerName'");
     return List.generate(games.length, (index) {
       return GameProgress(
         gameName: games[index]['gameName'],
         playerName: games[index]['playerName'],
-        station: games[index]['station'],
+        station: games[index]['stationIndex'],
         gameIndex: games[index]['gameIndex'],
         stars: games[index]['stars'],
         leaves: games[index]['leaves'],
       );
-    }
-    );
+    });
   }
 
   //? ********/*
@@ -123,7 +118,7 @@ class LocalProgress {
     int j = 0;
     while (i < initStationsProgress.length) {
       StationProgress station = userProgress.stations[i];
-      _progress.insert('Stations', {
+      _progress.insert('stations', {
         'stationName': station.stationName,
         'playerName': userProgress.playerName,
         'leaves': station.leaves,
@@ -133,9 +128,9 @@ class LocalProgress {
       j = 0;
       while (j < station.games.length) {
         GameProgress game = userProgress.stations[i].games[j];
-        _progress.insert('Games', {
+        _progress.insert('games', {
           'gameName': game.gameName,
-          'station': station.stationIndex,
+          'stationIndex': station.stationIndex,
           'playerName': userProgress.playerName,
           'gameIndex': game.gameIndex,
           'stars': game.stars,
@@ -156,18 +151,18 @@ class LocalProgress {
   static void updateUser(UserProgress userProgress) async {
     _progress = await getProgress();
     _progress.execute(
-        'UPDATE Users SET avatar = "${userProgress.avatar}", trophy = "${userProgress.trophy}", leaves = "${userProgress.leaves}", stars = "${userProgress.stars}", currentStation = "${userProgress.currentStation}" WHERE playerName = "${userProgress.playerName}"');
+        "UPDATE Users SET avatar = '${userProgress.avatar}', trophy = '${userProgress.trophy}', leaves = '${userProgress.leaves}', stars = '${userProgress.stars}', currentStation = '${userProgress.currentStation}' WHERE playerName = '${userProgress.playerName}'");
   }
 
   static void updateCurrentStation(StationProgress stationProgress) async {
     _progress = await getProgress();
     _progress.execute(
-        'UPDATE Stations SET stars = "${stationProgress.stars}", leaves = "${stationProgress.leaves}" WHERE playerName = "${stationProgress.playerName}" AND stationIndex = "${stationProgress.stationIndex}"');
+        "UPDATE stations SET stars = '${stationProgress.stars}', leaves = '${stationProgress.leaves}' WHERE playerName = '${stationProgress.playerName}' AND stationIndex = '${stationProgress.stationIndex}'");
   }
 
   static void updateCurrentGame(GameProgress gameProgress) async {
     _progress = await getProgress();
     _progress.execute(
-        'UPDATE Games SET stars = "${gameProgress.stars}", leaves = "${gameProgress.leaves}" WHERE playerName = "${gameProgress.playerName}" AND station = "${gameProgress.station}" AND gameIndex = "${gameProgress.gameIndex}"');
+        "UPDATE games SET stars = '${gameProgress.stars}', leaves = '${gameProgress.leaves}' WHERE playerName = '${gameProgress.playerName}' AND stationIndex = '${gameProgress.station}' AND gameIndex = '${gameProgress.gameIndex}'");
   }
 }

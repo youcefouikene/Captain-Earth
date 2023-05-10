@@ -8,7 +8,6 @@ import '../backend/local_progress/local_progress.dart';
 import '../backend/progress_controllers.dart';
 import '../backend/synchronization.dart';
 
-
 class WelcomePage1 extends StatefulWidget {
   @override
   State<WelcomePage1> createState() => _WelcomePage1State();
@@ -24,8 +23,7 @@ class _WelcomePage1State extends State<WelcomePage1> {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(158, 231, 251, 1),
       body: SafeArea(
-        child: Stack(
-            children: [
+        child: Stack(children: [
           Positioned(
             left: wid * (76 / 800),
             top: hei * (20 / 360),
@@ -39,7 +37,7 @@ class _WelcomePage1State extends State<WelcomePage1> {
                   borderColor: const Color(0xff135617),
                   contextColor: const Color(0xffffffff),
                   text:
-                  "Salut Champion, je suis\n captain earth ensemble on\n sauvera la planete contre la\n pollution Etês vous prêts ?",
+                      "Salut Champion, je suis\n captain earth ensemble on\n sauvera la planete contre la\n pollution Etês vous prêts ?",
                   textColor: Colors.black,
                 ),
                 SizedBox(
@@ -59,35 +57,35 @@ class _WelcomePage1State extends State<WelcomePage1> {
                         ),
                       ),
                       child: ElevatedButton(
-                        onPressed: () async{
+                        onPressed: () async {
                           WidgetsFlutterBinding.ensureInitialized();
                           kUser = 'guest';
                           Future<UserProgress> g = getSQFLite('guest');
                           userProgress = await g;
-                          if (userProgress.leaves == 0 && userProgress.stars == 0) {
+                          if (userProgress.leaves == 0 &&
+                              userProgress.stars == 0) {
                             LocalProgress.addUser(userProgress);
                           }
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => tryi(),
-                            ));
+                              ));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xffE84560),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(
-                                MediaQuery.of(context).size.width *
-                                    (10 / 800) -
+                                MediaQuery.of(context).size.width * (10 / 800) -
                                     3),
                           ),
                         ),
                         child: Text(
-                          'JOUER',
+                          'Jouer',
                           style: TextStyle(
                             fontFamily: 'Atma',
-                            fontSize: MediaQuery.of(context).size.width *
-                                (24 / 800),
+                            fontSize:
+                                MediaQuery.of(context).size.width * (24 / 800),
                           ),
                         ),
                       ),
@@ -116,8 +114,7 @@ class _WelcomePage1State extends State<WelcomePage1> {
                           backgroundColor: const Color(0xffE84560),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(
-                                MediaQuery.of(context).size.width *
-                                    (10 / 800) -
+                                MediaQuery.of(context).size.width * (10 / 800) -
                                     3),
                             //side: BorderSide(color: Color(0xff7B2B85)),
                           ),
@@ -126,8 +123,8 @@ class _WelcomePage1State extends State<WelcomePage1> {
                           'S\'INSCRIRE',
                           style: TextStyle(
                             fontFamily: 'Atma',
-                            fontSize: MediaQuery.of(context).size.width *
-                                (24 / 800),
+                            fontSize:
+                                MediaQuery.of(context).size.width * (24 / 800),
                           ),
                         ),
                       ),
@@ -137,7 +134,6 @@ class _WelcomePage1State extends State<WelcomePage1> {
               ],
             ),
           ),
-
           Positioned(
             top: hei * (18 / 360),
             left: wid * (539 / 800),
@@ -152,4 +148,3 @@ class _WelcomePage1State extends State<WelcomePage1> {
     );
   }
 }
-

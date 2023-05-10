@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../Widgets/ChooseBoxGame1.dart';
-import 'quizOption.dart';
 import 'Etoiles2.dart';
+import 'package:projet_2cp/constants.dart';
 
 class ChooseBoxgame extends StatelessWidget {
   final double pourcentage1;
@@ -27,7 +27,7 @@ class ChooseBoxgame extends StatelessWidget {
       required this.Stars,
       required this.path
     });
-  //pourcentage3 est consacre pour le margin bottom
+
 
   CustomPainter choix() {
     if (Stars == 0) {
@@ -72,6 +72,7 @@ class ChooseBoxgame extends StatelessWidget {
           ),
           child: ElevatedButton(
             onPressed: () {
+              backgroundPlayerMap.stopMusic();
               Navigator.of(context).pushNamed(path);
             },
             style: ElevatedButton.styleFrom(
@@ -100,7 +101,7 @@ class ChooseBoxgame extends StatelessWidget {
                 (MediaQuery.of(context).size.width * 0.2111875),
                 (MediaQuery.of(context).size.height * 0.192472222)
                     .toDouble()
-              ), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+              ),
             painter: choix(),
           ),
         ),

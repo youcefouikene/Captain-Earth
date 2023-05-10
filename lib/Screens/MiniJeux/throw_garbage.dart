@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:projet_2cp/progress/progress.dart';
 import '../../Screens/helpPageEu.dart';
 import '../../Widgets/Europe/dechetModel.dart';
 import '../../Widgets/PointBar.dart';
 import '../../Widgets/WiningBox.dart';
 import '../indication_throw_garbage.dart';
-import 'package:projet_2cp/backend/progress_controllers.dart';
 import 'package:projet_2cp/constants.dart';
+import 'package:projet_2cp/settings.dart';
+import 'package:projet_2cp/backend/progress_controllers.dart';
+import 'package:projet_2cp/progress/progress.dart';
 
 class ThrowGarbage extends StatefulWidget {
 
@@ -22,7 +23,6 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
 
   late List<DechetModel> listDechets;
   late List<DechetModel> listPoubelles;
-  //var player = AudioCache();
 
   late int echec;
   late bool gameOver;
@@ -35,7 +35,10 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
 
   late int currentIndex;
 
-  IconData _icone = Icons.music_note;
+  IconData iconeTypeFunction(){
+    return (kSound) ? Icons.music_note : Icons.music_off;
+  }
+
   Color col = const Color.fromRGBO(232, 69, 96, 1);
 
   void handleAccept() {
@@ -58,6 +61,7 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
   void initState() {
     super.initState();
     initGame();
+    backgroundPlayerEurope.playMusic();
   }
 
   @override
@@ -93,7 +97,7 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     WiningBox(
-                      Score: userProgress.leaves,
+                      Score: (echec>30)?0:30-echec,
                       Stars: (echec <= 3) ? 3: (echec <= 6)? 2: (echec <= 12)? 1 : 0,
                       station: 'station 04',
                       refreshPath: '/EuropeMiniJeu',
@@ -144,15 +148,19 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                             ),
                             IconButton(
                               onPressed: () {
-                                setState(() {
-                                  if (_icone == Icons.music_note) {
-                                    _icone = Icons.music_off;
-                                  } else {
-                                    _icone = Icons.music_note;
-                                  }
-                                });
+                                if(kSound){
+                                  setState(() {
+                                    kSound = false;
+                                    backgroundPlayerEurope.stopMusic();
+                                  });
+                                }else{
+                                  setState(() {
+                                    kSound = true;
+                                    backgroundPlayerEurope.playMusic();
+                                  });
+                                }
                               },
-                              icon: Icon(_icone),
+                              icon: Icon(iconeTypeFunction()),
                               iconSize: MediaQuery.of(context).size.width *
                                   (25 / 800),
                               color: const Color.fromARGB(255, 255, 255, 255),
@@ -182,6 +190,8 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                             ),
                             IconButton(
                               onPressed: () {
+                                backgroundPlayerEurope.stopMusic();
+                                backgroundPlayerMap.playMusic();
                                 Navigator.pop(context);
                               },
                               icon: const Icon(Icons.close_rounded),
@@ -202,7 +212,7 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                     children: [
                       Column(
                         children: [
-                          PointBar(score: userProgress.leaves + score),
+                          PointBar(score: (echec>30)?0:30-echec),
                           Container(
                             margin: const EdgeInsets.all(6),
                             child: Draggable<DechetModel>(
@@ -240,7 +250,6 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                                     item.accepting = false;
                                     choixBonus = item.value;
                                     plusOrMinus = "minus";
-                                    //await audioPlayer.play(wrongSoundId);
                                   });
                                 }
                               },

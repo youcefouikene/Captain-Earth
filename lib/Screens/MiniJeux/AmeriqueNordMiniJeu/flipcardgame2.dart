@@ -7,6 +7,8 @@ import 'dart:async';
 import '../../../Widgets/PointBarTime.dart';
 import 'timerFlip.dart';
 import 'package:projet_2cp/backend/progress_controllers.dart';
+import 'package:projet_2cp/constants.dart';
+import 'package:projet_2cp/settings.dart';
 
 
 class FlipCardGame extends StatefulWidget {
@@ -34,7 +36,7 @@ class _FlipCardGameState extends State<FlipCardGame> {
   List<dynamic>? _data;
   List<bool>? _cardFlips;
   List<GlobalKey<FlipCardState>>? _cardStateKeys;
-  IconData icone = Icons.music_note; //attribut de la classe
+
   Widget getItem(int index) {
     return Container(
       decoration: BoxDecoration(
@@ -70,7 +72,6 @@ class _FlipCardGameState extends State<FlipCardGame> {
     _cardStateKeys = getCardStateKeys(_level!);
     _time = 5;
     _left = (_data!.length ~/ 2);
-    int _score = 0;
     _isFinished = false;
     Future.delayed(const Duration(seconds: 6), () {
       setState(() {
@@ -84,6 +85,7 @@ class _FlipCardGameState extends State<FlipCardGame> {
   void initState() {
     super.initState();
     restart();
+    backgroundPlayerAmeriqueNord.playMusic();
   }
 
   @override
@@ -135,11 +137,11 @@ class _FlipCardGameState extends State<FlipCardGame> {
                           child: _time > 0
                               ? PointBarTime(score: _time)
                               : TimeFlip(
-                                  'Station 05',
-                                  'assets/images/ameriqueNord/Background_NorthAmerica.png',
-                                  _isFinished!,
-                                  '/AmeriqueNordMiniJeu',
-                              )),
+                            'Station 05',
+                            'assets/images/ameriqueNord/Background_NorthAmerica.png',
+                            _isFinished!,
+                            '/AmeriqueNordMiniJeu',
+                          )),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(4.0),
@@ -157,19 +159,19 @@ class _FlipCardGameState extends State<FlipCardGame> {
                         ),
                         itemBuilder: (context, index) => _start
                             ? FlipCard(
-                                key: _cardStateKeys![index],
-                                onFlip: () {
-                                  if (!_flip) {
-                                    _flip = true;
-                                    _previousIndex = index;
-                                  } else {
-                                    _flip = false;
-                                    if (_previousIndex != index) {
-                                      if (_data![_previousIndex] !=
-                                          _data![index]) {
-                                        _wait = true;
-                                        Future.delayed(
-                                            const Duration(milliseconds: 1500),
+                            key: _cardStateKeys![index],
+                            onFlip: () {
+                              if (!_flip) {
+                                _flip = true;
+                                _previousIndex = index;
+                              } else {
+                                _flip = false;
+                                if (_previousIndex != index) {
+                                  if (_data![_previousIndex] !=
+                                      _data![index]) {
+                                    _wait = true;
+                                    Future.delayed(
+                                        const Duration(milliseconds: 1500),
                                             () {
                                           _cardStateKeys![_previousIndex]
                                               .currentState!
@@ -181,62 +183,60 @@ class _FlipCardGameState extends State<FlipCardGame> {
 
                                           Future.delayed(
                                               const Duration(milliseconds: 160),
-                                              () {
-                                            setState(() {
-                                              _wait = false;
-                                              _score -= 2;
-                                            });
-                                          });
+                                                  () {
+                                                setState(() {
+                                                  _wait = false;
+                                                  _score -= 2;
+                                                });
+                                              });
                                         });
-                                      } else {
-                                        _cardFlips![_previousIndex] = false;
-                                        _cardFlips![index] = false;
-                                        print(_cardFlips);
+                                  } else {
+                                    _cardFlips![_previousIndex] = false;
+                                    _cardFlips![index] = false;
 
-                                        setState(() {
-                                          _left = _left! - 1;
-                                          _score += 5;
-                                        });
-                                        if (_cardFlips!
-                                            .every((t) => t == false)) {
-                                          print("Won");
-                                          Future.delayed(
-                                              const Duration(milliseconds: 160),
+                                    setState(() {
+                                      _left = _left! - 1;
+                                      _score += 5;
+                                    });
+                                    if (_cardFlips!
+                                        .every((t) => t == false)) {
+                                      Future.delayed(
+                                          const Duration(milliseconds: 160),
                                               () {
                                             setState(() {
                                               _isFinished = true;
                                               _start = false;
                                             });
                                           });
-                                        }
-                                      }
                                     }
                                   }
-                                  setState(() {});
-                                },
-                                flipOnTouch: _wait ? false : _cardFlips![index],
-                                direction: FlipDirection.HORIZONTAL,
-                                front: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(5),
-                                      boxShadow: const [
-                                        BoxShadow(
-                                          color: Colors.black45,
-                                          blurRadius: 3,
-                                          spreadRadius: 0.8,
-                                          offset: Offset(2.0, 1),
-                                        )
-                                      ]),
-                                  margin: const EdgeInsets.all(4.0),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.asset(
-                                      "assets/images/ameriqueNord/quest.png",
-                                    ),
-                                  ),
+                                }
+                              }
+                              setState(() {});
+                            },
+                            flipOnTouch: _wait ? false : _cardFlips![index],
+                            direction: FlipDirection.HORIZONTAL,
+                            front: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      color: Colors.black45,
+                                      blurRadius: 3,
+                                      spreadRadius: 0.8,
+                                      offset: Offset(2.0, 1),
+                                    )
+                                  ]),
+                              margin: const EdgeInsets.all(4.0),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Image.asset(
+                                  "assets/images/ameriqueNord/quest.png",
                                 ),
-                                back: getItem(index))
+                              ),
+                            ),
+                            back: getItem(index))
                             : getItem(index),
                         itemCount: _data!.length,
                       ),
@@ -257,7 +257,7 @@ class _FlipCardGameState extends State<FlipCardGame> {
                         Container(
                           width: MediaQuery.of(context).size.width * (39 / 800),
                           height:
-                              MediaQuery.of(context).size.width * (39 / 800),
+                          MediaQuery.of(context).size.width * (39 / 800),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: const Color(0xFFE84560),
@@ -269,17 +269,21 @@ class _FlipCardGameState extends State<FlipCardGame> {
                         ),
                         IconButton(
                           onPressed: () {
-                            setState(() {
-                              if (icone == Icons.music_note) {
-                                icone = Icons.music_off;
-                              } else {
-                                icone = Icons.music_note;
-                              }
-                            });
+                            if(kSound){
+                              setState(() {
+                                kSound = false;
+                                backgroundPlayerAmeriqueNord.stopMusic();
+                              });
+                            }else{
+                              setState(() {
+                                kSound = true;
+                                backgroundPlayerAmeriqueNord.playMusic();
+                              });
+                            }
                           },
-                          icon: Icon(icone),
+                          icon: Icon(iconeTypeFunction()),
                           iconSize:
-                              MediaQuery.of(context).size.width * (25 / 800),
+                          MediaQuery.of(context).size.width * (25 / 800),
                           color: const Color.fromARGB(255, 255, 255, 255),
                         ),
                       ],
@@ -294,7 +298,7 @@ class _FlipCardGameState extends State<FlipCardGame> {
                           //margin: EdgeInsets.only(bottom: 12.0),
                           width: MediaQuery.of(context).size.width * (40 / 800),
                           height:
-                              MediaQuery.of(context).size.width * (40 / 800),
+                          MediaQuery.of(context).size.width * (40 / 800),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: const Color(0xFFE84560),
@@ -306,11 +310,13 @@ class _FlipCardGameState extends State<FlipCardGame> {
                         ),
                         IconButton(
                           onPressed: () {
+                            backgroundPlayerAmeriqueNord.stopMusic();
+                            backgroundPlayerMap.playMusic();
                             Navigator.pop(context);
                           },
                           icon: const Icon(Icons.close_rounded),
                           iconSize:
-                              MediaQuery.of(context).size.width * (30 / 800),
+                          MediaQuery.of(context).size.width * (30 / 800),
                           color: const Color.fromARGB(255, 255, 255, 255),
                         ),
                       ],
@@ -342,10 +348,10 @@ class _FlipCardGameState extends State<FlipCardGame> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => helpPage(
-                                      numStation: 0,
-                                      background:
-                                          'assets/images/oceanie/Background_Ocean_1.png',
-                                    )));
+                                  numStation: 0,
+                                  background:
+                                  'assets/images/oceanie/Background_Ocean_1.png',
+                                )));
                       },
                       icon: const Icon(Icons.question_mark),
                       iconSize: MediaQuery.of(context).size.width * 0.035,

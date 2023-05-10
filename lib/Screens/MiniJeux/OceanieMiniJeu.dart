@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../../Screens/help.dart';
 import '../../Widgets/Oceanie/Timer.dart';
 import '../../Widgets/Oceanie/GarbagItem.dart';
-import 'package:projet_2cp/backend/progress_controllers.dart';
-import 'package:projet_2cp/progress/progress.dart';
+import 'package:projet_2cp/constants.dart';
+import 'package:projet_2cp/settings.dart';
 
 class Oceanie_miniJeu extends StatefulWidget {
   const Oceanie_miniJeu({super.key});
@@ -13,27 +13,8 @@ class Oceanie_miniJeu extends StatefulWidget {
 }
 
 class _Oceanie_miniJeuState extends State<Oceanie_miniJeu> {
-  final StationProgress stationProgress = userProgress.stations[0];
-  final GameProgress gameProgress = userProgress.stations[0].games[1];
-
-  IconData _icone = Icons.music_note;
   final List<bool> _ignore = [false, false, false, false, false, false,];
-  List<String> listeGarbages = [
-    'assets/images/oceanie/boutle.png',
-    'assets/images/oceanie/materialTrash1.png',
-    'assets/images/oceanie/materialTrash2.png',
-    'assets/images/oceanie/banana.png',
-    'assets/images/oceanie/plasticSac.png',
-    'assets/images/oceanie/sacPoubelle.png',
-  ];
-  List<String> animal = [
-    'assets/images/oceanie/cancer.png',
-    'assets/images/oceanie/poisson_violet.png',
-    'assets/images/oceanie/hippocamps.png',
-    'assets/images/oceanie/poisson_jaune.png',
-    'assets/images/oceanie/poisson_rose.png',
-    'assets/images/oceanie/tortue.png',
-  ];
+
   int score = 0;
 
   void mettreAJourEtat0() {
@@ -77,13 +58,19 @@ class _Oceanie_miniJeuState extends State<Oceanie_miniJeu> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    backgroundPlayerOceanie.playMusic();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
           Container(
             decoration: const BoxDecoration(
-              //color: Colors.blue,
               image: DecorationImage(
                 image: AssetImage(
                     'assets/images/oceanie/background_oceania_minijeu.png'),
@@ -161,15 +148,19 @@ class _Oceanie_miniJeuState extends State<Oceanie_miniJeu> {
                     ),
                     IconButton(
                       onPressed: () {
-                        setState(() {
-                          if (_icone == Icons.music_note) {
-                            _icone = Icons.music_off;
-                          } else {
-                            _icone = Icons.music_note;
-                          }
-                        });
+                        if(kSound){
+                          setState(() {
+                            kSound = false;
+                            backgroundPlayerOceanie.stopMusic();
+                          });
+                        }else{
+                          setState(() {
+                            kSound = true;
+                            backgroundPlayerOceanie.playMusic();
+                          });
+                        }
                       },
-                      icon: Icon(_icone),
+                      icon: Icon(iconeTypeFunction()),
                       iconSize: MediaQuery.of(context).size.width * (25 / 800),
                       color: const Color.fromARGB(255, 255, 255, 255),
                     ),
@@ -195,6 +186,8 @@ class _Oceanie_miniJeuState extends State<Oceanie_miniJeu> {
                     ),
                     IconButton(
                       onPressed: () {
+                        backgroundPlayerOceanie.stopMusic();
+                        backgroundPlayerMap.playMusic();
                         Navigator.pop(context);
                       },
                       icon: const Icon(Icons.close_rounded),
@@ -231,10 +224,10 @@ class _Oceanie_miniJeuState extends State<Oceanie_miniJeu> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => helpPage(
-                                  numStation: 0,
-                                  background:
-                                      'assets/images/oceanie/Background_Ocean_1.png',
-                                )));
+                              numStation: 0,
+                              background:
+                              'assets/images/oceanie/Background_Ocean_1.png',
+                            )));
                   },
                   icon: const Icon(Icons.question_mark),
                   iconSize: MediaQuery.of(context).size.width * 0.035,

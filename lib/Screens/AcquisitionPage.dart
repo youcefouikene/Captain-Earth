@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import '../Widgets/BoxInfo.dart';
-import '../Widgets/RectangleButton.dart';
-import '../Widgets/CustomContainer.dart';
 import 'package:projet_2cp/progress/progress.dart';
 import 'package:projet_2cp/constants.dart';
+import 'package:projet_2cp/settings.dart';
 
 class AcquisitionPage extends StatefulWidget {
   const AcquisitionPage({
@@ -15,7 +13,6 @@ class AcquisitionPage extends StatefulWidget {
 }
 
 class _AcquisitionPageState extends State<AcquisitionPage> {
-  IconData _icone = Icons.music_note; //attribut de la classe
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +20,7 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
     double het = MediaQuery.of(context).size.height;
     const double widthBloc = 243.0;
     int acquisitionTotale = userProgress.leaves;
-
+    print(userProgress.stations[1].leaves);
     return Scaffold(
         backgroundColor: const Color.fromRGBO(158, 231, 251, 1),
         body: Stack(
@@ -67,7 +64,11 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                         child: Stack(
                           children: [
                             Container(
-                              width: wid * (userProgress.stations[0].leaves * widthBloc / maxLeavesOceanieStation) / 800,
+                              width: wid *
+                                  (userProgress.stations[0].leaves *
+                                      widthBloc /
+                                      maxLeavesOceanieStation) /
+                                  800,
                               height: het * 41 / 360,
                               decoration: BoxDecoration(
                                 color: const Color.fromRGBO(104, 216, 104, 1),
@@ -106,7 +107,11 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                         child: Stack(
                           children: [
                             Container(
-                              width: (wid) * (userProgress.stations[1].leaves * widthBloc / maxLeavesAsieStation) / 800,
+                              width: (wid) *
+                                  (userProgress.stations[1].leaves *
+                                      widthBloc /
+                                      maxLeavesAsieStation) /
+                                  800,
                               height: het * 41 / 360,
                               decoration: BoxDecoration(
                                 color: const Color.fromRGBO(104, 216, 104, 1),
@@ -145,7 +150,11 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                         child: Stack(
                           children: [
                             Container(
-                              width: wid * (userProgress.stations[2].leaves * widthBloc / maxLeavesAfriqueStation) / 800,
+                              width: wid *
+                                  (userProgress.stations[2].leaves *
+                                      widthBloc /
+                                      maxLeavesAfriqueStation) /
+                                  800,
                               height: het * 41 / 360,
                               decoration: BoxDecoration(
                                 color: const Color.fromRGBO(104, 216, 104, 1),
@@ -188,7 +197,11 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                         child: Stack(
                           children: [
                             Container(
-                              width: wid * (userProgress.stations[3].leaves * widthBloc / maxLeavesEuropeStation) / 800, //il change suivant un pourcentage de points
+                              width: wid *
+                                  (userProgress.stations[3].leaves *
+                                      widthBloc /
+                                      maxLeavesEuropeStation) /
+                                  800,
                               height: het * 41 / 360,
                               decoration: BoxDecoration(
                                 color: const Color.fromRGBO(104, 216, 104, 1),
@@ -227,7 +240,11 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                         child: Stack(
                           children: [
                             Container(
-                              width: wid * (userProgress.stations[4].leaves * widthBloc / maxLeavesAmeriqueNordStation) / 800, //il change suivant un pourcentage de points
+                              width: wid *
+                                  (userProgress.stations[4].leaves *
+                                      widthBloc /
+                                      maxLeavesAmeriqueNordStation) /
+                                  800,
                               height: het * 41 / 360,
                               decoration: BoxDecoration(
                                 color: const Color.fromRGBO(104, 216, 104, 1),
@@ -266,7 +283,11 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                         child: Stack(
                           children: [
                             Container(
-                              width: (wid) * (userProgress.stations[5].leaves * widthBloc / maxLeavesAmeriqueSudStation) / 800, //il change suivant un pourcentage de points
+                              width: (wid) *
+                                  (userProgress.stations[5].leaves *
+                                      widthBloc /
+                                      maxLeavesAmeriqueSudStation) /
+                                  800, //il change suivant un pourcentage de points
                               height: het * 41 / 360,
                               decoration: BoxDecoration(
                                 color: const Color.fromRGBO(104, 216, 104, 1),
@@ -310,7 +331,9 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                         ),
                       ),
                       Container(
-                        width: wid * (acquisitionTotale * 584 / maxLeavesTotal) / 800, //il change suivant un pourcentage de points
+                        width: wid *
+                            (acquisitionTotale * 584 / maxLeavesTotal) /
+                            800,
                         height: het * 7 / 360,
                         decoration: BoxDecoration(
                           color: const Color.fromRGBO(232, 69, 96, 1),
@@ -358,7 +381,6 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                   ),
                   IconButton(
                     onPressed: () {},
-                    //icon:const Icon(MyFlutterApp.vector),
                     icon: const Icon(Icons.emoji_events),
                     iconSize: MediaQuery.of(context).size.width * 29 / 800,
                     color: const Color.fromARGB(255, 255, 255, 255),
@@ -391,15 +413,19 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                       ),
                       IconButton(
                         onPressed: () {
-                          setState(() {
-                            if (_icone == Icons.music_note) {
-                              _icone = Icons.music_off;
-                            } else {
-                              _icone = Icons.music_note;
-                            }
-                          });
+                          if(kSound){
+                            setState(() {
+                              kSound = false;
+                              backgroundPlayerMap.stopMusic();
+                            });
+                          }else{
+                            setState(() {
+                              kSound = true;
+                              backgroundPlayerMap.playMusic();
+                            });
+                          }
                         },
-                        icon: Icon(_icone),
+                        icon: Icon(iconeTypeFunction()),
                         iconSize:
                             MediaQuery.of(context).size.width * (25 / 800),
                         color: const Color.fromARGB(255, 255, 255, 255),
@@ -413,7 +439,6 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                     alignment: Alignment.center,
                     children: [
                       Container(
-                        //margin: EdgeInsets.only(bottom: 12.0),
                         width: MediaQuery.of(context).size.width * (40 / 800),
                         height: MediaQuery.of(context).size.width * (40 / 800),
                         decoration: BoxDecoration(

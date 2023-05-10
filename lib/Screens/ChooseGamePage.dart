@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:projet_2cp/backend/progress_controllers.dart';
 import 'package:projet_2cp/progress/progress.dart';
-import '../Screens/MiniJeux/OceanieMiniJeu.dart';
-import '../Widgets/CustomContainer.dart';
 import '../Widgets/PointBar.dart';
 import '../Widgets/ChooseBoxgame2.dart';
 import 'package:projet_2cp/try.dart';
+import 'package:projet_2cp/constants.dart';
+import 'package:projet_2cp/settings.dart';
 
 class ChooseGamePage extends StatefulWidget {
   final String pathBackGround;
@@ -48,8 +47,6 @@ class ChooseGamePage extends StatefulWidget {
 }
 
 class _ChooseGamePageState extends State<ChooseGamePage> {
-  IconData _icone = Icons.music_note;
-
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
@@ -97,15 +94,19 @@ class _ChooseGamePageState extends State<ChooseGamePage> {
                         ),
                         IconButton(
                           onPressed: () {
-                            setState(() {
-                              if (_icone == Icons.music_note) {
-                                _icone = Icons.music_off;
-                              } else {
-                                _icone = Icons.music_note;
-                              }
-                            });
+                            if(kSound){
+                              setState(() {
+                                kSound = false;
+                                backgroundPlayerMap.stopMusic();
+                              });
+                            }else{
+                              setState(() {
+                                backgroundPlayerMap.playMusic();
+                                kSound = true;
+                              });
+                            }
                           },
-                          icon: Icon(_icone),
+                          icon: Icon(iconeTypeFunction()),
                           iconSize:
                               MediaQuery.of(context).size.width * (25 / 800),
                           color: const Color.fromARGB(255, 255, 255, 255),
@@ -134,6 +135,7 @@ class _ChooseGamePageState extends State<ChooseGamePage> {
                         
                         IconButton(
                           onPressed: () {
+                            backgroundPlayerMap.playMusic();
                             Navigator.pop(context);
                             Navigator.pop(context);
                             Navigator.push(
