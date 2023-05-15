@@ -10,7 +10,6 @@ import 'package:projet_2cp/backend/progress_controllers.dart';
 import 'package:projet_2cp/progress/progress.dart';
 
 class ThrowGarbage extends StatefulWidget {
-
   const ThrowGarbage({super.key});
 
   @override
@@ -35,7 +34,7 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
 
   late int currentIndex;
 
-  IconData iconeTypeFunction(){
+  IconData iconeTypeFunction() {
     return (kSound) ? Icons.music_note : Icons.music_off;
   }
 
@@ -69,8 +68,14 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
     if (currentIndex == (myDechetList.length)) {
       gameOver = true;
       int stars;
-      (echec <= 3) ? stars = 3 : (echec <= 6) ? stars = 2 : (echec <= 12) ? stars = 1 : stars = 0;
-      dataUpdator(context, stationProgress, gameProgress,score,stars);
+      (echec <= 3)
+          ? stars = 3
+          : (echec <= 6)
+              ? stars = 2
+              : (echec <= 12)
+                  ? stars = 1
+                  : stars = 0;
+      dataUpdator(context, stationProgress, gameProgress, score, stars);
     }
 
     return Scaffold(
@@ -97,8 +102,14 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     WiningBox(
-                      Score: (echec>30)?0:30-echec,
-                      Stars: (echec <= 3) ? 3: (echec <= 6)? 2: (echec <= 12)? 1 : 0,
+                      Score: (echec > 30) ? 0 : 30 - echec,
+                      Stars: (echec <= 3)
+                          ? 3
+                          : (echec <= 6)
+                              ? 2
+                              : (echec <= 12)
+                                  ? 1
+                                  : 0,
                       station: 'station 04',
                       refreshPath: '/EuropeMiniJeu',
                     ),
@@ -148,12 +159,12 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                             ),
                             IconButton(
                               onPressed: () {
-                                if(kSound){
+                                if (kSound) {
                                   setState(() {
                                     kSound = false;
                                     backgroundPlayerEurope.stopMusic();
                                   });
-                                }else{
+                                } else {
                                   setState(() {
                                     kSound = true;
                                     backgroundPlayerEurope.playMusic();
@@ -212,7 +223,7 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                     children: [
                       Column(
                         children: [
-                          PointBar(score: (echec>30)?0:30-echec),
+                          PointBar(score: (echec > 30) ? 0 : 30 - echec),
                           Container(
                             margin: const EdgeInsets.all(6),
                             child: Draggable<DechetModel>(
@@ -289,46 +300,41 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Positioned(
-                          right: MediaQuery.of(context).size.width * (32 / 800),
-                          top: MediaQuery.of(context).size.height * (30 / 360),
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                top: MediaQuery.of(context).size.height *
-                                    (16 / 360)),
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Container(
-                                  //margin: EdgeInsets.only(bottom: 12.0),
-                                  width: MediaQuery.of(context).size.width *
-                                      (40 / 800),
-                                  height: MediaQuery.of(context).size.width *
-                                      (40 / 800),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: const Color(0xFFE84560),
-                                    border: Border.all(
-                                      color: const Color(0xff752683),
-                                      width: 2,
-                                    ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              top: MediaQuery.of(context).size.height *
+                                  (16 / 360)),
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Container(
+                                //margin: EdgeInsets.only(bottom: 12.0),
+                                width: MediaQuery.of(context).size.width *
+                                    (40 / 800),
+                                height: MediaQuery.of(context).size.width *
+                                    (40 / 800),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: const Color(0xFFE84560),
+                                  border: Border.all(
+                                    color: const Color(0xff752683),
+                                    width: 2,
                                   ),
                                 ),
-                                IconButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                helpPageEu()));
-                                  },
-                                  icon: const Icon(Icons.question_mark),
-                                  iconSize:
-                                      MediaQuery.of(context).size.width * 0.03,
-                                  color: const Color.fromARGB(255, 255, 255, 255),
-                                ),
-                              ],
-                            ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => helpPageEu()));
+                                },
+                                icon: const Icon(Icons.question_mark),
+                                iconSize:
+                                    MediaQuery.of(context).size.width * 0.03,
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                              ),
+                            ],
                           ),
                         ),
                         const SizedBox(

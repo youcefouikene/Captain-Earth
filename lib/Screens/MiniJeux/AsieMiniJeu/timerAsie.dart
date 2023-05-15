@@ -1,51 +1,54 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../../EndGamePage.dart';
+import 'package:projet_2cp/progress/progress.dart';
+import '../../../Screens/EndGamePage.dart';
 import 'package:projet_2cp/backend/progress_controllers.dart';
 import 'package:projet_2cp/constants.dart';
-import 'package:projet_2cp/progress/progress.dart';
 
-class TimeFlipAsie extends StatefulWidget {
+class TimeAsie extends StatefulWidget {
+  int stationIndex;
   String station;
   String background;
   bool ignore;
   String refreshPath;
-  TimeFlipAsie(this.station, this.background, this.ignore, this.refreshPath,
-      {super.key});
-
+  TimeAsie(
+      {required this.stationIndex,
+      required this.ignore,
+      required this.background,
+      required this.station,
+      required this.refreshPath});
   @override
-  _TimeFlipAsie createState() => _TimeFlipAsie();
+  _TimeAsie createState() => _TimeAsie();
 }
 
-class _TimeFlipAsie extends State<TimeFlipAsie> {
-  final StationProgress stationProgress = userProgress.stations[1];
-  final GameProgress gameProgress = userProgress.stations[1].games[1];
-
-  int _secondsElapsed = 90;
-  Color backgroundColor = Colors.white;
-
+class _TimeAsie extends State<TimeAsie> {
+  int _secondsElapsed = 120;
   void _startTimer() {
     Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       setState(() {
         _secondsElapsed--;
       });
       if ((_secondsElapsed == 0) || (widget.ignore == true)) {
-        backgroundPlayerAsie.stopMusic();
+        if (widget.stationIndex == 0) {
+          backgroundPlayerOceanie.stopMusic();
+        } else if (widget.stationIndex == 5) {
+          backgroundPlayerAmeriqueSud.stopMusic();
+        }
         timer.cancel();
         dataUpdator(
             context,
-            stationProgress,
-            gameProgress,
-            _secondsElapsed ~/ 3,
-            (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 30 + 1);
+            userProgress.stations[widget.stationIndex],
+            userProgress.stations[widget.stationIndex].games[1],
+            _secondsElapsed ~/ 4,
+            (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 40 + 1);
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => EndGamePage(
-                stars: (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 30 + 1,
-                score: _secondsElapsed,
+                score: _secondsElapsed ~/ 4,
+                stars: (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 40 + 1,
+                stationIndex: widget.stationIndex,
                 background: widget.background,
-                stationIndex: stationProgress.stationIndex,
                 station: widget.station,
                 refreshPath: widget.refreshPath,
               ),
@@ -54,9 +57,14 @@ class _TimeFlipAsie extends State<TimeFlipAsie> {
     });
   }
 
+  @override
   void initState() {
     super.initState();
     _startTimer();
+  }
+
+  int getSecond() {
+    return _secondsElapsed;
   }
 
   @override
@@ -76,7 +84,6 @@ class _TimeFlipAsie extends State<TimeFlipAsie> {
                 width: 3,
               ),
             ),
-            //padding: EdgeInsets.all(10),
             child: Padding(
               padding: EdgeInsets.only(
                   left: MediaQuery.of(context).size.width * 0.05),

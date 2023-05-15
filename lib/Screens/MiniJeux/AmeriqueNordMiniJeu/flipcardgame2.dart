@@ -10,7 +10,6 @@ import 'package:projet_2cp/backend/progress_controllers.dart';
 import 'package:projet_2cp/constants.dart';
 import 'package:projet_2cp/settings.dart';
 
-
 class FlipCardGame extends StatefulWidget {
   final Level _level;
   const FlipCardGame(this._level, {super.key});
@@ -127,22 +126,19 @@ class _FlipCardGameState extends State<FlipCardGame> {
               SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
-                    Positioned(
-                      top: het * 0.06,
-                      child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: wid * (10 / 800),
-                            top: het * 0.06,
-                          ),
-                          child: _time > 0
-                              ? PointBarTime(score: _time)
-                              : TimeFlip(
-                            'Station 05',
-                            'assets/images/ameriqueNord/Background_NorthAmerica.png',
-                            _isFinished!,
-                            '/AmeriqueNordMiniJeu',
-                          )),
-                    ),
+                    Padding(
+                        padding: EdgeInsets.only(
+                          bottom: wid * (10 / 800),
+                          top: het * 0.06,
+                        ),
+                        child: _time > 0
+                            ? PointBarTime(score: _time)
+                            : TimeFlip(
+                                'Station 05',
+                                'assets/images/ameriqueNord/Background_NorthAmerica.png',
+                                _isFinished!,
+                                '/AmeriqueNordMiniJeu',
+                              )),
                     Padding(
                       padding: const EdgeInsets.all(4.0),
                       child: GridView.builder(
@@ -159,19 +155,19 @@ class _FlipCardGameState extends State<FlipCardGame> {
                         ),
                         itemBuilder: (context, index) => _start
                             ? FlipCard(
-                            key: _cardStateKeys![index],
-                            onFlip: () {
-                              if (!_flip) {
-                                _flip = true;
-                                _previousIndex = index;
-                              } else {
-                                _flip = false;
-                                if (_previousIndex != index) {
-                                  if (_data![_previousIndex] !=
-                                      _data![index]) {
-                                    _wait = true;
-                                    Future.delayed(
-                                        const Duration(milliseconds: 1500),
+                                key: _cardStateKeys![index],
+                                onFlip: () {
+                                  if (!_flip) {
+                                    _flip = true;
+                                    _previousIndex = index;
+                                  } else {
+                                    _flip = false;
+                                    if (_previousIndex != index) {
+                                      if (_data![_previousIndex] !=
+                                          _data![index]) {
+                                        _wait = true;
+                                        Future.delayed(
+                                            const Duration(milliseconds: 1500),
                                             () {
                                           _cardStateKeys![_previousIndex]
                                               .currentState!
@@ -183,60 +179,60 @@ class _FlipCardGameState extends State<FlipCardGame> {
 
                                           Future.delayed(
                                               const Duration(milliseconds: 160),
-                                                  () {
-                                                setState(() {
-                                                  _wait = false;
-                                                  _score -= 2;
-                                                });
-                                              });
+                                              () {
+                                            setState(() {
+                                              _wait = false;
+                                              _score -= 2;
+                                            });
+                                          });
                                         });
-                                  } else {
-                                    _cardFlips![_previousIndex] = false;
-                                    _cardFlips![index] = false;
+                                      } else {
+                                        _cardFlips![_previousIndex] = false;
+                                        _cardFlips![index] = false;
 
-                                    setState(() {
-                                      _left = _left! - 1;
-                                      _score += 5;
-                                    });
-                                    if (_cardFlips!
-                                        .every((t) => t == false)) {
-                                      Future.delayed(
-                                          const Duration(milliseconds: 160),
+                                        setState(() {
+                                          _left = _left! - 1;
+                                          _score += 5;
+                                        });
+                                        if (_cardFlips!
+                                            .every((t) => t == false)) {
+                                          Future.delayed(
+                                              const Duration(milliseconds: 160),
                                               () {
                                             setState(() {
                                               _isFinished = true;
                                               _start = false;
                                             });
                                           });
+                                        }
+                                      }
                                     }
                                   }
-                                }
-                              }
-                              setState(() {});
-                            },
-                            flipOnTouch: _wait ? false : _cardFlips![index],
-                            direction: FlipDirection.HORIZONTAL,
-                            front: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(5),
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      color: Colors.black45,
-                                      blurRadius: 3,
-                                      spreadRadius: 0.8,
-                                      offset: Offset(2.0, 1),
-                                    )
-                                  ]),
-                              margin: const EdgeInsets.all(4.0),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Image.asset(
-                                  "assets/images/ameriqueNord/quest.png",
+                                  setState(() {});
+                                },
+                                flipOnTouch: _wait ? false : _cardFlips![index],
+                                direction: FlipDirection.HORIZONTAL,
+                                front: Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(5),
+                                      boxShadow: const [
+                                        BoxShadow(
+                                          color: Colors.black45,
+                                          blurRadius: 3,
+                                          spreadRadius: 0.8,
+                                          offset: Offset(2.0, 1),
+                                        )
+                                      ]),
+                                  margin: const EdgeInsets.all(4.0),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Image.asset(
+                                      "assets/images/ameriqueNord/quest.png",
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                            back: getItem(index))
+                                back: getItem(index))
                             : getItem(index),
                         itemCount: _data!.length,
                       ),
@@ -257,7 +253,7 @@ class _FlipCardGameState extends State<FlipCardGame> {
                         Container(
                           width: MediaQuery.of(context).size.width * (39 / 800),
                           height:
-                          MediaQuery.of(context).size.width * (39 / 800),
+                              MediaQuery.of(context).size.width * (39 / 800),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: const Color(0xFFE84560),
@@ -269,12 +265,12 @@ class _FlipCardGameState extends State<FlipCardGame> {
                         ),
                         IconButton(
                           onPressed: () {
-                            if(kSound){
+                            if (kSound) {
                               setState(() {
                                 kSound = false;
                                 backgroundPlayerAmeriqueNord.stopMusic();
                               });
-                            }else{
+                            } else {
                               setState(() {
                                 kSound = true;
                                 backgroundPlayerAmeriqueNord.playMusic();
@@ -283,7 +279,7 @@ class _FlipCardGameState extends State<FlipCardGame> {
                           },
                           icon: Icon(iconeTypeFunction()),
                           iconSize:
-                          MediaQuery.of(context).size.width * (25 / 800),
+                              MediaQuery.of(context).size.width * (25 / 800),
                           color: const Color.fromARGB(255, 255, 255, 255),
                         ),
                       ],
@@ -298,7 +294,7 @@ class _FlipCardGameState extends State<FlipCardGame> {
                           //margin: EdgeInsets.only(bottom: 12.0),
                           width: MediaQuery.of(context).size.width * (40 / 800),
                           height:
-                          MediaQuery.of(context).size.width * (40 / 800),
+                              MediaQuery.of(context).size.width * (40 / 800),
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: const Color(0xFFE84560),
@@ -316,7 +312,7 @@ class _FlipCardGameState extends State<FlipCardGame> {
                           },
                           icon: const Icon(Icons.close_rounded),
                           iconSize:
-                          MediaQuery.of(context).size.width * (30 / 800),
+                              MediaQuery.of(context).size.width * (30 / 800),
                           color: const Color.fromARGB(255, 255, 255, 255),
                         ),
                       ],
@@ -348,10 +344,10 @@ class _FlipCardGameState extends State<FlipCardGame> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => helpPage(
-                                  numStation: 0,
-                                  background:
-                                  'assets/images/oceanie/Background_Ocean_1.png',
-                                )));
+                                      numStation: 4,
+                                      background:
+                                          'assets/images/ameriqueNord/Background_NorthAmerica.png',
+                                    )));
                       },
                       icon: const Icon(Icons.question_mark),
                       iconSize: MediaQuery.of(context).size.width * 0.035,

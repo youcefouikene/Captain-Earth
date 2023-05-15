@@ -96,12 +96,12 @@ class _ProfilState extends State<Profil> {
                       ),
                       IconButton(
                         onPressed: () {
-                        backgroundPlayerMap.toggleMusic();
-                          if(kSound){
+                          backgroundPlayerMap.toggleMusic();
+                          if (kSound) {
                             setState(() {
                               kSound = false;
-                          });
-                          }else{
+                            });
+                          } else {
                             setState(() {
                               kSound = true;
                             });
@@ -192,112 +192,105 @@ class _ProfilState extends State<Profil> {
                 top: het * (72 / 360),
                 child: Column(
                   children: [
-                    Positioned(
-                      child: Container(
-                        width: wid * (89 / 800),
-                        height: wid * (89 / 800),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            width: (2 / 800) * wid,
-                            color: const Color(0xff135617),
-                          ),
+                    Container(
+                      width: wid * (89 / 800),
+                      height: wid * (89 / 800),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          width: (2 / 800) * wid,
+                          color: const Color(0xff135617),
                         ),
-                        child: CircleAvatar(
-                          backgroundImage: AssetImage(widget.getPathPhoto()),
-                        ),
+                      ),
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage(widget.getPathPhoto()),
                       ),
                     ),
                     SizedBox(
                       height: het * (20 / 360),
                     ),
-                    Positioned(
-                      child: BoxInfo(
-                          bordercolor: const Color(0xffF4F4F4),
-                          contentcolor: const Color(0xffF4F4F4),
-                          element: Row(
-                            children: [
-                              SizedBox(
-                                width: wid * (12 / 800),
-                              ),
-                              Icon(
-                                Icons.person_outline,
-                                color: const Color(0xff135617),
-                                size: wid * (25 / 800),
-                              ),
-                              SizedBox(
-                                width: wid * (13 / 800),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Text(
-                                    "Nom: ",
-                                    style: TextStyle(
-                                      fontFamily: 'Atma',
-                                      fontSize: wid * (18 / 800),
-                                      fontWeight: FontWeight.w700,
-                                      color: const Color(0xff135617),
-                                    ),
+                    BoxInfo(
+                        bordercolor: const Color(0xffF4F4F4),
+                        contentcolor: const Color(0xffF4F4F4),
+                        element: Row(
+                          children: [
+                            SizedBox(
+                              width: wid * (12 / 800),
+                            ),
+                            Icon(
+                              Icons.person_outline,
+                              color: const Color(0xff135617),
+                              size: wid * (25 / 800),
+                            ),
+                            SizedBox(
+                              width: wid * (13 / 800),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  "Nom: ",
+                                  style: TextStyle(
+                                    fontFamily: 'Atma',
+                                    fontSize: wid * (18 / 800),
+                                    fontWeight: FontWeight.w700,
+                                    color: const Color(0xff135617),
                                   ),
-                                  Text(
-                                    widget.getUserName(),
-                                    style: TextStyle(
-                                      fontFamily: 'Atma',
-                                      fontSize: wid * (18 / 800),
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.black,
-                                    ),
+                                ),
+                                Text(
+                                  widget.getUserName(),
+                                  style: TextStyle(
+                                    fontFamily: 'Atma',
+                                    fontSize: wid * (18 / 800),
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
                                   ),
-                                ],
-                              )
-                            ],
-                          )),
-                    ),
+                                ),
+                              ],
+                            )
+                          ],
+                        )),
                     SizedBox(
                       height: het * (15 / 360),
                     ),
-                    Positioned(
-                      child: BoxInfo(
-                          bordercolor: const Color(0xffF4F4F4),
-                          contentcolor: const Color(0xffF4F4F4),
-                          element: Row(
-                            children: [
-                              SizedBox(
-                                width: wid * (13 / 800),
+                    BoxInfo(
+                        bordercolor: const Color(0xffF4F4F4),
+                        contentcolor: const Color(0xffF4F4F4),
+                        element: Row(
+                          children: [
+                            SizedBox(
+                              width: wid * (13 / 800),
+                            ),
+                            const Image(
+                              image: AssetImage('assets/images/leaf.png'),
+                            ),
+                            SizedBox(
+                              width: wid * (13 / 800),
+                            ),
+                            Text(
+                              "Score: ",
+                              style: TextStyle(
+                                fontFamily: 'Atma',
+                                fontSize: wid * (18 / 800),
+                                fontWeight: FontWeight.w700,
+                                color: const Color(0xff135617),
                               ),
-                              const Image(
-                                image: AssetImage('assets/images/leaf.png'),
+                            ),
+                            SizedBox(
+                              width: wid * (34 / 800),
+                            ),
+                            Text(
+                              userProgress.leaves
+                                  .toString(), //apres une variable
+                              style: TextStyle(
+                                fontFamily: 'Atma',
+                                fontSize: wid * (18 / 800),
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black,
                               ),
-                              SizedBox(
-                                width: wid * (13 / 800),
-                              ),
-                              Text(
-                                "Score: ",
-                                style: TextStyle(
-                                  fontFamily: 'Atma',
-                                  fontSize: wid * (18 / 800),
-                                  fontWeight: FontWeight.w700,
-                                  color: const Color(0xff135617),
-                                ),
-                              ),
-                              SizedBox(
-                                width: wid * (34 / 800),
-                              ),
-                              Text(
-                                userProgress.leaves
-                                    .toString(), //apres une variable
-                                style: TextStyle(
-                                  fontFamily: 'Atma',
-                                  fontSize: wid * (18 / 800),
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          )),
-                    )
+                            ),
+                          ],
+                        )),
                   ],
                 )),
             Positioned(
@@ -305,36 +298,34 @@ class _ProfilState extends State<Profil> {
                 top: het * (113 / 360),
                 child: Column(
                   children: [
-                    Positioned(
-                      child: BoxInfo(
-                        bordercolor: const Color(0xff134E49),
-                        contentcolor: Colors.white,
-                        element: Center(
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) {
-                                    return AcquisitionPage(
-                                        // ptOcianie: widget.ptOcianie,
-                                        // ptAsie: widget.ptAsie,
-                                        // ptAfrique: widget.ptAfrique,
-                                        // ptEurope: widget.ptEurope,
-                                        // ptAmeriqueNord: widget.ptAmeriqueNord,
-                                        // ptAmeriqueSud: widget.ptAmeriqueSud
-                                        );
-                                  },
-                                ),
-                              );
-                            },
-                            child: Text(
-                              " Acquesition",
-                              style: TextStyle(
-                                fontFamily: 'Atma',
-                                fontSize: wid * (24 / 800),
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
+                    BoxInfo(
+                      bordercolor: const Color(0xff134E49),
+                      contentcolor: Colors.white,
+                      element: Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) {
+                                  return AcquisitionPage(
+                                      // ptOcianie: widget.ptOcianie,
+                                      // ptAsie: widget.ptAsie,
+                                      // ptAfrique: widget.ptAfrique,
+                                      // ptEurope: widget.ptEurope,
+                                      // ptAmeriqueNord: widget.ptAmeriqueNord,
+                                      // ptAmeriqueSud: widget.ptAmeriqueSud
+                                      );
+                                },
                               ),
+                            );
+                          },
+                          child: Text(
+                            " Acquesition",
+                            style: TextStyle(
+                              fontFamily: 'Atma',
+                              fontSize: wid * (24 / 800),
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black,
                             ),
                           ),
                         ),
@@ -343,61 +334,57 @@ class _ProfilState extends State<Profil> {
                     SizedBox(
                       height: het * (26 / 360),
                     ),
-                    Positioned(
-                      child: BoxInfo(
-                          bordercolor: const Color(0xff134E49),
-                          contentcolor: Colors.white,
-                          element: Center(
-                              child: GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) {
-                                    return Defi();
-                                  },
-                                ),
-                              );
-                            },
-                            child: Text(
-                              " Défi",
-                              style: TextStyle(
-                                fontFamily: 'Atma',
-                                fontSize: wid * (24 / 800),
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
+                    BoxInfo(
+                        bordercolor: const Color(0xff134E49),
+                        contentcolor: Colors.white,
+                        element: Center(
+                            child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) {
+                                  return Defi();
+                                },
                               ),
+                            );
+                          },
+                          child: Text(
+                            " Défi",
+                            style: TextStyle(
+                              fontFamily: 'Atma',
+                              fontSize: wid * (24 / 800),
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black,
                             ),
-                          ))),
-                    ),
+                          ),
+                        ))),
                     SizedBox(
                       height: het * (26 / 360),
                     ),
-                    Positioned(
-                      child: BoxInfo(
-                          bordercolor: const Color(0xff134E49),
-                          contentcolor: Colors.white,
-                          element: Center(
-                              child: GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) {
-                                    return const Classement();
-                                  },
-                                ),
-                              );
-                            },
-                            child: Text(
-                              " Classement",
-                              style: TextStyle(
-                                fontFamily: 'Atma',
-                                fontSize: wid * (24 / 800),
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
+                    BoxInfo(
+                        bordercolor: const Color(0xff134E49),
+                        contentcolor: Colors.white,
+                        element: Center(
+                            child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) {
+                                  return const Classement();
+                                },
                               ),
+                            );
+                          },
+                          child: Text(
+                            " Classement",
+                            style: TextStyle(
+                              fontFamily: 'Atma',
+                              fontSize: wid * (24 / 800),
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black,
                             ),
-                          ))),
-                    ),
+                          ),
+                        ))),
                   ],
                 )),
             Positioned(

@@ -1,10 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:projet_2cp/widgets.dart';
 import 'Screens/LoadingPage.dart';
 import 'Screens/MiniJeux/AmeriqueNordMiniJeu/dataAmerique.dart';
-import 'Screens/MiniJeux/AsieMiniJeu/data.dart';
-import 'Screens/MiniJeux/AsieMiniJeu/flipcardgame1.dart';
+import 'Screens/MiniJeux/AsieMiniJeu/SearchWords.dart';
 import 'Screens/MiniJeux/OceanieMiniJeu.dart';
 import 'Screens/MiniJeux/AmeriqueNordMiniJeu/flipcardgame2.dart';
 import 'Screens/quiz/quiz.dart';
@@ -25,6 +25,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 //                    ----------------------
 import 'backend/progress_controllers.dart';
 import 'backend/synchronization.dart';
+
 //                    ----------------------
 //                    ----------------------
 late UserProgress user;
@@ -32,7 +33,7 @@ late bool isConnected;
 //                    ----------------------
 //                    ----------------------
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.landscapeRight, DeviceOrientation.landscapeLeft]);
@@ -47,11 +48,9 @@ void main() async{
   kLogin = prefs.getBool('kLogin') ?? false;
   kSound = prefs.getBool('kSound') ?? true;
 
-
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
 
   //! Online vs Local
   // ignore: unused_local_variable
@@ -93,10 +92,10 @@ void main() async{
         OnlineProgress.updateParent(kUser, date);
       }
      */
-    } else {
-      local = getSQFLite(kUser);
-      user = await local;
-    }
+  } else {
+    local = getSQFLite(kUser);
+    user = await local;
+  }
   runApp(MyApp());
 }
 
@@ -111,17 +110,20 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/WelcomeStation': (BuildContext context) => WelcomePage(),
         '/AfriqueMiniJeu': (BuildContext context) => AfriqueMiniJeu(),
-        '/OceanieMiniJeu': (BuildContext context) =>   Oceanie_miniJeu(),
-        '/AmeriqueSudMiniJeu': (BuildContext context) =>  Samerique_miniJeu(),
+        '/OceanieMiniJeu': (BuildContext context) => Oceanie_miniJeu(),
+        '/AmeriqueSudMiniJeu': (BuildContext context) => Samerique_miniJeu(),
         '/EuropeMiniJeu': (BuildContext context) => ThrowGarbage(),
-        '/AmeriqueNordMiniJeu': (BuildContext context) =>  const FlipCardGame(Level.Medium),
-        '/AsieMiniJeu': (BuildContext context) =>  const FlipCardGame1(Level1.Medium),
+        '/AmeriqueNordMiniJeu': (BuildContext context) =>
+            const FlipCardGame(Level.Medium),
+        '/AsieMiniJeu': (BuildContext context) => SearchWords(),
         '/QuizOceanie': (BuildContext context) => BigQuiz(continentNumber: 0),
         '/QuizAsie': (BuildContext context) => BigQuiz(continentNumber: 1),
         '/QuizAfrique': (BuildContext context) => BigQuiz(continentNumber: 2),
         '/QuizEurope': (BuildContext context) => BigQuiz(continentNumber: 3),
-        '/QuizAmeriqueNord': (BuildContext context) => BigQuiz(continentNumber: 4),
-        '/QuizAmeriqueSud': (BuildContext context) => BigQuiz(continentNumber: 5),
+        '/QuizAmeriqueNord': (BuildContext context) =>
+            BigQuiz(continentNumber: 4),
+        '/QuizAmeriqueSud': (BuildContext context) =>
+            BigQuiz(continentNumber: 5),
       },
     );
   }

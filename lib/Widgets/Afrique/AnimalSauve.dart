@@ -2,21 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:projet_2cp/constants.dart';
 import 'package:projet_2cp/backend/progress_controllers.dart';
 import '../../Screens/EndGamePage.dart';
+import 'package:projet_2cp/constants.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:projet_2cp/constants.dart';
+import 'package:projet_2cp/settings.dart';
 
-class AnimalSauve extends StatelessWidget {
+class AnimalSauve extends StatefulWidget {
   Function() next;
   String animal;
   int score;
-  int _width = 200;
   GameProgress gameProgress;
   StationProgress stationProgress;
   AnimalSauve(this.stationProgress, this.gameProgress,
       {super.key, required this.animal, required this.next, required this.score});
+
+  @override
+  State<AnimalSauve> createState() => _AnimalSauveState();
+}
+
+class _AnimalSauveState extends State<AnimalSauve> {
+  int _width = 200;
+
   int Score() {
-    if (score > 18) {
-      score = 18;
+    if (widget.score > 18) {
+      widget.score = 18;
     }
-    return ((18 - score) * 2);
+    return ((18 - widget.score) * 2);
   }
 
   int Stars(int scoreDuJeu) {
@@ -33,11 +44,37 @@ class AnimalSauve extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (animal.compareTo('assets/images/afrique/elephant.png') == 0) {
+    
+    if (widget.animal.compareTo('assets/images/afrique/elephant.png') == 0) {
       _width = 210;
     } else {
       _width = 190;
     }
+      AudioPlayer player = AudioPlayer();
+    AudioPlayer player1 = AudioPlayer();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    player1.play(
+      AssetSource('assets/sounds/stations/map.mp3'),
+    );
+   player1.setReleaseMode(ReleaseMode.loop);
+  }
+ 
+  @override
+  void dispose() {
+    player.stop();
+    super.dispose();
+  }
+ Future<void> playAudio() async {
+    await player.play(AssetSource('sound.mp3'));
+  }
+    if (true) {
+      backgroundPlayerMap.playMusic();
+    }
+    playSoundHelp("savingAnimalAudio");
+
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -115,18 +152,20 @@ class AnimalSauve extends StatelessWidget {
                       ),
                       child: ElevatedButton(
                         onPressed: () {
-                          if (animal.compareTo(
+                           backgroundPlayerMap.stopMusic();
+                           player1.stop();
+                          if (widget.animal.compareTo(
                                   'assets/images/afrique/lion.png') ==
                               0) {
                             backgroundPlayerAfrique.stopMusic();
                             backgroundPlayerMap.playMusic();
-                            dataUpdator(context, stationProgress, gameProgress,
-                                Score(), Stars(score - 6));
+                            dataUpdator(context, widget.stationProgress, widget.gameProgress,
+                                Score(), Stars(widget.score - 6));
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => EndGamePage(
-                                    stars: Stars(score - 6),
+                                    stars: Stars(widget.score - 6),
                                     score: Score(),
                                     background:
                                         'assets/images/afrique/Background_Africa_1.png',
@@ -136,7 +175,7 @@ class AnimalSauve extends StatelessWidget {
                                   ),
                                 ));
                           } else {
-                            next();
+                            widget.next();
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -165,7 +204,7 @@ class AnimalSauve extends StatelessWidget {
                   child: FractionallySizedBox(
                     widthFactor: 1,
                     child: Image.asset(
-                      animal,
+                      widget.animal,
                       fit: BoxFit.fitWidth,
                     ),
                   ),

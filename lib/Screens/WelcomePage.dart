@@ -7,7 +7,10 @@ import '../progress/progress.dart';
 import '../backend/local_progress/local_progress.dart';
 import '../backend/progress_controllers.dart';
 import '../backend/synchronization.dart';
-
+import 'package:projet_2cp/constants.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:projet_2cp/constants.dart';
+import 'package:projet_2cp/settings.dart';
 class WelcomePage1 extends StatefulWidget {
   @override
   State<WelcomePage1> createState() => _WelcomePage1State();
@@ -15,15 +18,40 @@ class WelcomePage1 extends StatefulWidget {
 
 class _WelcomePage1State extends State<WelcomePage1> {
   Color? col = const Color.fromRGBO(232, 69, 96, 1);
-
+      
   @override
   Widget build(BuildContext context) {
+   AudioPlayer player = AudioPlayer();
+    AudioPlayer player1 = AudioPlayer();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    player1.play(
+      AssetSource('assets/sounds/stations/map.mp3'),
+    );
+   player1.setReleaseMode(ReleaseMode.loop);
+  }
+ 
+  @override
+  void dispose() {
+    player.stop();
+    super.dispose();
+  }
+ Future<void> playAudio() async {
+    await player.play(AssetSource('sound.mp3'));
+  }
+    if (true) {
+      backgroundPlayerMap.playMusic();
+    }
+    playSoundIndication("welcome-page");
     double? wid = (MediaQuery.of(context).size.width);
     double? hei = (MediaQuery.of(context).size.height);
     return Scaffold(
       backgroundColor: const Color.fromRGBO(158, 231, 251, 1),
       body: SafeArea(
         child: Stack(children: [
+         
           Positioned(
             left: wid * (76 / 800),
             top: hei * (20 / 360),
@@ -58,6 +86,8 @@ class _WelcomePage1State extends State<WelcomePage1> {
                       ),
                       child: ElevatedButton(
                         onPressed: () async {
+                          backgroundPlayerMap.stopMusic();
+                          player1.stop();
                           WidgetsFlutterBinding.ensureInitialized();
                           kUser = 'guest';
                           Future<UserProgress> g = getSQFLite('guest');
@@ -104,6 +134,8 @@ class _WelcomePage1State extends State<WelcomePage1> {
                       ),
                       child: ElevatedButton(
                         onPressed: () {
+                          backgroundPlayerMap.stopMusic();
+                          player1.stop();
                           Navigator.push(
                               context,
                               MaterialPageRoute(

@@ -204,6 +204,10 @@ flutter:
     - assets/sounds/questions/
     - assets/sounds/questions/quiz/
     - assets/sounds/stations/
+    - assets/sounds/defis/
+    - assets/sounds/help/
+    - assets/sounds/indications/
+    - assets/sounds/felecitations/
     - assets/sounds/stations/station_1.mp3
     - assets/images/avatar/logo.png
     - assets/images/avatar/captain_earth_question.png

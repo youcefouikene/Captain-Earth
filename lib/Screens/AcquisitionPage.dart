@@ -13,7 +13,6 @@ class AcquisitionPage extends StatefulWidget {
 }
 
 class _AcquisitionPageState extends State<AcquisitionPage> {
-
   @override
   Widget build(BuildContext context) {
     double wid = MediaQuery.of(context).size.width;
@@ -345,17 +344,13 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                   SizedBox(
                     width: wid * 14 / 800,
                   ),
-                  Positioned(
-                    top: het * 305 / 360,
-                    left: wid * 706 / 800,
-                    child: Text(
-                      "100%",
-                      style: TextStyle(
-                        color: const Color.fromRGBO(19, 78, 73, 1),
-                        fontFamily: "Atma",
-                        fontSize: wid * 18 / 800,
-                        fontWeight: FontWeight.w500,
-                      ),
+                  Text(
+                    "100%",
+                    style: TextStyle(
+                      color: const Color.fromRGBO(19, 78, 73, 1),
+                      fontFamily: "Atma",
+                      fontSize: wid * 18 / 800,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ],
@@ -413,12 +408,12 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                       ),
                       IconButton(
                         onPressed: () {
-                          if(kSound){
+                          if (kSound) {
                             setState(() {
                               kSound = false;
                               backgroundPlayerMap.stopMusic();
                             });
-                          }else{
+                          } else {
                             setState(() {
                               kSound = true;
                               backgroundPlayerMap.playMusic();

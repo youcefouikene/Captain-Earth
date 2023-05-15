@@ -9,7 +9,7 @@ export '../Screens/DefiPage.dart';
 export '../Screens/Defis/DefiClean/ScereenClean.dart';
 export '../Screens/Defis/DefieProtectionEscargot/ScreenShoe.dart';
 export '../Screens/MiniJeux/AmeriqueNordMiniJeu/dataAmerique.dart';
-export '../Screens/MiniJeux/AsieMiniJeu/flipcardgame1.dart';
+export '../Screens/MiniJeux/AsieMiniJeu/SearchWords.dart';
 export '../Widgets/Afrique/AnimalSauve.dart';
 export '../Screens/ChooseGamePage.dart';
 export '../Screens/MiniJeux/OceanieMiniJeu.dart';

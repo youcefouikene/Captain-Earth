@@ -1,26 +1,87 @@
 import 'package:flutter/material.dart';
+import 'package:projet_2cp/constants.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:projet_2cp/constants.dart';
+import 'package:projet_2cp/settings.dart';
 
-class helpPage extends StatelessWidget {
-  List<String> listeIndication = [
-    'Appuyer sur les dechets pour\nnettoyer l\'ocean et sauver\nles poissons',
-    'Pour chaque carte sélectionner celle\nqui la ressemble',
-    'Parmi les trois animaux selectionner celui qui est en voie de disparition afin de sauver le pauvre animal',
-    'rien',
-    'Pour chaque carte sélectionner celle\nqui la ressemble',
-    'Appuyer sur les feu pour\nles éteindre et sauver\nla foret',
-  ];
+class helpPage extends StatefulWidget {
   int numStation = 0;
   String background;
   helpPage({required this.numStation, required this.background});
 
   @override
+  State<helpPage> createState() => _helpPageState();
+}
+
+class _helpPageState extends State<helpPage> {
+  List<String> listeIndication = [
+    'Appuyez sur les dechets pour\nnettoyer l\'ocean et sauver\nles poissons',
+    'Trouvez le mots ',
+    'Parmi les trois animaux selectionner celui qui est en voie de disparition afin de sauver le pauvre animal',
+    'rien',
+    'Pour chaque carte, sélectionnez celle\nqui lui ressemble',
+    'Éteignez le feu en\nappuyant dessus pour sauver\nla forêt.',
+  ];
+  List<String> listeIndicationSound = [
+    'Station1',
+    'Station2',
+    'Station3',
+    'Station4',
+    'Station5',
+    'Station6',
+  ];
+  @override
   Widget build(BuildContext context) {
+    /*AudioPlayer player = AudioPlayer();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+  @override
+  void dispose() {
+    player.stop();
+    super.dispose();
+  }
+  Future<void> playAudio() async {
+    await player.play(AssetSource('sound.mp3'));
+  }
+   playSoundHelp(listeIndicationSound[widget.numStation]);*/
+
+    AudioPlayer player = AudioPlayer();
+    AudioPlayer player1 = AudioPlayer();
+    @override
+    void initState() {
+      // TODO: implement initState
+      super.initState();
+      player1.play(
+        AssetSource('assets/sounds/stations/map.mp3'),
+      );
+      player1.setReleaseMode(ReleaseMode.loop);
+    }
+
+    @override
+    void dispose() {
+      player.stop();
+      super.dispose();
+    }
+
+    Future<void> playAudio() async {
+      await player.play(AssetSource('sound.mp3'));
+    }
+
+    if (true) {
+      backgroundPlayerMap.playMusic();
+    }
+    playSoundHelp(listeIndicationSound[widget.numStation]);
+
     return Container(
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(background),
+          image: AssetImage(widget.background),
           fit: BoxFit.cover,
         ),
       ),
@@ -59,7 +120,7 @@ class helpPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    listeIndication[numStation],
+                    listeIndication[widget.numStation],
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       decoration: TextDecoration.none,
@@ -72,39 +133,39 @@ class helpPage extends StatelessWidget {
                   // SizedBox(
                   //   height: MediaQuery.of(context).size.height * (15 / 360),
                   // ),
-                  Positioned(
-                    // bottom: MediaQuery.of(context).size.height * (18 / 360),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * (82 / 800),
-                      height: MediaQuery.of(context).size.height * (49 / 360),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                            MediaQuery.of(context).size.width * (10 / 800)),
-                        border: Border.all(
-                          color: Color(0xff7B2B85),
-                          width: 3,
+                  // bottom: MediaQuery.of(context).size.height * (18 / 360),
+                  Container(
+                    width: MediaQuery.of(context).size.width * (82 / 800),
+                    height: MediaQuery.of(context).size.height * (49 / 360),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                          MediaQuery.of(context).size.width * (10 / 800)),
+                      border: Border.all(
+                        color: Color(0xff7B2B85),
+                        width: 3,
+                      ),
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        backgroundPlayerMap.stopMusic();
+                        player1.stop();
+                        Navigator.pop(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xffE84560),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              MediaQuery.of(context).size.width * (10 / 800) -
+                                  3),
+                          //side: BorderSide(color: Color(0xff7B2B85)),
                         ),
                       ),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xffE84560),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                                MediaQuery.of(context).size.width * (10 / 800) -
-                                    3),
-                            //side: BorderSide(color: Color(0xff7B2B85)),
-                          ),
-                        ),
-                        child: Text(
-                          'OK',
-                          style: TextStyle(
-                            fontFamily: 'Atma',
-                            fontSize:
-                                MediaQuery.of(context).size.width * (24 / 800),
-                          ),
+                      child: Text(
+                        'OK',
+                        style: TextStyle(
+                          fontFamily: 'Atma',
+                          fontSize:
+                              MediaQuery.of(context).size.width * (24 / 800),
                         ),
                       ),
                     ),

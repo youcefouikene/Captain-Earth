@@ -426,7 +426,43 @@ class BackgoundPlayer {
     _audioPlayer.dispose();
   }
 }
+//              ----   3   ----
 
+void playDefi(sound) {
+  player.play(
+    AssetSource(
+      'sounds/defis/$sound.mp3',
+    ),
+  );
+  player.setVolume(2.0);
+}
+
+void playSoundHelp(sound) {
+  player.play(
+    AssetSource(
+      'sounds/help/$sound.mp3'
+    ),
+  );
+  player.setVolume(2.0);
+}
+void playSoundIndication(sound) {
+   player.play(
+    AssetSource(
+      'sounds/indications/$sound.mp3',
+     
+    ),
+  );
+  player.setVolume(2.0);
+}
+void playSoundEncouragement(sound) {
+   player.play(
+    AssetSource(
+      'sounds/felecitations/$sound.mp3',
+     
+    ),
+  );
+  player.setVolume(2.0);
+}
 
 IconData iconeTypeFunction(){
   return (kSound) ? Icons.music_note : Icons.music_off;

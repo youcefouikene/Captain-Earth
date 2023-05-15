@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import './Box6.dart';
+import 'package:projet_2cp/constants.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:projet_2cp/constants.dart';
+import 'package:projet_2cp/settings.dart';
 
 class ScreenClean extends StatefulWidget {
   @override
@@ -10,6 +14,26 @@ class _ScreenCleanState extends State<ScreenClean> {
   @override
   Widget build(BuildContext context) {
     IconData _icone = Icons.music_note;
+    //DefiNettoyage.mp3
+       AudioPlayer player = AudioPlayer();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    backgroundPlayerMap.playMusic();
+  }
+
+  @override
+  void dispose() {
+    player.stop();
+    super.dispose();
+  }
+
+  Future<void> playAudio() async {
+    await player.play(AssetSource('sound.mp3'));
+  }
+  playDefi("DefiNettoyage");
     return Scaffold(
       body: Container(
         color: Color(0xff9EE7FB),
@@ -24,9 +48,9 @@ class _ScreenCleanState extends State<ScreenClean> {
                     pourcentage1: (499 / 800),
                     pourcentage2: (312 / 360),
                     text1:
-                        "Je nettoies les espaces dans lesquelles je vis je ramasse les déchets et je les mes a la ",
-                    title: "Ayez le bon reflexe",
-                    text2: "poubelle même si ce n’est pas les miennes.",
+                        "Je nettoie les espaces dans lesquels je vis, je ramasse les déchets et je les mets à la",
+                    title: "Ayez le bon réflexe",
+                    text2: "poubelle même s'ils ne sont pas les miens",
                   ),
                   Padding(
                     padding: EdgeInsets.only(
@@ -43,78 +67,79 @@ class _ScreenCleanState extends State<ScreenClean> {
                 ],
               ),
             ),
-            Positioned(
-              top: MediaQuery.of(context).size.height * (30 / 360),
-              left: MediaQuery.of(context).size.width * (29 / 800),
-              child: Column(
-                children: [
-                  Container(
-                      child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width * (39 / 800),
-                        height: MediaQuery.of(context).size.width * (39 / 800),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color(0xFFE84560),
-                          border: Border.all(
-                            color: Color(0xff752683),
-                            width: 2,
-                          ),
+             Positioned(
+            top: MediaQuery.of(context).size.height * (30 / 360),
+            left: MediaQuery.of(context).size.width * (29 / 800),
+            child: Column(
+              children: [
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width * (39 / 800),
+                      height: MediaQuery.of(context).size.width * (39 / 800),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: const Color(0xFFE84560),
+                        border: Border.all(
+                          color: const Color(0xff752683),
+                          width: 2,
                         ),
                       ),
-                      IconButton(
-                        onPressed: () {
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        if(kSound){
                           setState(() {
-                            if (_icone == Icons.music_note) {
-                              _icone = Icons.music_off;
-                            } else {
-                              _icone = Icons.music_note;
-                            }
+                            kSound = false;
+                            backgroundPlayerMap.stopMusic();
                           });
-                        },
-                        icon: Icon(_icone),
-                        iconSize:
-                            MediaQuery.of(context).size.width * (25 / 800),
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ],
-                  )),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * (5 / 360),
-                  ),
-                  Container(
-                      child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        //margin: EdgeInsets.only(bottom: 12.0),
-                        width: MediaQuery.of(context).size.width * (40 / 800),
-                        height: MediaQuery.of(context).size.width * (40 / 800),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color(0xFFE84560),
-                          border: Border.all(
-                            color: Color(0xff752683),
-                            width: 2,
-                          ),
+                        }else{
+                          setState(() {
+                            kSound = true;
+                            backgroundPlayerMap.playMusic();
+                          });
+                        }
+                      },
+                      icon: Icon(iconeTypeFunction()),
+                      iconSize: MediaQuery.of(context).size.width * (25 / 800),
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * (5 / 360),
+                ),
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width * (40 / 800),
+                      height: MediaQuery.of(context).size.width * (40 / 800),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: const Color(0xFFE84560),
+                        border: Border.all(
+                          color: const Color(0xff752683),
+                          width: 2,
                         ),
                       ),
-                      IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(Icons.close_rounded),
-                        iconSize:
-                            MediaQuery.of(context).size.width * (30 / 800),
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ],
-                  )),
-                ],
-              ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        backgroundPlayerMap.stopMusic();
+                        backgroundPlayerMap.playMusic();
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.close_rounded),
+                      iconSize: MediaQuery.of(context).size.width * (30 / 800),
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                    ),
+                  ],
+                ),
+              ],
             ),
+          ),
           ],
         ),
       ),

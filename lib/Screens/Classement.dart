@@ -30,87 +30,82 @@ class _ClassementState extends State<Classement> {
                 children: [
                   Row(
                     children: [
-                      Positioned(
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                              width: wid * 43 / 800,
-                              height: wid * 43 / 800,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: const Color.fromRGBO(244, 244, 244, 1),
-                                  border: Border.all(
-                                    color: const Color.fromRGBO(19, 78, 73, 1),
-                                    width: wid * 1 / 800,
-                                  )),
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            width: wid * 43 / 800,
+                            height: wid * 43 / 800,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: const Color.fromRGBO(244, 244, 244, 1),
+                                border: Border.all(
+                                  color: const Color.fromRGBO(19, 78, 73, 1),
+                                  width: wid * 1 / 800,
+                                )),
+                          ),
+                          Text(
+                            "1",
+                            style: TextStyle(
+                              fontFamily: "Atma",
+                              fontSize: wid * 40 / 800,
+                              fontWeight: FontWeight.w700,
+                              color: const Color.fromRGBO(232, 69, 96, 1),
                             ),
-                            Text(
-                              "1",
-                              style: TextStyle(
-                                fontFamily: "Atma",
-                                fontSize: wid * 40 / 800,
-                                fontWeight: FontWeight.w700,
-                                color: const Color.fromRGBO(232, 69, 96, 1),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       SizedBox(
                         width: wid * 13 / 800,
                       ),
-                      Positioned(
-                          top: het * 116 / 360,
-                          child: Container(
-                              width: wid * 211 / 800,
-                              height: het * 45 / 360,
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.circular(wid * 14 / 800),
-                                  color: const Color.fromRGBO(244, 244, 244, 1),
-                                  border: Border.all(
-                                    color: const Color.fromRGBO(19, 78, 73, 1),
-                                    width: wid * 1 / 800,
-                                  )),
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(
-                                    wid * 30 / 800, het * 5 / 360, 0.0, 0.0),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "Nom1",
-                                      style: TextStyle(
-                                        fontFamily: 'Atma',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: wid * 22 / 800,
-                                        color: const Color.fromRGBO(0, 0, 0, 1),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: wid * 38 / 800,
-                                    ),
-                                    Image.asset(
-                                      "assets/images/leaf.png",
-                                      width: wid * 17.52 / 800,
-                                      height: het * 18.43 / 360,
-                                    ),
-                                    SizedBox(
-                                      width: wid * 9 / 800,
-                                    ),
-                                    Text(
-                                      "200",
-                                      style: TextStyle(
-                                        fontFamily: 'Atma',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: wid * 22 / 800,
-                                        color:
-                                            const Color.fromRGBO(19, 78, 73, 1),
-                                      ),
-                                    ),
-                                  ],
+                      Container(
+                          width: wid * 211 / 800,
+                          height: het * 45 / 360,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(wid * 14 / 800),
+                              color: const Color.fromRGBO(244, 244, 244, 1),
+                              border: Border.all(
+                                color: const Color.fromRGBO(19, 78, 73, 1),
+                                width: wid * 1 / 800,
+                              )),
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(
+                                wid * 30 / 800, het * 5 / 360, 0.0, 0.0),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Nom1",
+                                  style: TextStyle(
+                                    fontFamily: 'Atma',
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: wid * 22 / 800,
+                                    color: const Color.fromRGBO(0, 0, 0, 1),
+                                  ),
                                 ),
-                              ))),
+                                SizedBox(
+                                  width: wid * 38 / 800,
+                                ),
+                                Image.asset(
+                                  "assets/images/leaf.png",
+                                  width: wid * 17.52 / 800,
+                                  height: het * 18.43 / 360,
+                                ),
+                                SizedBox(
+                                  width: wid * 9 / 800,
+                                ),
+                                Text(
+                                  "200",
+                                  style: TextStyle(
+                                    fontFamily: 'Atma',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: wid * 22 / 800,
+                                    color: const Color.fromRGBO(19, 78, 73, 1),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )),
                     ],
                   ),
                   // SizedBox(
@@ -118,89 +113,82 @@ class _ClassementState extends State<Classement> {
                   // ),
                   Row(
                     children: [
-                      Positioned(
-                        top: het * 117 / 360,
-                        left: wid * 99 / 800,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                              width: wid * 43 / 800,
-                              height: wid * 43 / 800,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: const Color.fromRGBO(244, 244, 244, 1),
-                                  border: Border.all(
-                                    color: const Color.fromRGBO(19, 78, 73, 1),
-                                    width: wid * 1 / 800,
-                                  )),
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            width: wid * 43 / 800,
+                            height: wid * 43 / 800,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: const Color.fromRGBO(244, 244, 244, 1),
+                                border: Border.all(
+                                  color: const Color.fromRGBO(19, 78, 73, 1),
+                                  width: wid * 1 / 800,
+                                )),
+                          ),
+                          Text(
+                            "2",
+                            style: TextStyle(
+                              fontFamily: "Atma",
+                              fontSize: wid * 40 / 800,
+                              fontWeight: FontWeight.w700,
+                              color: const Color.fromRGBO(19, 78, 73, 1),
                             ),
-                            Text(
-                              "2",
-                              style: TextStyle(
-                                fontFamily: "Atma",
-                                fontSize: wid * 40 / 800,
-                                fontWeight: FontWeight.w700,
-                                color: const Color.fromRGBO(19, 78, 73, 1),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       SizedBox(
                         width: wid * 13 / 800,
                       ),
-                      Positioned(
-                          top: het * 116 / 360,
-                          child: Container(
-                              width: wid * 211 / 800,
-                              height: het * 45 / 360,
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.circular(wid * 14 / 800),
-                                  color: const Color.fromRGBO(244, 244, 244, 1),
-                                  border: Border.all(
-                                    color: const Color.fromRGBO(19, 78, 73, 1),
-                                    width: wid * 1 / 800,
-                                  )),
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(
-                                    wid * 30 / 800, het * 5 / 360, 0.0, 0.0),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "Nom2",
-                                      style: TextStyle(
-                                        fontFamily: 'Atma',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: wid * 22 / 800,
-                                        color: const Color.fromRGBO(0, 0, 0, 1),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: wid * 38 / 800,
-                                    ),
-                                    Image.asset(
-                                      "assets/images/leaf.png",
-                                      width: wid * 17.52 / 800,
-                                      height: het * 18.43 / 360,
-                                    ),
-                                    SizedBox(
-                                      width: wid * 9 / 800,
-                                    ),
-                                    Text(
-                                      "180",
-                                      style: TextStyle(
-                                        fontFamily: 'Atma',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: wid * 22 / 800,
-                                        color:
-                                            const Color.fromRGBO(19, 78, 73, 1),
-                                      ),
-                                    ),
-                                  ],
+                      Container(
+                          width: wid * 211 / 800,
+                          height: het * 45 / 360,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(wid * 14 / 800),
+                              color: const Color.fromRGBO(244, 244, 244, 1),
+                              border: Border.all(
+                                color: const Color.fromRGBO(19, 78, 73, 1),
+                                width: wid * 1 / 800,
+                              )),
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(
+                                wid * 30 / 800, het * 5 / 360, 0.0, 0.0),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Nom2",
+                                  style: TextStyle(
+                                    fontFamily: 'Atma',
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: wid * 22 / 800,
+                                    color: const Color.fromRGBO(0, 0, 0, 1),
+                                  ),
                                 ),
-                              ))),
+                                SizedBox(
+                                  width: wid * 38 / 800,
+                                ),
+                                Image.asset(
+                                  "assets/images/leaf.png",
+                                  width: wid * 17.52 / 800,
+                                  height: het * 18.43 / 360,
+                                ),
+                                SizedBox(
+                                  width: wid * 9 / 800,
+                                ),
+                                Text(
+                                  "180",
+                                  style: TextStyle(
+                                    fontFamily: 'Atma',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: wid * 22 / 800,
+                                    color: const Color.fromRGBO(19, 78, 73, 1),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ))
                     ],
                   ),
                   // SizedBox(
@@ -208,89 +196,82 @@ class _ClassementState extends State<Classement> {
                   // ),
                   Row(
                     children: [
-                      Positioned(
-                        top: het * 117 / 360,
-                        left: wid * 99 / 800,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Container(
-                              width: wid * 43 / 800,
-                              height: wid * 43 / 800,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: const Color.fromRGBO(244, 244, 244, 1),
-                                  border: Border.all(
-                                    color: const Color.fromRGBO(19, 78, 73, 1),
-                                    width: wid * 1 / 800,
-                                  )),
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            width: wid * 43 / 800,
+                            height: wid * 43 / 800,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: const Color.fromRGBO(244, 244, 244, 1),
+                                border: Border.all(
+                                  color: const Color.fromRGBO(19, 78, 73, 1),
+                                  width: wid * 1 / 800,
+                                )),
+                          ),
+                          Text(
+                            "3",
+                            style: TextStyle(
+                              fontFamily: "Atma",
+                              fontSize: wid * 40 / 800,
+                              fontWeight: FontWeight.w700,
+                              color: const Color.fromRGBO(19, 78, 73, 1),
                             ),
-                            Text(
-                              "3",
-                              style: TextStyle(
-                                fontFamily: "Atma",
-                                fontSize: wid * 40 / 800,
-                                fontWeight: FontWeight.w700,
-                                color: const Color.fromRGBO(19, 78, 73, 1),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       SizedBox(
                         width: wid * 13 / 800,
                       ),
-                      Positioned(
-                          top: het * 116 / 360,
-                          child: Container(
-                              width: wid * 211 / 800,
-                              height: het * 45 / 360,
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.circular(wid * 14 / 800),
-                                  color: const Color.fromRGBO(244, 244, 244, 1),
-                                  border: Border.all(
-                                    color: const Color.fromRGBO(19, 78, 73, 1),
-                                    width: wid * 1 / 800,
-                                  )),
-                              child: Padding(
-                                padding: EdgeInsets.fromLTRB(
-                                    wid * 30 / 800, het * 5 / 360, 0.0, 0.0),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "Nom3",
-                                      style: TextStyle(
-                                        fontFamily: 'Atma',
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: wid * 22 / 800,
-                                        color: const Color.fromRGBO(0, 0, 0, 1),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: wid * 38 / 800,
-                                    ),
-                                    Image.asset(
-                                      "assets/images/leaf.png",
-                                      width: wid * 17.52 / 800,
-                                      height: het * 18.43 / 360,
-                                    ),
-                                    SizedBox(
-                                      width: wid * 9 / 800,
-                                    ),
-                                    Text(
-                                      "105",
-                                      style: TextStyle(
-                                        fontFamily: 'Atma',
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: wid * 22 / 800,
-                                        color:
-                                            const Color.fromRGBO(19, 78, 73, 1),
-                                      ),
-                                    ),
-                                  ],
+                      Container(
+                          width: wid * 211 / 800,
+                          height: het * 45 / 360,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.circular(wid * 14 / 800),
+                              color: const Color.fromRGBO(244, 244, 244, 1),
+                              border: Border.all(
+                                color: const Color.fromRGBO(19, 78, 73, 1),
+                                width: wid * 1 / 800,
+                              )),
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(
+                                wid * 30 / 800, het * 5 / 360, 0.0, 0.0),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Nom3",
+                                  style: TextStyle(
+                                    fontFamily: 'Atma',
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: wid * 22 / 800,
+                                    color: const Color.fromRGBO(0, 0, 0, 1),
+                                  ),
                                 ),
-                              ))),
+                                SizedBox(
+                                  width: wid * 38 / 800,
+                                ),
+                                Image.asset(
+                                  "assets/images/leaf.png",
+                                  width: wid * 17.52 / 800,
+                                  height: het * 18.43 / 360,
+                                ),
+                                SizedBox(
+                                  width: wid * 9 / 800,
+                                ),
+                                Text(
+                                  "105",
+                                  style: TextStyle(
+                                    fontFamily: 'Atma',
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: wid * 22 / 800,
+                                    color: const Color.fromRGBO(19, 78, 73, 1),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )),
                     ],
                   )
                 ],

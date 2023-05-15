@@ -99,12 +99,12 @@ class _tryiState extends State<tryi> {
                     ),
                     IconButton(
                       onPressed: () {
-                        if(kSound){
+                        if (kSound) {
                           setState(() {
                             kSound = false;
                             backgroundPlayerMap.stopMusic();
                           });
-                        }else{
+                        } else {
                           setState(() {
                             kSound = true;
                             backgroundPlayerMap.playMusic();
