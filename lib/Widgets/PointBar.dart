@@ -7,28 +7,28 @@ class PointBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Stack(
       alignment: Alignment.centerLeft,
       children: [
-        Container(
-          height: MediaQuery.of(context).size.height * 0.0859444,
-          width: MediaQuery.of(context).size.width * 0.146425,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(36.5),
-            border: Border.all(
-              color: const Color(0xff752683),
-              width: 3,
+        Stack(
+          alignment: Alignment(0.4, -0.5),
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.0859444,
+              width: MediaQuery.of(context).size.width * 0.146425,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(36.5),
+                border: Border.all(
+                  color: const Color(0xff752683),
+                  width: 3,
+                ),
+              ),
             ),
-          ),
-          //padding: EdgeInsets.all(10),
-          child: Padding(
-            padding:
-                EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.05),
-            child: Text(
+            //padding: EdgeInsets.all(10),
+            Text(
               score.toString(),
-              textAlign: TextAlign.center,
+              //textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: 'Atma',
                 fontWeight: FontWeight.w500,
@@ -36,7 +36,7 @@ class PointBar extends StatelessWidget {
                 color: const Color.fromARGB(255, 0, 0, 0),
               ),
             ),
-          ),
+          ],
         ),
         Container(
           height: MediaQuery.of(context).size.height * 0.1277777,

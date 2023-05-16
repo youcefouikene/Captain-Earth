@@ -1,10 +1,5 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-// import 'package:pommy/backend/progress_controllers.dart';
-// import 'package:pommy/data/data.dart';
-// import 'package:pommy/widgets.dart';
-// import 'package:pommy/constants.dart';
 import 'package:projet_2cp/Screens/EndGamePage.dart';
 import 'TimerAsie.dart';
 import 'package:projet_2cp/Widgets/PointBar.dart';
@@ -20,13 +15,7 @@ Offset end = Offset(0, 0);
 List<List<Offset>> points = [];
 
 class SearchWords extends StatefulWidget {
-  // final ChildProgress childProgress;
-  // final ThemeProgress themeProgress;
-  // final GameProgress gameProgress;
-  // SearchWords(
-  //     {required this.childProgress,
-  //     required this.themeProgress,
-  //     required this.gameProgress});
+
 
   @override
   State<SearchWords> createState() => _SearchWordsState();

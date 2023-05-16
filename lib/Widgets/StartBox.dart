@@ -36,8 +36,8 @@ class Start extends StatelessWidget {
           ),
         ),
         Positioned(
-          left: MediaQuery.of(context).size.width * (68 / 800),
-          top: MediaQuery.of(context).size.height * (45 / 360),
+          left: MediaQuery.of(context).size.width * (50 / 800),
+          top: MediaQuery.of(context).size.height * (40 / 360),
           child: Text(
             text,
             style: TextStyle(
