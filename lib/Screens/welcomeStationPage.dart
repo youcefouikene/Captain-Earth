@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import '../Screens/ChooseGamePage.dart';
 import 'package:projet_2cp/constants.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:projet_2cp/constants.dart';
-import 'package:projet_2cp/settings.dart';
 
 class WelcomePage extends StatefulWidget {
   @override
@@ -36,8 +34,7 @@ class _WelcomePageState extends State<WelcomePage> {
     'allons-y-station-5',
     'allons-y-station-6',
   ];
-  AudioPlayer player = AudioPlayer();
-  AudioPlayer player1 = AudioPlayer();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -49,11 +46,11 @@ class _WelcomePageState extends State<WelcomePage> {
   }
   @override
   void dispose() {
-    player.stop();
+    player2.stop();
     super.dispose();
   }
- Future<void> playAudio() async {
-    await player.play(AssetSource('sound.mp3'));
+  Future<void> playAudio() async {
+    await player2.play(AssetSource('sound.mp3'));
   }
     if (true) {
       backgroundPlayerMap.playMusic();
@@ -95,42 +92,37 @@ class _WelcomePageState extends State<WelcomePage> {
                         ),
                         child: Center(
                             child: Column(
-                           // mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height *
-                                  (33 / 360),
-                            ),
-                            if (listeGlobale[numStation][index] == 'Allons-y !')
-                              Container(
-                                child: Text(
-                                  'Allons-y !',
-                                  style: TextStyle(
-                                    height: 30 / 32,
-                                    decoration: TextDecoration.none,
-                                    fontFamily: 'Atma',
-                                    fontSize:
-                                        MediaQuery.of(context).size.width *
-                                            (28 / 800),
-                                    color: const Color(0xff134E49),
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height *
+                                    (33 / 360),
+                              ),
+                              if (listeGlobale[numStation][index] == 'Allons-y !')
+                              Text(
+                                'Allons-y !',
+                                style: TextStyle(
+                                  height: 30 / 32,
+                                  decoration: TextDecoration.none,
+                                  fontFamily: 'Atma',
+                                  fontSize:
+                                      MediaQuery.of(context).size.width *
+                                          (28 / 800),
+                                  color: const Color(0xff134E49),
+                                  fontWeight: FontWeight.w700,
                                 ),
                               )
                             else
-                              Container(
-                                child: Text(
-                                  listeGlobale[numStation][index],
-                                  style: TextStyle(
-                                    decoration: TextDecoration.none,
-                                    fontFamily: 'Atma',
-                                    height: 30 / 26,
-                                    fontSize:
-                                        MediaQuery.of(context).size.width *
-                                            (26 / 800),
-                                    color: const Color(0xff134E49),
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                              Text(
+                                listeGlobale[numStation][index],
+                                style: TextStyle(
+                                  decoration: TextDecoration.none,
+                                  fontFamily: 'Atma',
+                                  height: 30 / 26,
+                                  fontSize:
+                                      MediaQuery.of(context).size.width *
+                                          (26 / 800),
+                                  color: const Color(0xff134E49),
+                                  fontWeight: FontWeight.w700,
                                 ),
                               ),
                             SizedBox(
@@ -181,7 +173,9 @@ class _WelcomePageState extends State<WelcomePage> {
                             onPressed: () {
                               backgroundPlayerMap.stopMusic();
                                player1.stop();
-                               
+                               if(numStation % 2 != 0){
+                                 player2.dispose();
+                               }
                                playSoundIndication(listeIndicationAllonsY[numStation]);
                               setState(() {
                                 if (index == 0) {
@@ -195,7 +189,9 @@ class _WelcomePageState extends State<WelcomePage> {
                                                   listeGlobale[numStation][4],
                                               stationIndex: numStation,
                                               pathJeu: pathJeu,
-                                              pathQuiz: pathQuiz)));
+                                              pathQuiz: pathQuiz)
+                                      )
+                                  );
                                 }
                               });
                             },

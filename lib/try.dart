@@ -66,6 +66,8 @@ class _tryiState extends State<tryi> {
 
   @override
   Widget build(BuildContext context) {
+    print("userProgress.currentStation = ${userProgress.currentStation}");
+    print("userProgress.stars = ${userProgress.stars} userProgress.leaves = ${userProgress.leaves}");
     return Scaffold(
       body: SizedBox(
         width: double.infinity,

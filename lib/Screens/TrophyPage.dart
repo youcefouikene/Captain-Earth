@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:projet_2cp/constants.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:projet_2cp/constants.dart';
+import 'package:projet_2cp/progress/progress.dart';
 import 'package:projet_2cp/settings.dart';
 
 class TrophyPage extends StatefulWidget {
@@ -47,7 +48,8 @@ class _TrophyPageState extends State<TrophyPage> {
     double het = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: const Color.fromRGBO(158, 231, 251, 1),
-      body: Stack(children: [
+      body: Stack(
+          children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -161,6 +163,7 @@ class _TrophyPageState extends State<TrophyPage> {
             ],
           ),
         ),
+            if(userProgress.leaves != 0) const WinningAnimation(),
       ]),
     );
   }

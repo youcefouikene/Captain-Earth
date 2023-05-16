@@ -190,7 +190,6 @@ class WiningBox extends StatelessWidget {
                         }else if(station == "station 03"){
                           backgroundPlayerAfrique.stopMusic();
                         }
-                        backgroundPlayerMap.playMusic();
                       }
                       Navigator.pop(context);
                       Navigator.pop(context);

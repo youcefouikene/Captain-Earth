@@ -155,6 +155,7 @@ class _EndGamePageState extends State<EndGamePage> {
               ],
             ),
           ),
+          BlinkingStars(),
         ],
       ),
     );

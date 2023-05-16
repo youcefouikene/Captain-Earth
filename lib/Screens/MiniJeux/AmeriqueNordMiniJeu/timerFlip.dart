@@ -16,7 +16,9 @@ class TimeFlip extends StatefulWidget {
       this.background,
       this.ignore,
       this.refreshPath,
-      );
+      {super.key}
+  );
+
   @override
   _TimeFlip createState() => _TimeFlip();
 }
@@ -24,7 +26,6 @@ class TimeFlip extends StatefulWidget {
 class _TimeFlip extends State<TimeFlip> {
   final StationProgress stationProgress = userProgress.stations[4];
   final GameProgress gameProgress = userProgress.stations[4].games[1];
-
   int _secondsElapsed = 90;
   void _startTimer() {
     Timer.periodic(const Duration(seconds: 1), (Timer timer) {
@@ -34,6 +35,7 @@ class _TimeFlip extends State<TimeFlip> {
       if ((_secondsElapsed == 0) || (widget.ignore == true)) {
         timer.cancel();
         dataUpdator(context, stationProgress, gameProgress, _secondsElapsed, (_secondsElapsed == 0) ? 0 : _secondsElapsed ~/ 30 + 1);
+        backgroundPlayerAmeriqueNord.stopMusic();
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(

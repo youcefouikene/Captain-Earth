@@ -5,7 +5,6 @@ import 'package:sqflite/sqflite.dart';
 
 import '../../data/initializedThemes.dart';
 import 'package:projet_2cp/backend/progress_controllers.dart';
-import 'package:projet_2cp/backend/progress_controllers.dart';
 
 class LocalProgress {
   static late Database _progress;

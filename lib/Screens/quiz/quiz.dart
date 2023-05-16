@@ -6,7 +6,6 @@ import '../EndGamePage.dart';
 import 'package:projet_2cp/backend/progress_controllers.dart';
 import 'package:projet_2cp/constants.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:projet_2cp/constants.dart';
 import 'package:projet_2cp/settings.dart';
 
 List<Question> qqsBank = [];
@@ -65,7 +64,6 @@ class _BigQuizState extends State<BigQuiz> {
 
   @override
   Widget build(BuildContext context) {
-    //playLoopedAudio('assets/sounds/stations/station_1.mp3');
     return Quiz(
       continentNumber: widget.continentNumber,
       userProgress: userProgress,

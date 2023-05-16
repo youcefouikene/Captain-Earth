@@ -13,13 +13,16 @@ import 'package:projet_2cp/settings.dart';
 //  ****************************************
 
 final player = AudioPlayer();
+final player1 = AudioPlayer();
+final player2 = AudioPlayer();
+
 final backgroundPlayerOceanie = BackgoundPlayer("stations/station_1.mp3");
-final backgroundPlayerAsie = BackgoundPlayer("stations/station_2.mp3");
-final backgroundPlayerAfrique = BackgoundPlayer("stations/station_3.mp3");
-final backgroundPlayerEurope = BackgoundPlayer("stations/station_4.mp3");
-final backgroundPlayerAmeriqueNord = BackgoundPlayer("stations/station_5.mp3");
-final backgroundPlayerAmeriqueSud = BackgoundPlayer("stations/station_6.mp3");
-final backgroundPlayerQuiz = BackgoundPlayer("stations/station_4.mp3");
+final backgroundPlayerAsie = BackgoundPlayer("stations/timer.mp3");
+final backgroundPlayerAfrique = BackgoundPlayer("stations/afrique.mp3");
+final backgroundPlayerEurope = BackgoundPlayer("stations/map.mp3");
+final backgroundPlayerAmeriqueNord = BackgoundPlayer("stations/timer.mp3");
+final backgroundPlayerAmeriqueSud = BackgoundPlayer("stations/amerique_sud.mp3");
+final backgroundPlayerQuiz = BackgoundPlayer("stations/map.mp3", soundVolume: 0.055);
 final backgroundPlayerMap = BackgoundPlayer("stations/map.mp3");
 
 late bool clickRight;
@@ -32,16 +35,16 @@ bool didAnswer = false;
 
 //        -----   FOR THE MAP   ----
 int maxLeavesOceanieStation =
-    54; // OceaniaQuizzes(12 Questions) * 2 + Mini jeu 30
+54; // OceaniaQuizzes(12 Questions) * 2 + Mini jeu 30
 int maxLeavesAsieStation = 48; // AsiaQuizzes(9 Questions) * 2 + Mini jeu 30
 int maxLeavesAfriqueStation =
-    48; // AfriqueQuizzes (12 Questions) * 2 + Mini jeu 24
+48; // AfriqueQuizzes (12 Questions) * 2 + Mini jeu 24
 int maxLeavesEuropeStation =
-    60; // EuropeQuizzes (15 Questions) * 2 + Mini jeu 30
+60; // EuropeQuizzes (15 Questions) * 2 + Mini jeu 30
 int maxLeavesAmeriqueNordStation =
-    48; // Amerique de nord Quizzes (9 Questions) * 2 + Mini jeu 30
+48; // Amerique de nord Quizzes (9 Questions) * 2 + Mini jeu 30
 int maxLeavesAmeriqueSudStation =
-    54; // Amerique de sud Quizzes (12 Questions) * 2 + Mini jeu 30
+54; // Amerique de sud Quizzes (12 Questions) * 2 + Mini jeu 30
 int maxLeavesTotal = 312;
 
 
@@ -260,52 +263,6 @@ class _BlinkingStarsState extends State<BlinkingStars> with SingleTickerProvider
 
 //              ----   2   ----
 
-class WinningAnimationTopCenter extends StatefulWidget {
-  const WinningAnimationTopCenter({Key? key}) : super(key: key);
-
-  @override
-  State<WinningAnimationTopCenter> createState() => _WinningAnimationTopCenterState();
-}
-
-class _WinningAnimationTopCenterState extends State<WinningAnimationTopCenter> {
-  bool isPlaying = false;
-  final controller = ConfettiController();
-
-  @override
-  void initState(){
-    super.initState();
-    controller.play();
-  }
-
-  @override
-  void dispose(){
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.topCenter,
-      children: [
-        ConfettiWidget(
-          confettiController: controller,
-          shouldLoop: true,
-          // Set direction
-          blastDirectionality: BlastDirectionality.explosive,
-          // Set emission count
-          minBlastForce: 10,
-          numberOfParticles: 24,
-          // Set speed
-          gravity: 0.3,
-        ),
-      ],
-    );
-  }
-}
-
-
-
 class WinningAnimation extends StatefulWidget {
   const WinningAnimation({Key? key}) : super(key: key);
 
@@ -398,16 +355,19 @@ class BackgoundPlayer {
   late AudioPlayer _audioPlayer;
   bool isPlaying = false;
   late String _music;
+  double? volume;
 
-  BackgoundPlayer(String backgroundMusic) {
+  BackgoundPlayer(String backgroundMusic, {double? soundVolume}) {
     _audioPlayer = AudioPlayer();
-    playMusic(); // start playing the audio automatically
+    playMusic();
     _music = backgroundMusic;
+    volume = soundVolume;
   }
   void playMusic() async {
     await _audioPlayer.play(
       AssetSource('../assets/sounds/$_music'),
     );
+    (volume == null) ? _audioPlayer.setVolume(0.1) : _audioPlayer.setVolume(volume!);
     _audioPlayer.setReleaseMode(ReleaseMode.loop);
     isPlaying = true;
   }
@@ -440,25 +400,25 @@ void playDefi(sound) {
 void playSoundHelp(sound) {
   player.play(
     AssetSource(
-      'sounds/help/$sound.mp3'
+        'sounds/help/$sound.mp3'
     ),
   );
   player.setVolume(2.0);
 }
 void playSoundIndication(sound) {
-   player.play(
+  player.play(
     AssetSource(
       'sounds/indications/$sound.mp3',
-     
+
     ),
   );
   player.setVolume(2.0);
 }
 void playSoundEncouragement(sound) {
-   player.play(
+  player.play(
     AssetSource(
       'sounds/felecitations/$sound.mp3',
-     
+
     ),
   );
   player.setVolume(2.0);

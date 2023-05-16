@@ -7,7 +7,6 @@ import 'Screens/MiniJeux/AmeriqueNordMiniJeu/dataAmerique.dart';
 import 'Screens/MiniJeux/AsieMiniJeu/SearchWords.dart';
 import 'Screens/MiniJeux/OceanieMiniJeu.dart';
 import 'Screens/MiniJeux/AmeriqueNordMiniJeu/flipcardgame2.dart';
-import 'Screens/TrophyPage.dart';
 import 'Screens/quiz/quiz.dart';
 import 'Screens/WelcomeStationPage.dart';
 import 'Screens/MiniJeux/AfriqueMiniJeu.dart';
@@ -106,7 +105,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: TrophyPage(0),
+        body: LoadingPage(),
       ),
       routes: <String, WidgetBuilder>{
         '/WelcomeStation': (BuildContext context) => WelcomePage(),
