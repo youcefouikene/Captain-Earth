@@ -7,8 +7,7 @@ import 'package:projet_2cp/progress/progress.dart';
 import 'package:projet_2cp/settings.dart';
 
 class TrophyPage extends StatefulWidget {
-  final int choixTrophe;
-  TrophyPage(this.choixTrophe, {super.key});
+  TrophyPage({super.key});
 
   @override
   State<TrophyPage> createState() => _TrophyPageState();
@@ -48,8 +47,7 @@ class _TrophyPageState extends State<TrophyPage> {
     double het = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: const Color.fromRGBO(158, 231, 251, 1),
-      body: Stack(
-          children: [
+      body: Stack(children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -69,7 +67,7 @@ class _TrophyPageState extends State<TrophyPage> {
                       ),
                     ),
                     Image.asset(
-                      trophes[widget.choixTrophe],
+                      trophes[userProgress.trophy],
                       width: wid * 172 / 800,
                       fit: BoxFit.fitWidth,
                     ),
@@ -163,7 +161,7 @@ class _TrophyPageState extends State<TrophyPage> {
             ],
           ),
         ),
-            if(userProgress.leaves != 0) const WinningAnimation(),
+        if (userProgress.trophy != 0) const WinningAnimation(),
       ]),
     );
   }

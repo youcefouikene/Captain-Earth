@@ -49,7 +49,7 @@ class _EndGamePageState extends State<EndGamePage> {
     } else if (widget.stars == 1) {
       return '2';
     } else if (widget.stars == 2) {
-      return '3';
+      return '2';
     } else {
       return '3';
     }

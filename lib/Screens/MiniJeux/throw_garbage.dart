@@ -1,4 +1,6 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:projet_2cp/Screens/EndGamePage.dart';
 import '../../Screens/helpPageEu.dart';
 import '../../Widgets/Europe/dechetModel.dart';
 import '../../Widgets/PointBar.dart';
@@ -28,6 +30,7 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
   int score = 0;
 
   int choix = -1;
+  String s = '';
 
   String choixBonus = "";
   String plusOrMinus = "";
@@ -77,6 +80,39 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                   : stars = 0;
       dataUpdator(context, stationProgress, gameProgress, score, stars);
     }
+    AudioPlayer player = AudioPlayer();
+    AudioPlayer player1 = AudioPlayer();
+
+    void initState() {
+      // TODO: implement initState
+      super.initState();
+      player1.play(
+        AssetSource('assets/sounds/stations/map.mp3'),
+      );
+      player1.setReleaseMode(ReleaseMode.loop);
+    }
+
+    @override
+    void dispose() {
+      player.stop();
+      super.dispose();
+    }
+
+    Future<void> playAudio() async {
+      await player.play(AssetSource('sound.mp3'));
+    }
+
+    if (true) {
+      backgroundPlayerMap.playMusic();
+    }
+    if (gameOver)
+      playSoundEncouragement((echec <= 3)
+          ? s = '3'
+          : (echec <= 6)
+              ? s = '2'
+              : (echec <= 12)
+                  ? s = '2'
+                  : s = '1');
 
     return Scaffold(
       body: Container(
@@ -130,6 +166,19 @@ class _ThrowGarbageState extends State<ThrowGarbage> {
                   ],
                 ),
               ),
+            // EndGamePage(
+            //     score: (echec > 30) ? 0 : 30 - echec,
+            //     stars: (echec <= 3)
+            //         ? 3
+            //         : (echec <= 6)
+            //             ? 2
+            //             : (echec <= 12)
+            //                 ? 1
+            //                 : 0,
+            //     background: 'assets/images/europeBackground.png',
+            //     station: 'station 04',
+            //     stationIndex: 3,
+            //     refreshPath: '/EuropeMiniJeu'),
             if (!gameOver)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

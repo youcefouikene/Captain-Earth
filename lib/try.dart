@@ -67,7 +67,8 @@ class _tryiState extends State<tryi> {
   @override
   Widget build(BuildContext context) {
     print("userProgress.currentStation = ${userProgress.currentStation}");
-    print("userProgress.stars = ${userProgress.stars} userProgress.leaves = ${userProgress.leaves}");
+    print(
+        "userProgress.stars = ${userProgress.stars} userProgress.leaves = ${userProgress.leaves}");
     return Scaffold(
       body: SizedBox(
         width: double.infinity,
@@ -183,7 +184,7 @@ class _tryiState extends State<tryi> {
             right: 0.23 * MediaQuery.of(context).size.width,
             child: StationCart(
                 station: gameData[0],
-                isOpened: 0 <= userProgress.currentStation,
+                isOpened: true,//0 <= userProgress.currentStation,
                 widthPercentage: 0.039),
           ),
           Positioned(
@@ -191,7 +192,7 @@ class _tryiState extends State<tryi> {
             right: 0.339 * MediaQuery.of(context).size.width,
             child: StationCart(
                 station: gameData[1],
-                isOpened: 1 <= userProgress.currentStation,
+                isOpened: true,//1 <= userProgress.currentStation,
                 widthPercentage: 0.039),
           ),
           Positioned(
@@ -199,7 +200,7 @@ class _tryiState extends State<tryi> {
             right: 0.481 * MediaQuery.of(context).size.width,
             child: StationCart(
                 station: gameData[2],
-                isOpened: 2 <= userProgress.currentStation,
+                isOpened: true,//2 <= userProgress.currentStation,
                 widthPercentage: 0.039),
           ),
           Positioned(
@@ -207,7 +208,7 @@ class _tryiState extends State<tryi> {
             right: 0.505 * MediaQuery.of(context).size.width,
             child: StationCart(
                 station: gameData[3],
-                isOpened: 3 <= userProgress.currentStation,
+                isOpened: true,//3 <= userProgress.currentStation,
                 widthPercentage: 0.039),
           ),
           Positioned(
@@ -215,7 +216,7 @@ class _tryiState extends State<tryi> {
             left: 0.21 * MediaQuery.of(context).size.width,
             child: StationCart(
                 station: gameData[4],
-                isOpened: 4 <= userProgress.currentStation,
+                isOpened: true,//4 <= userProgress.currentStation,
                 widthPercentage: 0.039),
           ),
           Positioned(
@@ -223,7 +224,7 @@ class _tryiState extends State<tryi> {
             left: 0.295 * MediaQuery.of(context).size.width,
             child: StationCart(
                 station: gameData[5],
-                isOpened: 5 <= userProgress.currentStation,
+                isOpened: true,//5 <= userProgress.currentStation,
                 widthPercentage: 0.039),
           ),
         ]),

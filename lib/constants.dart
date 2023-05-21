@@ -21,8 +21,10 @@ final backgroundPlayerAsie = BackgoundPlayer("stations/timer.mp3");
 final backgroundPlayerAfrique = BackgoundPlayer("stations/afrique.mp3");
 final backgroundPlayerEurope = BackgoundPlayer("stations/map.mp3");
 final backgroundPlayerAmeriqueNord = BackgoundPlayer("stations/timer.mp3");
-final backgroundPlayerAmeriqueSud = BackgoundPlayer("stations/amerique_sud.mp3");
-final backgroundPlayerQuiz = BackgoundPlayer("stations/map.mp3", soundVolume: 0.055);
+final backgroundPlayerAmeriqueSud =
+    BackgoundPlayer("stations/amerique_sud.mp3");
+final backgroundPlayerQuiz =
+    BackgoundPlayer("stations/map.mp3", soundVolume: 0.055);
 final backgroundPlayerMap = BackgoundPlayer("stations/map.mp3");
 
 late bool clickRight;
@@ -35,19 +37,17 @@ bool didAnswer = false;
 
 //        -----   FOR THE MAP   ----
 int maxLeavesOceanieStation =
-54; // OceaniaQuizzes(12 Questions) * 2 + Mini jeu 30
+    54; // OceaniaQuizzes(12 Questions) * 2 + Mini jeu 30
 int maxLeavesAsieStation = 48; // AsiaQuizzes(9 Questions) * 2 + Mini jeu 30
 int maxLeavesAfriqueStation =
-48; // AfriqueQuizzes (12 Questions) * 2 + Mini jeu 24
+    48; // AfriqueQuizzes (12 Questions) * 2 + Mini jeu 24
 int maxLeavesEuropeStation =
-60; // EuropeQuizzes (15 Questions) * 2 + Mini jeu 30
+    60; // EuropeQuizzes (15 Questions) * 2 + Mini jeu 30
 int maxLeavesAmeriqueNordStation =
-48; // Amerique de nord Quizzes (9 Questions) * 2 + Mini jeu 30
+    48; // Amerique de nord Quizzes (9 Questions) * 2 + Mini jeu 30
 int maxLeavesAmeriqueSudStation =
-54; // Amerique de sud Quizzes (12 Questions) * 2 + Mini jeu 30
+    54; // Amerique de sud Quizzes (12 Questions) * 2 + Mini jeu 30
 int maxLeavesTotal = 312;
-
-
 
 //        -----   FOR Oceania   ----
 List<String> listeGarbages = [
@@ -87,7 +87,6 @@ List<String> feu = [
   'assets/images/ameriqueSud/fire8.png',
   'assets/images/ameriqueSud/fire9.png',
 ];
-
 
 List<List<String>> listeGlobale = [
   [
@@ -158,7 +157,6 @@ List<List<String>> listeGlobale = [
   ],
 ];
 
-
 int max(int x, int y) => x > y ? x : y;
 
 //  ****************************************
@@ -168,7 +166,6 @@ int max(int x, int y) => x > y ? x : y;
 void dataUpdator(BuildContext context, StationProgress stationProgress,
     GameProgress gameProgress, int leaves, int stars) async {
   if (stars > gameProgress.stars) {
-
     //! Changes
     int previousStars = gameProgress.stars;
     gameProgress.stars = stars;
@@ -178,11 +175,11 @@ void dataUpdator(BuildContext context, StationProgress stationProgress,
     if (userProgress.currentStation == 5 &&
         (userProgress.stations[5].stars / 2 >= 2)) {
       //? If Last Game in the last station
-      if( 0< userProgress.leaves && userProgress.leaves <= 4){
+      if (0 < userProgress.leaves && userProgress.leaves <= 4) {
         userProgress.trophy = 1;
-      }else if( 104 < userProgress.leaves && userProgress.leaves <= 208 ){
+      } else if (104 < userProgress.leaves && userProgress.leaves <= 208) {
         userProgress.trophy = 2;
-      }else{
+      } else {
         userProgress.trophy = 3;
       }
     } else if (userProgress.currentStation < 5 &&
@@ -193,11 +190,12 @@ void dataUpdator(BuildContext context, StationProgress stationProgress,
   }
   if (gameProgress.leaves < leaves) {
     userProgress.leaves = userProgress.leaves - gameProgress.leaves + leaves;
-    stationProgress.leaves = stationProgress.leaves - gameProgress.leaves + leaves;
+    stationProgress.leaves =
+        stationProgress.leaves - gameProgress.leaves + leaves;
     gameProgress.leaves = leaves;
   }
-  userProgress.leaves += leaves;
-  stationProgress.leaves += leaves;
+  // userProgress.leaves += leaves;
+  // stationProgress.leaves += leaves;
 
   //! Updates
   LocalProgress.updateUser(userProgress);
@@ -215,21 +213,26 @@ class BlinkingStars extends StatefulWidget {
   @override
   _BlinkingStarsState createState() => _BlinkingStarsState();
 }
-class _BlinkingStarsState extends State<BlinkingStars> with SingleTickerProviderStateMixin {
+
+class _BlinkingStarsState extends State<BlinkingStars>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 40));
+    _controller =
+        AnimationController(vsync: this, duration: const Duration(seconds: 40));
     _animation = Tween<double>(begin: 0.8, end: 1).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.linear,
-    ))..addListener(() {
-      setState(() {});
-    });
+    ))
+      ..addListener(() {
+        setState(() {});
+      });
     _controller.repeat(reverse: true);
   }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -246,20 +249,20 @@ class _BlinkingStarsState extends State<BlinkingStars> with SingleTickerProvider
             child: const Icon(
               Icons.star,
               size: 25,
-              color: Color.fromRGBO(253,205,86,1),
+              color: Color.fromRGBO(253, 205, 86, 1),
             ),
           ),
         );
       }),
     );
   }
+
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
 }
-
 
 //              ----   2   ----
 
@@ -275,13 +278,13 @@ class _WinningAnimationState extends State<WinningAnimation> {
   final controller = ConfettiController();
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     controller.play();
   }
 
   @override
-  void dispose(){
+  void dispose() {
     controller.dispose();
     super.dispose();
   }
@@ -331,8 +334,6 @@ class _WinningAnimationState extends State<WinningAnimation> {
   }
 }
 
-
-
 //  ****************************************
 // **************** SOUNDS ******************
 //  ****************************************
@@ -347,7 +348,6 @@ void playQqs(sound) {
   );
   player.setVolume(0.8);
 }
-
 
 //              ----   2   ----
 
@@ -367,14 +367,18 @@ class BackgoundPlayer {
     await _audioPlayer.play(
       AssetSource('../assets/sounds/$_music'),
     );
-    (volume == null) ? _audioPlayer.setVolume(0.1) : _audioPlayer.setVolume(volume!);
+    (volume == null)
+        ? _audioPlayer.setVolume(0.1)
+        : _audioPlayer.setVolume(volume!);
     _audioPlayer.setReleaseMode(ReleaseMode.loop);
     isPlaying = true;
   }
+
   void stopMusic() async {
     await _audioPlayer.stop();
     isPlaying = false;
   }
+
   void toggleMusic() {
     if (isPlaying) {
       stopMusic();
@@ -382,6 +386,7 @@ class BackgoundPlayer {
       playMusic();
     }
   }
+
   void dispose() {
     _audioPlayer.dispose();
   }
@@ -399,31 +404,29 @@ void playDefi(sound) {
 
 void playSoundHelp(sound) {
   player.play(
-    AssetSource(
-        'sounds/help/$sound.mp3'
-    ),
+    AssetSource('sounds/help/$sound.mp3'),
   );
   player.setVolume(2.0);
 }
+
 void playSoundIndication(sound) {
   player.play(
     AssetSource(
       'sounds/indications/$sound.mp3',
-
     ),
   );
   player.setVolume(2.0);
 }
+
 void playSoundEncouragement(sound) {
   player.play(
     AssetSource(
       'sounds/felecitations/$sound.mp3',
-
     ),
   );
   player.setVolume(2.0);
 }
 
-IconData iconeTypeFunction(){
+IconData iconeTypeFunction() {
   return (kSound) ? Icons.music_note : Icons.music_off;
 }

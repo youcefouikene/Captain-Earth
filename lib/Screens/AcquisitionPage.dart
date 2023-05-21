@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_2cp/Screens/TrophyPage.dart';
 import 'package:projet_2cp/progress/progress.dart';
 import 'package:projet_2cp/constants.dart';
 import 'package:projet_2cp/settings.dart';
@@ -64,8 +65,8 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                           children: [
                             Container(
                               width: wid *
-                                  (userProgress.stations[0].leaves *
-                                      widthBloc /
+                                  243 *
+                                  (userProgress.stations[0].leaves /
                                       maxLeavesOceanieStation) /
                                   800,
                               height: het * 41 / 360,
@@ -107,8 +108,8 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                           children: [
                             Container(
                               width: (wid) *
-                                  (userProgress.stations[1].leaves *
-                                      widthBloc /
+                                  243 *
+                                  (userProgress.stations[1].leaves /
                                       maxLeavesAsieStation) /
                                   800,
                               height: het * 41 / 360,
@@ -375,7 +376,12 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TrophyPage()));
+                    },
                     icon: const Icon(Icons.emoji_events),
                     iconSize: MediaQuery.of(context).size.width * 29 / 800,
                     color: const Color.fromARGB(255, 255, 255, 255),

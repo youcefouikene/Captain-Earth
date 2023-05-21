@@ -88,6 +88,7 @@ class _WelcomePage1State extends State<WelcomePage1> {
                       ),
                       child: ElevatedButton(
                         onPressed: () async {
+                          print('object');
                           backgroundPlayerMap.stopMusic();
                           player1.stop();
                           WidgetsFlutterBinding.ensureInitialized();
@@ -98,6 +99,7 @@ class _WelcomePage1State extends State<WelcomePage1> {
                               userProgress.stars == 0) {
                             LocalProgress.addUser(userProgress);
                           }
+                          
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
