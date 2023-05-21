@@ -10,6 +10,4 @@ late GameProgress gameProgress;
 
 late List<StationCard> stations;
 
-// bool celebrateTrophie = false;
-// Widget celebration = SizedBox();
 late String unlockedTheme;

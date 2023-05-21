@@ -63,7 +63,7 @@ class _ClassementState extends State<Classement> {
                           height: het * 45 / 360,
                           decoration: BoxDecoration(
                               borderRadius:
-                                  BorderRadius.circular(wid * 14 / 800),
+                              BorderRadius.circular(wid * 14 / 800),
                               color: const Color.fromRGBO(244, 244, 244, 1),
                               border: Border.all(
                                 color: const Color.fromRGBO(19, 78, 73, 1),
@@ -146,7 +146,7 @@ class _ClassementState extends State<Classement> {
                           height: het * 45 / 360,
                           decoration: BoxDecoration(
                               borderRadius:
-                                  BorderRadius.circular(wid * 14 / 800),
+                              BorderRadius.circular(wid * 14 / 800),
                               color: const Color.fromRGBO(244, 244, 244, 1),
                               border: Border.all(
                                 color: const Color.fromRGBO(19, 78, 73, 1),
@@ -229,7 +229,7 @@ class _ClassementState extends State<Classement> {
                           height: het * 45 / 360,
                           decoration: BoxDecoration(
                               borderRadius:
-                                  BorderRadius.circular(wid * 14 / 800),
+                              BorderRadius.circular(wid * 14 / 800),
                               color: const Color.fromRGBO(244, 244, 244, 1),
                               border: Border.all(
                                 color: const Color.fromRGBO(19, 78, 73, 1),

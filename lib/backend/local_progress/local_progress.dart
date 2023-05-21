@@ -21,12 +21,12 @@ class LocalProgress {
     var dbDir = await getDatabasesPath();
     var dbPath = join(dbDir, "progress.db");
     var exist = await databaseExists(dbPath);
-    // if (!exist) {
+    if (!exist) {
       ByteData data = await rootBundle.load("assets/data/progress.db");
       List<int> bytes =
           data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
       await File(dbPath).writeAsBytes(bytes);
-    // }
+    }
     return await openDatabase(dbPath);
   }
 

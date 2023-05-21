@@ -25,7 +25,6 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 //                    ----------------------
 import 'backend/progress_controllers.dart';
 import 'backend/synchronization.dart';
-
 //                    ----------------------
 //                    ----------------------
 late UserProgress user;
@@ -43,6 +42,7 @@ void main() async {
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
   isConnected = await InternetConnectionChecker().hasConnection;
+
   kUser = prefs.getString('kUser') ?? 'guest';
   kLang = prefs.getString('kLang') ?? 'fr';
   kLogin = prefs.getBool('kLogin') ?? false;
@@ -52,7 +52,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  //! Online vs Local
+  // ! Online vs Local
   // ignore: unused_local_variable
   Future<UserProgress> online;
   Future<UserProgress> local;
@@ -113,15 +113,13 @@ class MyApp extends StatelessWidget {
         '/OceanieMiniJeu': (BuildContext context) => Oceanie_miniJeu(),
         '/AmeriqueSudMiniJeu': (BuildContext context) => Samerique_miniJeu(),
         '/EuropeMiniJeu': (BuildContext context) => ThrowGarbage(),
-        '/AmeriqueNordMiniJeu': (BuildContext context) =>
-            const FlipCardGame(Level.Medium),
+        '/AmeriqueNordMiniJeu': (BuildContext context) => const FlipCardGame(Level.Medium),
         '/AsieMiniJeu': (BuildContext context) => SearchWords(),
         '/QuizOceanie': (BuildContext context) => BigQuiz(continentNumber: 0),
         '/QuizAsie': (BuildContext context) => BigQuiz(continentNumber: 1),
         '/QuizAfrique': (BuildContext context) => BigQuiz(continentNumber: 2),
         '/QuizEurope': (BuildContext context) => BigQuiz(continentNumber: 3),
-        '/QuizAmeriqueNord': (BuildContext context) =>
-            BigQuiz(continentNumber: 4),
+        '/QuizAmeriqueNord': (BuildContext context) => BigQuiz(continentNumber: 4),
         '/QuizAmeriqueSud': (BuildContext context) =>
             BigQuiz(continentNumber: 5),
       },

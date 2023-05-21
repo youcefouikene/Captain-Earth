@@ -1,3 +1,5 @@
+import 'package:projet_2cp/progress/progress.dart';
+
 import './local_progress/local_progress.dart';
 import './progress_controllers.dart';
 
@@ -13,7 +15,6 @@ Future<UserProgress> getSQFLite(String playerName) async {
   localStations = await t;
   localUser.stations = localStations;
   localUser.sortStations();
-
   for (int currentStation= 0; currentStation < localStations.length; currentStation++) {
     Future<List<GameProgress>> g = LocalProgress.getGames(playerName, currentStation);
     localGames = await g;
