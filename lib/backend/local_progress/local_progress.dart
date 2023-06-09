@@ -153,6 +153,17 @@ class LocalProgress {
         "UPDATE Users SET avatar = '${userProgress.avatar}', trophy = '${userProgress.trophy}', leaves = '${userProgress.leaves}', stars = '${userProgress.stars}', currentStation = '${userProgress.currentStation}' WHERE playerName = '${userProgress.playerName}'");
   }
 
+  static void updateAvatar(String playerName, int avatarNumber) async {
+    _progress = await getProgress();
+    _progress.execute(
+        "UPDATE Users SET avatar = '${avatarNumber}' WHERE playerName = '${playerName}'");
+  }
+  static void updateName(String playerName, String email) async {
+    _progress = await getProgress();
+    _progress.execute(
+        "UPDATE Users SET email = '${email}' WHERE playerName = '${playerName}'");
+  }
+
   static void updateCurrentStation(StationProgress stationProgress) async {
     _progress = await getProgress();
     _progress.execute(

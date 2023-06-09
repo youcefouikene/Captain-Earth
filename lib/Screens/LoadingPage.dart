@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projet_2cp/auth/inscrire.dart';
 import 'dart:async';
 
 import 'package:projet_2cp/widgets.dart';

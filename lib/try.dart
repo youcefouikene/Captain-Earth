@@ -13,6 +13,9 @@ import 'package:projet_2cp/Widgets/PointBar.dart';
 import 'package:projet_2cp/constants.dart';
 import 'package:projet_2cp/settings.dart';
 
+import 'backend/progress_controllers.dart';
+import 'backend/synchronization.dart';
+
 class tryi extends StatefulWidget {
   tryi({Key? key}) : super(key: key);
 
@@ -137,14 +140,18 @@ class _tryiState extends State<tryi> {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {
+                      onPressed: () async{
+                        Future<UserProgress> userProgressUpdate = getSQFLite("guest");
+                        userProgress = await userProgressUpdate;
+                        print('AVATAR  : ${userProgress.avatar}');
+                        print('NAME    : ${userProgress.email}');
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Profil(
-                                    username: userProgress.playerName,
+                                    username: userProgress.email,
                                     pathPhoto:
-                                    "assets/images/player_avatars/avatar${userProgress.avatar + 1}.png")));
+                                        "assets/images/player_avatars/avatar${userProgress.avatar}.png")));
                       },
                       icon: const Icon(Icons.person),
                       iconSize: MediaQuery.of(context).size.width * (30 / 800),
@@ -263,8 +270,8 @@ class _StationCartState extends State<StationCart> {
               size: Size(
                   MediaQuery.of(context).size.width * widget.widthPercentage,
                   (MediaQuery.of(context).size.width *
-                      widget.widthPercentage *
-                      1.0714285714285714)
+                          widget.widthPercentage *
+                          1.0714285714285714)
                       .toDouble()),
               painter: UnlockedFirstStation(
                   nbrStarsObtained: widget.station.stationProgress.stars ~/ 2),
@@ -282,8 +289,8 @@ class _StationCartState extends State<StationCart> {
               size: Size(
                   MediaQuery.of(context).size.width * widget.widthPercentage,
                   (MediaQuery.of(context).size.width *
-                      widget.widthPercentage *
-                      1.0714285714285714)
+                          widget.widthPercentage *
+                          1.0714285714285714)
                       .toDouble()),
               painter: UnlockedSecondStation(
                   nbrStarsObtained: widget.station.stationProgress.stars ~/ 2),
@@ -301,8 +308,8 @@ class _StationCartState extends State<StationCart> {
               size: Size(
                   MediaQuery.of(context).size.width * widget.widthPercentage,
                   (MediaQuery.of(context).size.width *
-                      widget.widthPercentage *
-                      1.0714285714285714)
+                          widget.widthPercentage *
+                          1.0714285714285714)
                       .toDouble()),
               painter: UnlockedThirdStation(
                   nbrStarsObtained: widget.station.stationProgress.stars ~/ 2),
@@ -320,8 +327,8 @@ class _StationCartState extends State<StationCart> {
               size: Size(
                   MediaQuery.of(context).size.width * widget.widthPercentage,
                   (MediaQuery.of(context).size.width *
-                      widget.widthPercentage *
-                      1.0714285714285714)
+                          widget.widthPercentage *
+                          1.0714285714285714)
                       .toDouble()),
               painter: UnlockedFourthStation(
                   nbrStarsObtained: widget.station.stationProgress.stars ~/ 2),
@@ -339,8 +346,8 @@ class _StationCartState extends State<StationCart> {
               size: Size(
                   MediaQuery.of(context).size.width * widget.widthPercentage,
                   (MediaQuery.of(context).size.width *
-                      widget.widthPercentage *
-                      1.0714285714285714)
+                          widget.widthPercentage *
+                          1.0714285714285714)
                       .toDouble()),
               painter: UnlockedFifthStation(
                   nbrStarsObtained: widget.station.stationProgress.stars ~/ 2),
@@ -358,8 +365,8 @@ class _StationCartState extends State<StationCart> {
               size: Size(
                   MediaQuery.of(context).size.width * widget.widthPercentage,
                   (MediaQuery.of(context).size.width *
-                      widget.widthPercentage *
-                      1.0714285714285714)
+                          widget.widthPercentage *
+                          1.0714285714285714)
                       .toDouble()),
               painter: UnlockedSixthStation(
                   nbrStarsObtained: widget.station.stationProgress.stars ~/ 2),
@@ -372,8 +379,8 @@ class _StationCartState extends State<StationCart> {
             size: Size(
                 MediaQuery.of(context).size.width * widget.widthPercentage,
                 (MediaQuery.of(context).size.width *
-                    widget.widthPercentage *
-                    1.0714285714285714)
+                        widget.widthPercentage *
+                        1.0714285714285714)
                     .toDouble()),
             painter: LockedContinent(),
           ));

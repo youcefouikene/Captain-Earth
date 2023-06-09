@@ -163,7 +163,7 @@ class _ProfilState extends State<Profil> {
               ),
               // )
             ),
-            Positioned(
+            /*Positioned(
               right: wid * (70 / 800),
               top: het * (50 / 360),
               child: Stack(alignment: Alignment.center, children: [
@@ -186,7 +186,7 @@ class _ProfilState extends State<Profil> {
                   color: const Color.fromARGB(255, 255, 255, 255),
                 ),
               ]),
-            ),
+            ),*/
             Positioned(
                 left: wid * (136 / 800),
                 top: het * (72 / 360),
@@ -320,7 +320,7 @@ class _ProfilState extends State<Profil> {
                             );
                           },
                           child: Text(
-                            " Acquesition",
+                            " Acquisition",
                             style: TextStyle(
                               fontFamily: 'Atma',
                               fontSize: wid * (24 / 800),
@@ -349,7 +349,7 @@ class _ProfilState extends State<Profil> {
                             );
                           },
                           child: Text(
-                            " Défi",
+                            " Défis",
                             style: TextStyle(
                               fontFamily: 'Atma',
                               fontSize: wid * (24 / 800),

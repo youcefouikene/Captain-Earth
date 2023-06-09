@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:projet_2cp/widgets.dart';
+import 'auth/inscrire.dart';
+import 'widgets.dart';
+import 'package:provider/provider.dart';
 import 'Screens/LoadingPage.dart';
 import 'Screens/MiniJeux/AmeriqueNordMiniJeu/dataAmerique.dart';
 import 'Screens/MiniJeux/AsieMiniJeu/SearchWords.dart';
@@ -12,6 +14,7 @@ import 'Screens/WelcomeStationPage.dart';
 import 'Screens/MiniJeux/AfriqueMiniJeu.dart';
 import 'Screens/MiniJeux/throw_garbage.dart';
 import 'Screens/MiniJeux/AmeriqueDuSudMiniJeu.dart';
+import 'auth/google_sign_in.dart';
 import 'settings.dart';
 //                    ----------------------
 //                    ----------------------
@@ -25,6 +28,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 //                    ----------------------
 import 'backend/progress_controllers.dart';
 import 'backend/synchronization.dart';
+
 //                    ----------------------
 //                    ----------------------
 late UserProgress user;
@@ -34,6 +38,7 @@ late bool isConnected;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.landscapeRight, DeviceOrientation.landscapeLeft]);
   if (Platform.isAndroid) {
@@ -48,9 +53,9 @@ void main() async {
   kLogin = prefs.getBool('kLogin') ?? false;
   kSound = prefs.getBool('kSound') ?? true;
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
 
   // ! Online vs Local
   // ignore: unused_local_variable
@@ -102,27 +107,33 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: LoadingPage(),
+    return ChangeNotifierProvider(
+      create: (context) => GoogleSignInProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: LoadingPage(),
+          //body: BigQuiz(continentNumber: 0),
+        ),
+        routes: <String, WidgetBuilder>{
+          '/WelcomeStation': (BuildContext context) => WelcomePage(),
+          '/AfriqueMiniJeu': (BuildContext context) => AfriqueMiniJeu(),
+          '/OceanieMiniJeu': (BuildContext context) => Oceanie_miniJeu(),
+          '/AmeriqueSudMiniJeu': (BuildContext context) => Samerique_miniJeu(),
+          '/EuropeMiniJeu': (BuildContext context) => ThrowGarbage(),
+          '/AmeriqueNordMiniJeu': (BuildContext context) =>
+              const FlipCardGame(Level.Medium),
+          '/AsieMiniJeu': (BuildContext context) => SearchWords(),
+          '/QuizOceanie': (BuildContext context) => BigQuiz(continentNumber: 0),
+          '/QuizAsie': (BuildContext context) => BigQuiz(continentNumber: 1),
+          '/QuizAfrique': (BuildContext context) => BigQuiz(continentNumber: 2),
+          '/QuizEurope': (BuildContext context) => BigQuiz(continentNumber: 3),
+          '/QuizAmeriqueNord': (BuildContext context) =>
+              BigQuiz(continentNumber: 4),
+          '/QuizAmeriqueSud': (BuildContext context) =>
+              BigQuiz(continentNumber: 5),
+        },
       ),
-      routes: <String, WidgetBuilder>{
-        '/WelcomeStation': (BuildContext context) => WelcomePage(),
-        '/AfriqueMiniJeu': (BuildContext context) => AfriqueMiniJeu(),
-        '/OceanieMiniJeu': (BuildContext context) => Oceanie_miniJeu(),
-        '/AmeriqueSudMiniJeu': (BuildContext context) => Samerique_miniJeu(),
-        '/EuropeMiniJeu': (BuildContext context) => ThrowGarbage(),
-        '/AmeriqueNordMiniJeu': (BuildContext context) => const FlipCardGame(Level.Medium),
-        '/AsieMiniJeu': (BuildContext context) => SearchWords(),
-        '/QuizOceanie': (BuildContext context) => BigQuiz(continentNumber: 0),
-        '/QuizAsie': (BuildContext context) => BigQuiz(continentNumber: 1),
-        '/QuizAfrique': (BuildContext context) => BigQuiz(continentNumber: 2),
-        '/QuizEurope': (BuildContext context) => BigQuiz(continentNumber: 3),
-        '/QuizAmeriqueNord': (BuildContext context) => BigQuiz(continentNumber: 4),
-        '/QuizAmeriqueSud': (BuildContext context) =>
-            BigQuiz(continentNumber: 5),
-      },
     );
   }
 }

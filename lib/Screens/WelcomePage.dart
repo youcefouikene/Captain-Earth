@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:projet_2cp/auth/google_sign_in.dart';
+import 'package:provider/provider.dart';
 import '../Widgets/StartBox.dart';
 import '../try.dart';
+import 'PoursuivrePage.dart';
+import 'Profil/AjouterProfilPage.dart';
 import 'Profil/ChoisirProfilPage.dart';
 import '../settings.dart';
 import '../progress/progress.dart';
@@ -26,7 +31,6 @@ class _WelcomePage1State extends State<WelcomePage1> {
     AudioPlayer player1 = AudioPlayer();
     @override
     void initState() {
-      // TODO: implement initState
       super.initState();
       player1.play(
         AssetSource('assets/sounds/stations/map.mp3'),
@@ -88,16 +92,22 @@ class _WelcomePage1State extends State<WelcomePage1> {
                     child: ElevatedButton(
                       onPressed: () async {
                         backgroundPlayerMap.stopMusic();
-                        player1.stop();
+                        player1.dispose();
                         WidgetsFlutterBinding.ensureInitialized();
                         kUser = 'guest';
                         Future<UserProgress> g = getSQFLite('guest');
                         userProgress = await g;
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => tryi(),
-                            ));
+                        (userProgress.leaves != 0)
+                            ? Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => PoursuivrePage(),
+                                ))
+                            : Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AjouterProfil(),
+                                ));
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xffE84560),
@@ -133,11 +143,10 @@ class _WelcomePage1State extends State<WelcomePage1> {
                       onPressed: () {
                         backgroundPlayerMap.stopMusic();
                         player1.stop();
-                        Navigator.push(
+                        /*final provider = Provider.of<GoogleSignInProvider>(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => ChoisirProfil(),
-                            ));
+                            listen: false);
+                        provider.googleLogIn();*/
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xffE84560),

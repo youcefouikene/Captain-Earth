@@ -16,11 +16,11 @@ class helpPage extends StatefulWidget {
 class _helpPageState extends State<helpPage> {
   List<String> listeIndication = [
     'Appuyez sur les dechets pour\nnettoyer l\'ocean et sauver\nles poissons',
-    'Trouvez le mots ',
+    'Reliez les lettres correspondantes aux mots de la liste présente',
     'Parmi les trois animaux selectionner celui qui est en voie de disparition afin de sauver le pauvre animal',
     'rien',
-    'Pour chaque carte, sélectionnez celle\nqui lui ressemble',
-    'Éteignez le feu en\nappuyant dessus pour sauver\nla forêt.',
+    'Pour chaque carte, sélectionnez celle\nqui la ressemble',
+    'Appuyez sur le feu pour l\'éteignez\net sauver\nla forêt',
   ];
   List<String> listeIndicationSound = [
     'Station1',

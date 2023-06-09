@@ -321,6 +321,7 @@ class _AcquisitionPageState extends State<AcquisitionPage> {
               child: Row(
                 children: [
                   Stack(
+                    alignment: Alignment.centerLeft,
                     children: [
                       Container(
                         width: wid * 584 / 800,

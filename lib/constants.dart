@@ -27,6 +27,11 @@ final backgroundPlayerQuiz =
     BackgoundPlayer("stations/map.mp3", soundVolume: 0.055);
 final backgroundPlayerMap = BackgoundPlayer("stations/map.mp3");
 
+// allons-y
+//final allonsYSound = BackgoundPlayer("indications/...");
+
+//---------------------
+
 late bool clickRight;
 List<int> choices = [0, 1, 2, 3];
 bool didAnswer = false;
@@ -340,14 +345,31 @@ class _WinningAnimationState extends State<WinningAnimation> {
 
 //              ----   1   ----
 
-void playQqs(sound) {
-  player.play(
-    AssetSource(
-      'sounds/questions/$sound.mp3',
-    ),
-  );
-  player.setVolume(0.8);
+void playQqs(soundQuestion, soundOne, soundTwo, soundThree, soundFour) {
+  player.play(AssetSource('sounds/questions/$soundQuestion.mp3')).then((_) {
+    player.setVolume(0.8);
+    player.onPlayerComplete.first.then((_) {
+      player.play(AssetSource('sounds/questions/propositionsQuestion/$soundOne.mp3'));
+      player.setVolume(0.8);
+    }).then((_) {
+      player.onPlayerComplete.first.then((_) {
+        player.play(AssetSource('sounds/questions/propositionsQuestion/$soundTwo.mp3'));
+        player.setVolume(0.8);
+      }).then((_) {
+        player.onPlayerComplete.first.then((_) {
+          player.play(AssetSource('sounds/questions/propositionsQuestion/$soundThree.mp3'));
+          player.setVolume(0.8);
+        }).then((_) {
+          player.onPlayerComplete.first.then((_) {
+            player.play(AssetSource('sounds/questions/propositionsQuestion/$soundFour.mp3'));
+            player.setVolume(0.8);
+          });
+        });
+      });
+    });
+  });
 }
+
 
 //              ----   2   ----
 
@@ -391,6 +413,50 @@ class BackgoundPlayer {
     _audioPlayer.dispose();
   }
 }
+
+//              --- player of Allons-y  ---
+
+class AllonsyPlayer {
+  late AudioPlayer _audioPlayer;
+  bool isPlaying = false;
+  late String _music;
+  double? volume;
+
+  AllonsyPlayer(String backgroundMusic, {double? soundVolume}) {
+    _audioPlayer = AudioPlayer();
+    playMusic();
+    _music = backgroundMusic;
+    volume = soundVolume;
+  }
+  void playMusic() async {
+    await _audioPlayer.play(
+      AssetSource('../assets/sounds/$_music'),
+    );
+    (volume == null)
+        ? _audioPlayer.setVolume(2.0)
+        : _audioPlayer.setVolume(volume!);
+    // isPlaying = true;
+  }
+
+  void stopMusic() async {
+    await _audioPlayer.stop();
+    //isPlaying = false;
+  }
+
+  void toggleMusic() {
+    if (isPlaying) {
+      stopMusic();
+    } else {
+      playMusic();
+    }
+  }
+
+  void dispose() {
+    _audioPlayer.dispose();
+  }
+}
+
+
 //              ----   3   ----
 
 void playDefi(sound) {

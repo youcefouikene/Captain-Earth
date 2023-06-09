@@ -6,6 +6,7 @@ import '../EndGamePage.dart';
 import 'package:projet_2cp/backend/progress_controllers.dart';
 import 'package:projet_2cp/constants.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:projet_2cp/constants.dart';
 import 'package:projet_2cp/settings.dart';
 
 List<Question> qqsBank = [];
@@ -64,6 +65,7 @@ class _BigQuizState extends State<BigQuiz> {
 
   @override
   Widget build(BuildContext context) {
+    //playLoopedAudio('assets/sounds/stations/station_1.mp3');
     return Quiz(
       continentNumber: widget.continentNumber,
       userProgress: userProgress,
@@ -248,10 +250,19 @@ class _QuizState extends State<Quiz> {
   @override
   Widget build(BuildContext context) {
     String background;
+    List<String> listeProposition = [
+      "${widget.continentNumber}${currentQqs}R",
+      "${widget.continentNumber}${currentQqs}1",
+      "${widget.continentNumber}${currentQqs}2",
+      "${widget.continentNumber}${currentQqs}3"
+    ];
     if (clickRight) {
       playQqs(
-        'quiz/question${widget.continentNumber + 1}_${currentQqs + 1}',
-      );
+          'quiz/question${widget.continentNumber + 1}_${currentQqs + 1}',
+          listeProposition[choices[0]],
+          listeProposition[choices[1]],
+          listeProposition[choices[2]],
+          listeProposition[choices[3]]);
     }
     if (widget.continentNumber == 0) {
       background = 'assets/images/oceanie/Background_Ocean_1.png';
@@ -267,179 +278,209 @@ class _QuizState extends State<Quiz> {
       background = 'assets/images/ameriqueSud/Background_SouthAmerica_1.png';
     }
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(background),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              top: MediaQuery.of(context).size.height * (30 / 360),
-              left: MediaQuery.of(context).size.width * (29 / 800),
-              child: Column(
-                children: [
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width * (39 / 800),
-                        height:
-                            MediaQuery.of(context).size.width * (39 / 800),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: const Color(0xFFE84560),
-                          border: Border.all(
-                            color: const Color(0xff752683),
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          if(kSound){
-                            setState(() {
-                              kSound = false;
-                              backgroundPlayerQuiz.stopMusic();
-                            });
-                          }else{
-                            setState(() {
-                              kSound = true;
-                              backgroundPlayerQuiz.playMusic();
-                            });
-                          }
-                        },
-                        icon: Icon(iconeTypeFunction()),
-                        iconSize:
-                            MediaQuery.of(context).size.width * (25 / 800),
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * (5 / 360),
-                  ),
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width * (40 / 800),
-                        height:
-                            MediaQuery.of(context).size.width * (40 / 800),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: const Color(0xFFE84560),
-                          border: Border.all(
-                            color: const Color(0xff752683),
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          backgroundPlayerQuiz.stopMusic();
-                          backgroundPlayerMap.playMusic();
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(Icons.close_rounded),
-                        iconSize:
-                            MediaQuery.of(context).size.width * (30 / 800),
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+      body: SafeArea(
+        child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(background),
+              fit: BoxFit.cover,
             ),
-            Positioned(
-                left: MediaQuery.of(context).size.width * 0.418,
-                top: MediaQuery.of(context).size.height * 0.06,
-                child: PointBar(score: score)),
-            Center(
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+          ),
+          child: Stack(
+            children: [
+              Positioned(
+                top: MediaQuery.of(context).size.height * (30 / 360),
+                left: MediaQuery.of(context).size.width * (29 / 800),
+                child: Column(
                   children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * (99 / 360),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    Stack(
+                      alignment: Alignment.center,
                       children: [
-                        QuestionBox(
-                          question: currentQqs,
-                          continentNumber: widget.continentNumber,
-                          pourcentage1: (213 / 800),
-                          pourcentage2: (217 / 360),
-                          pourcentage3: 0.10125,
+                        Container(
+                          width: MediaQuery.of(context).size.width * (39 / 800),
+                          height:
+                              MediaQuery.of(context).size.width * (39 / 800),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: const Color(0xFFE84560),
+                            border: Border.all(
+                              color: const Color(0xff752683),
+                              width: 2,
+                            ),
+                          ),
                         ),
-                        Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              QuizOption(
-                                answerQqs: answerQqs,
-                                findRightAnswer: findRightAnswer,
-                                question: currentQqs,
-                                choice: choices[0],
-                                changeScore: incrementScore,
-                                changeQuestion: changeQuestion,
-                                endGame: endGame,
-                                pourcentage1: 0.395,
-                                pourcentage2: 0.111111,
-                                pourcentage3: (15 / 360),
-                                pourcentageFont: 0.02,
-                                pourcentageRaduis: 0.01875,
-                              ),
-                              QuizOption(
-                                answerQqs: answerQqs,
-                                findRightAnswer: findRightAnswer,
-                                question: currentQqs,
-                                choice: choices[1],
-                                changeScore: incrementScore,
-                                changeQuestion: changeQuestion,
-                                endGame: endGame,
-                                pourcentage1: 0.395,
-                                pourcentage2: 0.111111,
-                                pourcentage3: (15 / 360),
-                                pourcentageFont: 0.02,
-                                pourcentageRaduis: 0.01875,
-                              ),
-                              QuizOption(
-                                answerQqs: answerQqs,
-                                findRightAnswer: findRightAnswer,
-                                question: currentQqs,
-                                choice: choices[2],
-                                changeScore: incrementScore,
-                                changeQuestion: changeQuestion,
-                                endGame: endGame,
-                                pourcentage1: 0.395,
-                                pourcentage2: 0.111111,
-                                pourcentage3: (15 / 360),
-                                pourcentageFont: 0.02,
-                                pourcentageRaduis: 0.01875,
-                              ),
-                              QuizOption(
-                                answerQqs: answerQqs,
-                                findRightAnswer: findRightAnswer,
-                                question: currentQqs,
-                                choice: choices[3],
-                                changeScore: incrementScore,
-                                changeQuestion: changeQuestion,
-                                endGame: endGame,
-                                pourcentage1: 0.395,
-                                pourcentage2: 0.111111,
-                                pourcentage3: 0,
-                                pourcentageFont: 0.02,
-                                pourcentageRaduis: 0.01875,
-                              ),
-                            ]),
+                        IconButton(
+                          onPressed: () {
+                            if (kSound) {
+                              setState(() {
+                                kSound = false;
+                                backgroundPlayerQuiz.stopMusic();
+                              });
+                            } else {
+                              setState(() {
+                                kSound = true;
+                                backgroundPlayerQuiz.playMusic();
+                              });
+                            }
+                          },
+                          icon: Icon(iconeTypeFunction()),
+                          iconSize:
+                              MediaQuery.of(context).size.width * (25 / 800),
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                        ),
                       ],
                     ),
-                  ]),
-            ),
-          ],
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * (5 / 360),
+                    ),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width * (40 / 800),
+                          height:
+                              MediaQuery.of(context).size.width * (40 / 800),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: const Color(0xFFE84560),
+                            border: Border.all(
+                              color: const Color(0xff752683),
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            player.stop();
+                            backgroundPlayerQuiz.stopMusic();
+                            backgroundPlayerMap.playMusic();
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(Icons.close_rounded),
+                          iconSize:
+                              MediaQuery.of(context).size.width * (30 / 800),
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                  left: MediaQuery.of(context).size.width * 0.418,
+                  top: MediaQuery.of(context).size.height * 0.06,
+                  child: PointBar(score: score)),
+              Positioned(
+                left: MediaQuery.of(context).size.width * (638 / 800),
+                top: MediaQuery.of(context).size.height * (28 / 360),
+                child: Container(
+                  height: MediaQuery.of(context).size.height * (36 / 360),
+                  width: MediaQuery.of(context).size.width * (96 / 800),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(36.5),
+                    border: Border.all(
+                      color: const Color.fromRGBO(19, 86, 23, 1),
+                      width: 3,
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      "${qqsBank[currentQqs].number + 1} / ${qqsBank.length}", //qqsBank[currentQqs].number+1
+                      style: TextStyle(
+                        fontFamily: 'Atma',
+                        fontWeight: FontWeight.w600,
+                        fontSize: MediaQuery.of(context).size.width * 0.025,
+                        color: const Color.fromARGB(255, 0, 0, 0),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Center(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * (99 / 360),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          QuestionBox(
+                            question: currentQqs,
+                            continentNumber: widget.continentNumber,
+                            pourcentage1: (213 / 800),
+                            pourcentage2: (217 / 360),
+                            pourcentage3: 0.10125,
+                          ),
+                          Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                QuizOption(
+                                  answerQqs: answerQqs,
+                                  findRightAnswer: findRightAnswer,
+                                  question: currentQqs,
+                                  choice: choices[0],
+                                  changeScore: incrementScore,
+                                  changeQuestion: changeQuestion,
+                                  endGame: endGame,
+                                  pourcentage1: 0.395,
+                                  pourcentage2: 0.111111,
+                                  pourcentage3: (15 / 360),
+                                  pourcentageFont: 0.02,
+                                  pourcentageRaduis: 0.01875,
+                                ),
+                                QuizOption(
+                                  answerQqs: answerQqs,
+                                  findRightAnswer: findRightAnswer,
+                                  question: currentQqs,
+                                  choice: choices[1],
+                                  changeScore: incrementScore,
+                                  changeQuestion: changeQuestion,
+                                  endGame: endGame,
+                                  pourcentage1: 0.395,
+                                  pourcentage2: 0.111111,
+                                  pourcentage3: (15 / 360),
+                                  pourcentageFont: 0.02,
+                                  pourcentageRaduis: 0.01875,
+                                ),
+                                QuizOption(
+                                  answerQqs: answerQqs,
+                                  findRightAnswer: findRightAnswer,
+                                  question: currentQqs,
+                                  choice: choices[2],
+                                  changeScore: incrementScore,
+                                  changeQuestion: changeQuestion,
+                                  endGame: endGame,
+                                  pourcentage1: 0.395,
+                                  pourcentage2: 0.111111,
+                                  pourcentage3: (15 / 360),
+                                  pourcentageFont: 0.02,
+                                  pourcentageRaduis: 0.01875,
+                                ),
+                                QuizOption(
+                                  answerQqs: answerQqs,
+                                  findRightAnswer: findRightAnswer,
+                                  question: currentQqs,
+                                  choice: choices[3],
+                                  changeScore: incrementScore,
+                                  changeQuestion: changeQuestion,
+                                  endGame: endGame,
+                                  pourcentage1: 0.395,
+                                  pourcentage2: 0.111111,
+                                  pourcentage3: 0,
+                                  pourcentageFont: 0.02,
+                                  pourcentageRaduis: 0.01875,
+                                ),
+                              ]),
+                        ],
+                      ),
+                    ]),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -467,11 +508,7 @@ class QuestionBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        playQqs(
-          "question${continentNumber}_${question + 1}",
-        );
-      },
+      onTap: () {},
       child: Container(
         margin: EdgeInsets.only(
             right: MediaQuery.of(context).size.width * pourcentage3),

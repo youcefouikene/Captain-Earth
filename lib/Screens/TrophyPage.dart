@@ -6,6 +6,8 @@ import 'package:projet_2cp/constants.dart';
 import 'package:projet_2cp/progress/progress.dart';
 import 'package:projet_2cp/settings.dart';
 
+import 'TrophyFirst.dart';
+
 class TrophyPage extends StatefulWidget {
   TrophyPage({super.key});
 
@@ -45,124 +47,130 @@ class _TrophyPageState extends State<TrophyPage> {
   Widget build(BuildContext context) {
     double wid = MediaQuery.of(context).size.width;
     double het = MediaQuery.of(context).size.height;
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(158, 231, 251, 1),
-      body: Stack(children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(
-                      "Félicitations",
-                      style: TextStyle(
-                        color: const Color(0xff135617),
-                        fontFamily: "Atma",
-                        fontSize: wid * 46 / 800,
-                        fontWeight: FontWeight.w700,
+    return (userProgress.trophy == 0)
+        ? TrophyFirst()
+        : Scaffold(
+            backgroundColor: const Color.fromRGBO(158, 231, 251, 1),
+            body: Stack(children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            "Félicitations",
+                            style: TextStyle(
+                              color: const Color(0xff135617),
+                              fontFamily: "Atma",
+                              fontSize: wid * 46 / 800,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          Image.asset(
+                            trophes[userProgress.trophy],
+                            width: wid * 172 / 800,
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ],
                       ),
+                      SizedBox(
+                        width: wid * 0 / 800,
+                      ),
+                      Image.asset(
+                        'assets/images/avatar/Captain_jumping.png',
+                        width: wid * 240 / 800,
+                        fit: BoxFit.fitWidth,
+                      ),
+                      SizedBox(
+                        width: wid * 34 / 800,
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              Positioned(
+                top: MediaQuery.of(context).size.height * (30 / 360),
+                left: MediaQuery.of(context).size.width * (29 / 800),
+                child: Column(
+                  children: [
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width * (39 / 800),
+                          height:
+                              MediaQuery.of(context).size.width * (39 / 800),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: const Color(0xFFE84560),
+                            border: Border.all(
+                              color: const Color(0xff752683),
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            if (kSound) {
+                              setState(() {
+                                kSound = false;
+                                backgroundPlayerMap.stopMusic();
+                              });
+                            } else {
+                              setState(() {
+                                kSound = true;
+                                backgroundPlayerMap.playMusic();
+                              });
+                            }
+                          },
+                          icon: Icon(iconeTypeFunction()),
+                          iconSize:
+                              MediaQuery.of(context).size.width * (25 / 800),
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      ],
                     ),
-                    Image.asset(
-                      trophes[userProgress.trophy],
-                      width: wid * 172 / 800,
-                      fit: BoxFit.fitWidth,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * (5 / 360),
+                    ),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width * (40 / 800),
+                          height:
+                              MediaQuery.of(context).size.width * (40 / 800),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: const Color(0xFFE84560),
+                            border: Border.all(
+                              color: const Color(0xff752683),
+                              width: 2,
+                            ),
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            backgroundPlayerMap.stopMusic();
+                            backgroundPlayerMap.playMusic();
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(Icons.close_rounded),
+                          iconSize:
+                              MediaQuery.of(context).size.width * (30 / 800),
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                SizedBox(
-                  width: wid * 0 / 800,
-                ),
-                Image.asset(
-                  'assets/images/avatar/Captain_jumping.png',
-                  width: wid * 240 / 800,
-                  fit: BoxFit.fitWidth,
-                ),
-                SizedBox(
-                  width: wid * 34 / 800,
-                )
-              ],
-            ),
-          ],
-        ),
-        Positioned(
-          top: MediaQuery.of(context).size.height * (30 / 360),
-          left: MediaQuery.of(context).size.width * (29 / 800),
-          child: Column(
-            children: [
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width * (39 / 800),
-                    height: MediaQuery.of(context).size.width * (39 / 800),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: const Color(0xFFE84560),
-                      border: Border.all(
-                        color: const Color(0xff752683),
-                        width: 2,
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      if (kSound) {
-                        setState(() {
-                          kSound = false;
-                          backgroundPlayerMap.stopMusic();
-                        });
-                      } else {
-                        setState(() {
-                          kSound = true;
-                          backgroundPlayerMap.playMusic();
-                        });
-                      }
-                    },
-                    icon: Icon(iconeTypeFunction()),
-                    iconSize: MediaQuery.of(context).size.width * (25 / 800),
-                    color: const Color.fromARGB(255, 255, 255, 255),
-                  ),
-                ],
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * (5 / 360),
-              ),
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width * (40 / 800),
-                    height: MediaQuery.of(context).size.width * (40 / 800),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: const Color(0xFFE84560),
-                      border: Border.all(
-                        color: const Color(0xff752683),
-                        width: 2,
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      backgroundPlayerMap.stopMusic();
-                      backgroundPlayerMap.playMusic();
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.close_rounded),
-                    iconSize: MediaQuery.of(context).size.width * (30 / 800),
-                    color: const Color.fromARGB(255, 255, 255, 255),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        if (userProgress.trophy != 0) const WinningAnimation(),
-      ]),
-    );
+              if (userProgress.trophy != 0) const WinningAnimation(),
+            ]),
+          );
   }
 }

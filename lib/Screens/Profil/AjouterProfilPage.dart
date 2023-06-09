@@ -240,6 +240,10 @@
 //   }
 // }
 import 'package:flutter/material.dart';
+import '../../backend/local_progress/local_progress.dart';
+import '../../backend/progress_controllers.dart';
+import '../../backend/synchronization.dart';
+import '../../constants.dart';
 import 'ChoseAvatar.dart';
 
 class AjouterProfil extends StatefulWidget {
@@ -254,6 +258,12 @@ class _AjouterProfilState extends State<AjouterProfil> {
   final TextEditingController _nameController = TextEditingController();
   bool isLoading = false;
   String userName = '';
+  @override
+  void initState() {
+    super.initState();
+    //loadStations();
+    backgroundPlayerMap.playMusic();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -284,9 +294,9 @@ class _AjouterProfilState extends State<AjouterProfil> {
                       height: MediaQuery.of(context).size.width * (39 / 800),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Color(0xFFE84560),
+                        color: const Color(0xFFE84560),
                         border: Border.all(
-                          color: Color(0xff752683),
+                          color: const Color(0xff752683),
                           width: 2,
                         ),
                       ),
@@ -303,7 +313,7 @@ class _AjouterProfilState extends State<AjouterProfil> {
                       },
                       icon: Icon(_icone),
                       iconSize: MediaQuery.of(context).size.width * (20 / 800),
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      color: const Color.fromARGB(255, 255, 255, 255),
                     ),
                   ],
                 )),
@@ -410,8 +420,8 @@ class _AjouterProfilState extends State<AjouterProfil> {
                           ),
                           borderRadius: BorderRadius.circular((9 / 800) * wid),
                         ),
-                        hintText: 'Prénom de votre enfant',
-                        hintStyle: TextStyle(
+                        hintText: 'Prénom de l\'enfant',
+                        hintStyle: const TextStyle(
                           fontFamily: 'Atma',
                           color: Color.fromRGBO(74, 72, 72, 1),
                           fontSize: (19 / 16) * 16,
@@ -430,7 +440,7 @@ class _AjouterProfilState extends State<AjouterProfil> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Prénom de votre enfant ';
+                          return 'Prénom de l\'enfant';
                         }
                         return null;
                       },
@@ -455,6 +465,9 @@ class _AjouterProfilState extends State<AjouterProfil> {
                   onPressed: () {
                     setState(() {
                       userName = _nameController.text;
+                      changeName("guest", userName);
+                      //userProgress.email
+                      //print(localUser.playerName);
                     });
                     Navigator.push(
                         context,
